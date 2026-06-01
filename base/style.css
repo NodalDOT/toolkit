@@ -249,7 +249,7 @@ section,
 }
 
 section { padding: 0; }
-#preview { border: none; background: transparent; }
+#preview { display: block; border: none; background: transparent; }
 
 body[data-sidebar="collapsed"] aside { padding-inline: 12px; }
 
