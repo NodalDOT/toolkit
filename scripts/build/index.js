@@ -4,6 +4,8 @@ import path from "node:path";
 import { fileURLToPath } from "node:url";
 import createStructure from "./createStructure.js";
 import { ensureDir } from "./utils.js";
+import minifyHtml from "./minifyHtml.js";
+import writeBuildFile from "./writeBuildFile.js";
 
 const CONTENT_DIR = path.join(".", "content");
 const BASE_DIR = path.join(".", "base");
@@ -12,18 +14,18 @@ const BASE_STYLE_FILE = path.join(BASE_DIR, "style.css");
 const BASE_SCRIPT_FILE = path.join(BASE_DIR, "script.js");
 const GITHUB_URL = process.env.GITHUB_URL;
 
-const BUILD_DIR = path.join('.', 'build')
-const HTML_FILE = path.join(BUILD_DIR, 'index.html')
+const BUILD_DIR = path.join(".", "build");
+const HTML_FILE = path.join(BUILD_DIR, "index.html");
 
 const __filename = fileURLToPath(import.meta.url);
-const GITHUB_NAME = process.env.GITHUB_NAME;;
+const GITHUB_NAME = process.env.GITHUB_NAME;
 
-const build = () => {
+const build = async () => {
   // STRUCTURE
 
   const structure = createStructure(CONTENT_DIR);
 
-  // build folder
+  // BUILD FOLDER
 
   fs.rmSync(BUILD_DIR, { recursive: true, force: true });
 
@@ -38,7 +40,8 @@ const build = () => {
     githubName: GITHUB_NAME,
   });
 
-  fs.writeFileSync(HTML_FILE, html)
+  fs.writeFileSync(HTML_FILE, await minifyHtml(html));
+
   // COMPONENTS
 
   for (const block of Object.values(structure)) {
@@ -50,24 +53,27 @@ const build = () => {
         const targetPath = path.join(BUILD_DIR, file.path);
 
         ensureDir(path.dirname(targetPath));
-        fs.copyFileSync(sourcePath, targetPath);
+        await writeBuildFile(sourcePath, targetPath);
       }
     }
   }
 
   // CSS
   if (fs.existsSync(BASE_STYLE_FILE)) {
-    fs.copyFileSync(BASE_STYLE_FILE, path.join(BUILD_DIR, "style.css"));
+    await writeBuildFile(BASE_STYLE_FILE, path.join(BUILD_DIR, "style.css"));
   }
 
   // JS
   if (fs.existsSync(BASE_SCRIPT_FILE)) {
-    fs.copyFileSync(BASE_SCRIPT_FILE, path.join(BUILD_DIR, "script.js"));
+    await writeBuildFile(BASE_SCRIPT_FILE, path.join(BUILD_DIR, "script.js"));
   }
 };
 
 export default build;
 
 if (process.argv[1] === __filename) {
-  build();
+  build().catch((error) => {
+    console.error(error);
+    process.exitCode = 1;
+  });
 }
