@@ -58,7 +58,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
   applyTheme(savedTheme || body.dataset.theme || "dark");
   applySidebarState(
-    savedSidebar || (mobileMedia.matches ? "collapsed" : body.dataset.sidebar) || "expanded",
+    savedSidebar ||
+      (mobileMedia.matches ? "collapsed" : body.dataset.sidebar) ||
+      "expanded",
   );
   syncSidebarContentVisibility(body.dataset.sidebar);
 

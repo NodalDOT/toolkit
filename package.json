@@ -10,7 +10,7 @@
     "build": "node --env-file-if-exists=.env scripts/build/index.js",
     "dev": "node --env-file-if-exists=.env scripts/dev.js",
     "start": "node --env-file-if-exists=.env index.js",
-    "format": "prettier . --write" ,
+    "format": "prettier . --write",
     "lint": "eslint . --fix && stylelint \"**/*.css\""
   },
   "dependencies": {

@@ -1,3 +1,3 @@
-import config from 'stylelint-config-pepelsbey';
+import config from "stylelint-config-pepelsbey";
 
 export default config;
