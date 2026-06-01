@@ -10,11 +10,13 @@ const BASE_DIR = path.join(".", "base");
 const EJS_FILE = path.join(BASE_DIR, "index.ejs");
 const BASE_STYLE_FILE = path.join(BASE_DIR, "style.css");
 const BASE_SCRIPT_FILE = path.join(BASE_DIR, "script.js");
+const GITHUB_URL = process.env.GITHUB_URL;
 
 const BUILD_DIR = path.join('.', 'build')
 const HTML_FILE = path.join(BUILD_DIR, 'index.html')
 
 const __filename = fileURLToPath(import.meta.url);
+const GITHUB_NAME = process.env.GITHUB_NAME;;
 
 const build = () => {
   // STRUCTURE
@@ -29,7 +31,12 @@ const build = () => {
 
   // HTML
   const ejsFile = fs.readFileSync(EJS_FILE, "utf-8");
-  const html = ejs.render(ejsFile, { structure });
+  const html = ejs.render(ejsFile, {
+    structure,
+    currentDate: new Date().toLocaleDateString("en-CA"),
+    githubUrl: GITHUB_URL,
+    githubName: GITHUB_NAME,
+  });
 
   fs.writeFileSync(HTML_FILE, html)
   // COMPONENTS

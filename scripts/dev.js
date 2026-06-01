@@ -7,7 +7,10 @@ import build from "./build/index.js";
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 const ROOT_DIR = path.join(__dirname, "..");
-const WATCH_DIRS = [path.join(ROOT_DIR, "base"), path.join(ROOT_DIR, "content")];
+const WATCH_DIRS = [
+  path.join(ROOT_DIR, "base"),
+  path.join(ROOT_DIR, "content"),
+];
 const WATCH_EXTENSIONS = new Set([".html", ".css", ".js", ".ejs"]);
 
 let serverProcess = null;
