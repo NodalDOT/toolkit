@@ -7,8 +7,11 @@
 
     <title>Toolkit</title>
 </head>
-<body data-theme="dark">
+<body data-theme="dark" data-sidebar="expanded">
     <header>
+        <button class="sidebar-toggle sidebar-toggle-header" type="button" aria-label="Expand sidebar">
+            <span class="sidebar-toggle-icon" aria-hidden="true">&#9776;</span>
+        </button>
         <strong class="header-title">Toolkit</strong>
         <a class="header-center" href="<%= githubUrl %>" target="_blank" rel="noreferrer"><%= githubName %></a>
         <button class="theme-toggle" type="button" aria-label="Toggle theme">
@@ -34,8 +37,15 @@
     </header>
     <main>
         <aside>
+            <div class="sidebar-toolbar">
+                <span class="sidebar-title">Components</span>
+                <button class="sidebar-toggle sidebar-toggle-aside" type="button" aria-label="Collapse sidebar">
+                    <span class="sidebar-toggle-icon" aria-hidden="true">&lsaquo;</span>
+                </button>
+            </div>
+            <div class="sidebar-content">
             <% for (const [blockKey, block] of Object.entries(structure)) { %>
-            <h2><%= block.name %></h2>
+            <h2 class="sidebar-group-title"><%= block.name %></h2>
             <ul>
       <% for (const element of block.elements) { %>
         <li>
@@ -44,12 +54,13 @@
             data-component="<%= blockKey %>"
             data-element="<%= element.name %>"
           >
-            <%= element.name %>
+            <span class="nav-item-label"><%= element.name %></span>
           </button>
         </li>
       <% } %>
     </ul>
             <% } %>
+            </div>
         </aside>
         <section>
             <iframe id="preview"></iframe>
