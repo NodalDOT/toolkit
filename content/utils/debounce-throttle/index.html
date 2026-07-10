@@ -9,8 +9,48 @@
   </head>
 
   <body>
-    <div id="hover-area">HOVER ON ME</div>
-    <canvas id="paint"></canvas>
+    <main class="layout">
+      <section class="info-panel">
+        <h1>Debounce vs Throttle</h1>
+        <p class="description">
+          Move the pointer inside the interactive area and compare how often the
+          three handlers react over time.
+        </p>
+
+        <div
+          id="hover-area"
+          class="hover-area"
+          aria-label="Interactive hover area for debounce and throttle demo"
+        >
+          <div class="hover-area__content">
+            <span class="hover-area__label">Hover here</span>
+            <span class="hover-area__hint"
+              >Move the cursor around to generate events</span
+            >
+          </div>
+        </div>
+
+        <ul class="legend" aria-label="Chart legend">
+          <li><span class="legend__dot legend__dot--regular"></span>Regular</li>
+          <li>
+            <span class="legend__dot legend__dot--debounce"></span>Debounce
+          </li>
+          <li>
+            <span class="legend__dot legend__dot--throttle"></span>Throttle
+          </li>
+        </ul>
+      </section>
+
+      <section class="canvas-panel">
+        <div class="canvas-panel__header">
+          <h2>Timeline</h2>
+          <p>Each mark shows when a handler was allowed to run.</p>
+        </div>
+        <div class="canvas-shell">
+          <canvas id="paint"></canvas>
+        </div>
+      </section>
+    </main>
     <script type="module" src="./script.js"></script>
   </body>
 </html>
