@@ -16,6 +16,7 @@ const WATCH_EXTENSIONS = new Set([".html", ".css", ".js", ".ejs"]);
 let serverProcess = null;
 let restartTimer = null;
 let isRestarting = false;
+let pendingRestart = false;
 let watchers = [];
 
 const shouldHandleFile = (fileName) => {
@@ -23,7 +24,13 @@ const shouldHandleFile = (fileName) => {
     return true;
   }
 
-  return WATCH_EXTENSIONS.has(path.extname(fileName));
+  const normalizedFileName = String(fileName);
+
+  if (!path.extname(normalizedFileName)) {
+    return true;
+  }
+
+  return WATCH_EXTENSIONS.has(path.extname(normalizedFileName));
 };
 
 const getDirectories = (startDir) => {
@@ -49,6 +56,23 @@ const closeWatchers = () => {
   watchers = [];
 };
 
+const handleWatchEvent = (fileName) => {
+  if (!shouldHandleFile(fileName)) {
+    return;
+  }
+
+  scheduleRestart();
+};
+
+const addWatcher = (directory) => {
+  const watcher = fs.watch(directory, (eventType, fileName) => {
+    void eventType;
+    handleWatchEvent(fileName);
+  });
+
+  watchers.push(watcher);
+};
+
 const refreshWatchers = () => {
   closeWatchers();
 
@@ -57,18 +81,24 @@ const refreshWatchers = () => {
       continue;
     }
 
-    const directories = getDirectories(watchDir);
-
-    for (const directory of directories) {
-      const watcher = fs.watch(directory, (_eventType, fileName) => {
-        if (!shouldHandleFile(fileName)) {
-          return;
-        }
-
-        scheduleRestart();
-      });
+    try {
+      const watcher = fs.watch(
+        watchDir,
+        { recursive: true },
+        (eventType, fileName) => {
+          void eventType;
+          handleWatchEvent(fileName);
+        },
+      );
 
       watchers.push(watcher);
+      continue;
+    } catch {
+      const directories = getDirectories(watchDir);
+
+      for (const directory of directories) {
+        addWatcher(directory);
+      }
     }
   }
 };
@@ -101,6 +131,7 @@ const stopServer = async () => {
 
 const rebuildAndRestart = async () => {
   if (isRestarting) {
+    pendingRestart = true;
     return;
   }
 
@@ -108,14 +139,19 @@ const rebuildAndRestart = async () => {
 
   try {
     console.log("server restart");
+    await build();
     refreshWatchers();
-    build();
     await stopServer();
     startServer();
   } catch (error) {
     console.error(error);
   } finally {
     isRestarting = false;
+
+    if (pendingRestart) {
+      pendingRestart = false;
+      scheduleRestart();
+    }
   }
 };
 
@@ -141,6 +177,6 @@ process.on("SIGTERM", () => {
   void shutdown();
 });
 
-build();
+await build();
 refreshWatchers();
 startServer();

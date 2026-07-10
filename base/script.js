@@ -70,21 +70,69 @@ document.addEventListener("DOMContentLoaded", () => {
     return `./${component}/${element}/index.html`;
   };
 
+  const getButtonKey = (button) =>
+    `${button.dataset.component}/${button.dataset.element}`;
+
+  const findButtonByKey = (key) => {
+    if (!key) {
+      return null;
+    }
+
+    return (
+      Array.from(buttons).find((button) => getButtonKey(button) === key) || null
+    );
+  };
+
+  const updateUrl = (button) => {
+    const url = new URL(window.location.href);
+
+    url.searchParams.set("component", button.dataset.component);
+    url.searchParams.set("element", button.dataset.element);
+
+    window.history.replaceState({}, "", url);
+  };
+
+  const setActiveButton = (activeButton) => {
+    for (const currentButton of buttons) {
+      currentButton.classList.toggle("_active", currentButton === activeButton);
+    }
+  };
+
+  const openComponent = (button, { updateHistory = true } = {}) => {
+    if (!button) {
+      return;
+    }
+
+    setActiveButton(button);
+    iframe.src = getComponentPath(button);
+
+    if (updateHistory) {
+      updateUrl(button);
+    }
+
+    if (mobileMedia.matches) {
+      window.clearTimeout(sidebarTransitionTimer);
+      body.dataset.sidebarContent = "hidden";
+      applySidebarState("collapsed");
+      localStorage.setItem("sidebar", "collapsed");
+    }
+  };
+
+  const getButtonFromUrl = () => {
+    const url = new URL(window.location.href);
+    const component = url.searchParams.get("component");
+    const element = url.searchParams.get("element");
+
+    if (!component || !element) {
+      return null;
+    }
+
+    return findButtonByKey(`${component}/${element}`);
+  };
+
   for (const button of buttons) {
     button.addEventListener("click", () => {
-      for (const currentButton of buttons) {
-        currentButton.classList.remove("_active");
-      }
-
-      button.classList.add("_active");
-      iframe.src = getComponentPath(button);
-
-      if (mobileMedia.matches) {
-        window.clearTimeout(sidebarTransitionTimer);
-        body.dataset.sidebarContent = "hidden";
-        applySidebarState("collapsed");
-        localStorage.setItem("sidebar", "collapsed");
-      }
+      openComponent(button);
     });
   }
 
@@ -98,4 +146,14 @@ document.addEventListener("DOMContentLoaded", () => {
   for (const sidebarToggle of sidebarToggles) {
     sidebarToggle.addEventListener("click", toggleSidebar);
   }
+
+  const initialButton = getButtonFromUrl() || buttons[0] || null;
+
+  openComponent(initialButton, { updateHistory: Boolean(getButtonFromUrl()) });
+
+  window.addEventListener("popstate", () => {
+    const button = getButtonFromUrl() || buttons[0] || null;
+
+    openComponent(button, { updateHistory: false });
+  });
 });
