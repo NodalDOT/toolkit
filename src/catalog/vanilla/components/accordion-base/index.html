@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Accordion — Base</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="controls">
+      <label for="named">Named?</label>
+      <input checked id="named" type="checkbox" />
+    </div>
+
+    <section role="group">
+      <details name="accordion">
+        <summary>Exclusive</summary>
+        <span>
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Repudiandae
+          et sed consectetur aperiam repellendus, accusantium, facere id earum
+          omnis autem aspernatur perferendis labore ad obcaecati eveniet quasi
+          fuga nemo qui.
+        </span>
+      </details>
+      <details name="accordion">
+        <summary>Accordion</summary>
+        <span>
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Repudiandae
+          et sed consectetur aperiam repellendus, accusantium, facere id earum
+          omnis autem aspernatur perferendis labore ad obcaecati eveniet quasi
+          fuga nemo qui.
+        </span>
+      </details>
+      <details name="accordion">
+        <summary>Pattern</summary>
+        <span>
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Repudiandae
+          et sed consectetur aperiam repellendus, accusantium, facere id earum
+          omnis autem aspernatur perferendis labore ad obcaecati eveniet quasi
+          fuga nemo qui.
+        </span>
+      </details>
+    </section>
+
+    <script type="module" src="./script.js"></script>
+  </body>
+</html>
