@@ -4,11 +4,20 @@ document.addEventListener("DOMContentLoaded", () => {
   const buttons = document.querySelectorAll(".nav-item");
   const themeToggle = document.querySelector(".theme-toggle");
   const sidebarToggles = document.querySelectorAll(".sidebar-toggle");
+  const aside = document.querySelector("aside");
+  const asideToggle = document.querySelector(".sidebar-toggle-aside");
+  const headerStart = document.querySelector(".header-start");
+  const headerToggle = document.querySelector(".sidebar-toggle-header");
   const savedTheme = localStorage.getItem("theme");
   const savedSidebar = localStorage.getItem("sidebar");
   const mobileMedia = window.matchMedia("(max-width: 768px)");
-  const sidebarContentTransitionMs = 160;
-  let sidebarTransitionTimer;
+  const navGroups = document.querySelectorAll(".nav-group");
+  const navSections = document.querySelectorAll(".nav-section");
+  const navFilter = document.querySelector(".nav-filter");
+  const navEmpty = document.querySelector(".nav-empty");
+  const foldToggle = document.querySelector(".nav-fold-toggle");
+  const navGroupsStorageKey = "nav-groups";
+  let isFiltering = false;
 
   const applyTheme = (theme) => {
     body.dataset.theme = theme;
@@ -20,40 +29,31 @@ document.addEventListener("DOMContentLoaded", () => {
 
   const applySidebarState = (state) => {
     body.dataset.sidebar = state;
+  };
 
-    for (const sidebarToggle of sidebarToggles) {
-      sidebarToggle.setAttribute(
-        "aria-label",
-        state === "collapsed" ? "Expand sidebar" : "Collapse sidebar",
-      );
+  // The button that had focus is hidden together with its panel, so hand focus
+  // over to the opposite toggle to keep keyboard navigation going.
+  const moveFocusFrom = (container, target) => {
+    if (container.contains(document.activeElement)) {
+      target.focus();
     }
   };
 
-  const syncSidebarContentVisibility = (state) => {
-    body.dataset.sidebarContent = state === "collapsed" ? "hidden" : "visible";
+  const saveSidebarState = (state) => {
+    applySidebarState(state);
+    localStorage.setItem("sidebar", state);
   };
 
+  // All motion lives in CSS; switching the state is enough to animate it.
   const toggleSidebar = () => {
-    window.clearTimeout(sidebarTransitionTimer);
-
     if (body.dataset.sidebar === "collapsed") {
-      applySidebarState("expanded");
-      body.dataset.sidebarContent = "hidden";
-
-      sidebarTransitionTimer = window.setTimeout(() => {
-        body.dataset.sidebarContent = "visible";
-      }, sidebarContentTransitionMs);
-
-      localStorage.setItem("sidebar", "expanded");
+      saveSidebarState("expanded");
+      moveFocusFrom(headerStart, asideToggle);
       return;
     }
 
-    body.dataset.sidebarContent = "hidden";
-
-    sidebarTransitionTimer = window.setTimeout(() => {
-      applySidebarState("collapsed");
-      localStorage.setItem("sidebar", "collapsed");
-    }, sidebarContentTransitionMs);
+    saveSidebarState("collapsed");
+    moveFocusFrom(aside, headerToggle);
   };
 
   applyTheme(savedTheme || body.dataset.theme || "dark");
@@ -62,32 +62,120 @@ document.addEventListener("DOMContentLoaded", () => {
       (mobileMedia.matches ? "collapsed" : body.dataset.sidebar) ||
       "expanded",
   );
-  syncSidebarContentVisibility(body.dataset.sidebar);
 
-  const getComponentPath = (button) => {
-    const { component, element } = button.dataset;
+  const getItemPath = (button) => button.dataset.path;
 
-    return `./${component}/${element}/index.html`;
-  };
+  const getItemUrl = (button) => `./content/${getItemPath(button)}/index.html`;
 
-  const getButtonKey = (button) =>
-    `${button.dataset.component}/${button.dataset.element}`;
-
-  const findButtonByKey = (key) => {
-    if (!key) {
+  const findButtonByPath = (itemPath) => {
+    if (!itemPath) {
       return null;
     }
 
     return (
-      Array.from(buttons).find((button) => getButtonKey(button) === key) || null
+      Array.from(buttons).find((button) => getItemPath(button) === itemPath) ||
+      null
+    );
+  };
+
+  const readGroupStates = () => {
+    try {
+      return JSON.parse(localStorage.getItem(navGroupsStorageKey)) || {};
+    } catch {
+      return {};
+    }
+  };
+
+  const saveGroupStates = () => {
+    const states = {};
+
+    for (const group of navGroups) {
+      states[group.dataset.key] = group.open;
+    }
+
+    localStorage.setItem(navGroupsStorageKey, JSON.stringify(states));
+  };
+
+  const restoreGroupStates = () => {
+    const states = readGroupStates();
+
+    for (const group of navGroups) {
+      group.open = states[group.dataset.key] ?? true;
+    }
+  };
+
+  const syncFoldToggle = () => {
+    const isAnyOpen = Array.from(navSections).some((section) => section.open);
+    const label = isAnyOpen ? "Collapse all groups" : "Expand all groups";
+
+    foldToggle.dataset.state = isAnyOpen ? "expanded" : "collapsed";
+    foldToggle.setAttribute("aria-label", label);
+    foldToggle.title = label;
+  };
+
+  const revealButton = (button) => {
+    let group = button.closest(".nav-group");
+
+    while (group) {
+      group.open = true;
+      group = group.parentElement.closest(".nav-group");
+    }
+
+    button.scrollIntoView({ block: "nearest" });
+  };
+
+  const applyFilter = () => {
+    const query = navFilter.value.trim().toLowerCase();
+    const wasFiltering = isFiltering;
+
+    isFiltering = Boolean(query);
+
+    if (!isFiltering) {
+      for (const button of buttons) {
+        button.parentElement.hidden = false;
+      }
+
+      for (const group of navGroups) {
+        group.hidden = false;
+      }
+
+      navEmpty.hidden = true;
+
+      if (wasFiltering) {
+        const activeButton = document.querySelector(".nav-item._active");
+
+        restoreGroupStates();
+
+        if (activeButton) {
+          revealButton(activeButton);
+        }
+      }
+
+      return;
+    }
+
+    for (const button of buttons) {
+      const text = `${button.dataset.title} ${button.dataset.path}`;
+
+      button.parentElement.hidden = !text.toLowerCase().includes(query);
+    }
+
+    for (const group of navGroups) {
+      const hasMatches = group.querySelector("li:not([hidden])") !== null;
+
+      group.hidden = !hasMatches;
+      group.open = hasMatches;
+    }
+
+    navEmpty.hidden = Array.from(buttons).some(
+      (button) => !button.parentElement.hidden,
     );
   };
 
   const updateUrl = (button) => {
     const url = new URL(window.location.href);
 
-    url.searchParams.set("component", button.dataset.component);
-    url.searchParams.set("element", button.dataset.element);
+    url.searchParams.set("item", getItemPath(button));
 
     window.history.replaceState({}, "", url);
   };
@@ -104,30 +192,22 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     setActiveButton(button);
-    iframe.src = getComponentPath(button);
+    revealButton(button);
+    iframe.src = getItemUrl(button);
 
     if (updateHistory) {
       updateUrl(button);
     }
 
     if (mobileMedia.matches) {
-      window.clearTimeout(sidebarTransitionTimer);
-      body.dataset.sidebarContent = "hidden";
-      applySidebarState("collapsed");
-      localStorage.setItem("sidebar", "collapsed");
+      saveSidebarState("collapsed");
     }
   };
 
   const getButtonFromUrl = () => {
     const url = new URL(window.location.href);
-    const component = url.searchParams.get("component");
-    const element = url.searchParams.get("element");
 
-    if (!component || !element) {
-      return null;
-    }
-
-    return findButtonByKey(`${component}/${element}`);
+    return findButtonByPath(url.searchParams.get("item"));
   };
 
   for (const button of buttons) {
@@ -146,6 +226,52 @@ document.addEventListener("DOMContentLoaded", () => {
   for (const sidebarToggle of sidebarToggles) {
     sidebarToggle.addEventListener("click", toggleSidebar);
   }
+
+  for (const group of navGroups) {
+    group.addEventListener("toggle", () => {
+      if (!isFiltering) {
+        saveGroupStates();
+      }
+
+      syncFoldToggle();
+    });
+  }
+
+  foldToggle.addEventListener("click", () => {
+    const shouldOpen = foldToggle.dataset.state === "collapsed";
+
+    for (const group of navGroups) {
+      group.open = shouldOpen;
+    }
+  });
+
+  navFilter.addEventListener("input", applyFilter);
+
+  navFilter.addEventListener("keydown", (event) => {
+    if (event.key === "Enter") {
+      const firstMatch = Array.from(buttons).find(
+        (button) => !button.parentElement.hidden,
+      );
+
+      openComponent(firstMatch);
+    }
+  });
+
+  document.addEventListener("keydown", (event) => {
+    const target = event.target;
+    const isTyping =
+      target instanceof HTMLElement &&
+      (target.isContentEditable ||
+        ["INPUT", "TEXTAREA"].includes(target.tagName));
+
+    if (event.key === "/" && !isTyping && body.dataset.sidebar === "expanded") {
+      event.preventDefault();
+      navFilter.focus();
+    }
+  });
+
+  restoreGroupStates();
+  syncFoldToggle();
 
   const initialButton = getButtonFromUrl() || buttons[0] || null;
 

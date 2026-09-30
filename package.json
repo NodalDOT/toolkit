@@ -7,8 +7,10 @@
   "type": "module",
   "main": "index.js",
   "scripts": {
-    "build": "node --env-file-if-exists=.env scripts/build/index.js",
-    "dev": "node --env-file-if-exists=.env scripts/dev.js",
+    "build": "tsc && vite build",
+    "dev": "vite",
+    "preview": "vite preview",
+    "typecheck": "tsc",
     "start": "node --env-file-if-exists=.env index.js",
     "format": "prettier . --write",
     "lint": "eslint . --fix && stylelint \"**/*.css\" --fix"
@@ -16,19 +18,25 @@
   "dependencies": {
     "@fastify/static": "^9.1.3",
     "ejs": "^6.0.1",
-    "fastify": "^5.8.5"
+    "fastify": "^5.8.5",
+    "react": "^19.3.0",
+    "react-dom": "^19.3.0"
   },
   "devDependencies": {
     "@eslint/js": "^10.0.1",
-    "cssnano": "^8.0.1",
+    "@types/react": "^19.3.0",
+    "@types/react-dom": "^19.3.0",
+    "@vitejs/plugin-react": "^6.1.1",
     "eslint": "^10.4.1",
+    "eslint-plugin-react-hooks": "^7.1.1",
     "globals": "^17.6.0",
     "htmlnano": "^3.3.2",
-    "postcss": "^8.5.15",
     "prettier": "3.8.3",
     "stylelint": "^17.12.0",
     "stylelint-config-pepelsbey": "^1.3.0",
     "stylelint-config-standard": "^40.0.0",
-    "uglify-js": "^3.19.3"
+    "typescript": "~6.0.3",
+    "typescript-eslint": "^8.71.0",
+    "vite": "^8.3.1"
   }
 }
