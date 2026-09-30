@@ -26,20 +26,23 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v4
+
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
           node-version: 22
-          cache: npm
+          cache: pnpm
 
       - name: Configure Pages
         uses: actions/configure-pages@v5
 
       - name: Install dependencies
-        run: npm ci
+        run: pnpm install --frozen-lockfile
 
       - name: Build static site
-        run: npm run build
+        run: pnpm run build
         env:
           GITHUB_URL: ${{ github.server_url }}/${{ github.repository }}
           GITHUB_NAME: ${{ github.repository_owner }}
@@ -47,7 +50,7 @@ jobs:
       - name: Upload Pages artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: build
+          path: dist
 
       - name: Deploy to GitHub Pages
         id: deployment
