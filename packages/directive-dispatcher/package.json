@@ -1,0 +1,18 @@
+{
+  "name": "@toolkit/directive-dispatcher",
+  "version": "1.0.0",
+  "private": false,
+  "type": "module",
+  "exports": {
+    ".": "./index.ts"
+  },
+  "engines": {
+    "node": "^22.13.0 || >=24"
+  },
+  "scripts": {
+    "test": "node --test \"test/**/*.test.ts\"",
+    "typecheck": "tsc"
+  },
+  "dependencies": {},
+  "devDependencies": {}
+}
