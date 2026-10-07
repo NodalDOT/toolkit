@@ -1,4 +1,9 @@
-import { TEMPLATE_DIRECTIVES, type TemplateDirective, type TemplateNode } from "../types/index.ts";
+import {
+  TEMPLATE_DIRECTIVES,
+  type ParsedOpenTag,
+  type TemplateDirective,
+  type TemplateNode,
+} from "../types/index.ts";
 
 const isTemplateDirective = (
   directive: string,
@@ -9,7 +14,7 @@ const isTemplateDirective = (
 export const parseOpenTag = (
   tagStart: number,
   source: string,
-): { node: TemplateNode; tagEnd: number } => {
+): ParsedOpenTag => {
   const tagEnd = source.indexOf(">", tagStart) + 1;
 
   const openTag = source.slice(tagStart, tagEnd);

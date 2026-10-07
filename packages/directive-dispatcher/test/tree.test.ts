@@ -79,10 +79,7 @@ describe("buildTree", () => {
   });
 
   test("throws on unmatched close tag", () => {
-    assert.throws(
-      () => buildTree("</template>"),
-      /Unmatched close tag at 0/,
-    );
+    assert.throws(() => buildTree("</template>"), /Unmatched close tag at 0/);
   });
 
   test("throws on open tag without close tag", () => {
@@ -105,9 +102,7 @@ describe("buildTree", () => {
   test("reports the innermost unclosed tag", () => {
     assert.throws(
       () =>
-        buildTree(
-          "<template data-html-each='a'><template data-html-each='b'>",
-        ),
+        buildTree("<template data-html-each='a'><template data-html-each='b'>"),
       /Unmatched open tag at 29/,
     );
   });

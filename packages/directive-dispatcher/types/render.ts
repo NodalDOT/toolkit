@@ -1,6 +1,6 @@
-import type { HandlerDirs, Scope } from './handler.ts'
+import type { HandlerDirs, Scope } from "./handler.ts";
 
 export type RenderOptions = {
-  dirs: HandlerDirs
-  data?: Scope
-}
+  dirs: HandlerDirs;
+  data?: Scope;
+};

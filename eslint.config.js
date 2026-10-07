@@ -5,7 +5,7 @@ import reactHooks from "eslint-plugin-react-hooks";
 import { defineConfig } from "eslint/config";
 
 export default defineConfig([
-  { ignores: ["build/**"] },
+  { ignores: ["dist/**"] },
   {
     files: ["**/*.{js,mjs,cjs}"],
     plugins: { js },
@@ -19,5 +19,14 @@ export default defineConfig([
       reactHooks.configs.flat.recommended,
     ],
     languageOptions: { globals: globals.browser },
+  },
+  {
+    files: [
+      "config/**/*.ts",
+      "server/**/*.ts",
+      "tools/**/*.ts",
+      "vite.config.ts",
+    ],
+    languageOptions: { globals: globals.node },
   },
 ]);

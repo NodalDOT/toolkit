@@ -1,13 +1,8 @@
 import { parseOpenTag } from "./parse-open-tag.ts";
-import type { Part, TemplateNode } from "../types/index.ts";
+import type { OpenNode, Part } from "../types/index.ts";
 
 const OPEN_TAG_PREFIX = "<template data-html";
 const CLOSE_TAG = "</template>";
-
-type OpenNode = {
-  node: TemplateNode;
-  start: number;
-};
 
 const pushText = (parts: Part[], text: string) => {
   if (text) parts.push(text);
@@ -23,7 +18,7 @@ export const buildTree = (source: string): Part[] => {
     const nextClose = source.indexOf(CLOSE_TAG, cursor);
 
     const openNode = stack.at(-1);
-    const currentContent =  openNode ? openNode.node.content : roots;
+    const currentContent = openNode ? openNode.node.content : roots;
 
     const hasNoTagsLeft = nextOpen === -1 && nextClose === -1;
 
@@ -32,7 +27,8 @@ export const buildTree = (source: string): Part[] => {
       break;
     }
 
-    const isOpenTagFirst = nextOpen !== -1 && (nextClose === -1 || nextOpen < nextClose);
+    const isOpenTagFirst =
+      nextOpen !== -1 && (nextClose === -1 || nextOpen < nextClose);
 
     if (isOpenTagFirst) {
       pushText(currentContent, source.slice(cursor, nextOpen));
