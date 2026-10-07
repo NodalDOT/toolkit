@@ -22,9 +22,9 @@ export default defineConfig([
   },
   {
     files: [
-      "config/**/*.ts",
-      "server/**/*.ts",
-      "tools/**/*.ts",
+      "showcase/build/**/*.ts",
+      "showcase/config/**/*.ts",
+      "showcase/server/**/*.ts",
       "vite.config.ts",
     ],
     languageOptions: { globals: globals.node },

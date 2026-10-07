@@ -1,4 +1,4 @@
-import { getConfig } from "../../config/index.ts";
+import { getConfig } from "../config/index.ts";
 
 export const getDefine = (): Record<string, string> => {
   const { githubUrl, githubName } = getConfig();

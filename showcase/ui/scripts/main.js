@@ -55,7 +55,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   const getItemPath = (button) => button.dataset.path;
 
-  const getItemUrl = (button) => `./catalog/${getItemPath(button)}/index.html`;
+  const getItemUrl = (button) => `./snippets/${getItemPath(button)}/index.html`;
 
   const findButtonByPath = (itemPath) => {
     if (!itemPath) {

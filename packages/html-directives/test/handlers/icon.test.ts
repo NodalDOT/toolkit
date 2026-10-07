@@ -4,10 +4,7 @@ import path from "node:path";
 import { IconHandler } from "../../index.ts";
 import type { TemplateNode } from "../../index.ts";
 
-const iconsDir = path.resolve(
-  import.meta.dirname,
-  "../../../../src/site/icons",
-);
+const iconsDir = path.resolve(import.meta.dirname, "../fixtures/icons");
 const icon = new IconHandler(iconsDir);
 
 const iconNode = (expression: string): TemplateNode => ({
@@ -25,7 +22,7 @@ const renderIcon = (expression: string) =>
 
 describe("IconHandler", () => {
   test("renders svg from icons dir", async () => {
-    assert.match(await renderIcon("sun"), /^\s*<svg[\s\S]*<\/svg>\s*$/);
+    assert.match(await renderIcon("star"), /^\s*<svg[\s\S]*<\/svg>\s*$/);
   });
 
   test("rejects unknown icon", async () => {

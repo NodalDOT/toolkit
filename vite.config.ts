@@ -1,12 +1,12 @@
 import { defineConfig } from "vite";
-import { DIST_DIR, ROOT_DIR, SRC_DIR, getConfig } from "./config/index.ts";
-import { createPlugins, getDefine, getInputs } from "./tools/vite/index.ts";
+import { DIST_DIR, ROOT_DIR, getConfig } from "./showcase/config/index.ts";
+import { createPlugins, getDefine, getInputs } from "./showcase/build/index.ts";
 
 export default defineConfig(async ({ command, mode }) => {
   const { base, port } = getConfig();
 
   return {
-    root: SRC_DIR,
+    root: ROOT_DIR,
     envDir: ROOT_DIR,
     base,
     define: getDefine(),

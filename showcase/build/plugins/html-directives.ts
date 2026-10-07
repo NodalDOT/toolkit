@@ -1,14 +1,14 @@
 import path from "node:path";
-import { renderTemplate } from "@toolkit/directive-dispatcher";
-import type { HandlerDirs } from "@toolkit/directive-dispatcher";
+import { renderTemplate } from "@toolkit/html-directives";
+import type { HandlerDirs } from "@toolkit/html-directives";
 import type { Plugin } from "vite";
 import {
-  CATALOG_DIR,
   ENTRY_HTML,
   ICONS_DIR,
   PARTIALS_DIR,
   SCRIPTS_DIR,
-} from "../../../config/index.ts";
+  SNIPPETS_DIR,
+} from "../../config/index.ts";
 import { readCatalog } from "../utils/catalog.ts";
 
 const RELOAD_DELAY_MS = 100;
@@ -27,7 +27,7 @@ const isTemplateAsset = (filePath: string): boolean =>
   Object.values(dirs).some((dir) => isInside(dir, filePath));
 
 const isCatalogChange = (event: string, filePath: string): boolean =>
-  isInside(CATALOG_DIR, filePath) &&
+  isInside(SNIPPETS_DIR, filePath) &&
   (event !== "change" || path.basename(filePath) === META_FILE);
 
 const toMessage = (error: unknown): string =>
@@ -43,7 +43,7 @@ export const htmlDirectives = (): Plugin => ({
       }
 
       try {
-        const catalog = await readCatalog(CATALOG_DIR);
+        const catalog = await readCatalog(SNIPPETS_DIR);
 
         return await renderTemplate(html, { dirs, data: { catalog } });
       } catch (error) {

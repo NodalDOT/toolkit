@@ -223,9 +223,9 @@ importers:
       "@eslint/js":
         specifier: ^10.0.1
         version: 10.0.1(eslint@10.11.0(supports-color@10.2.2))
-      "@toolkit/directive-dispatcher":
+      "@toolkit/html-directives":
         specifier: workspace:*
-        version: link:packages/directive-dispatcher
+        version: link:packages/html-directives
       "@toolkit/route-indexer":
         specifier: workspace:*
         version: link:packages/route-indexer
@@ -278,7 +278,7 @@ importers:
         specifier: ^8.3.1
         version: 8.3.1(@types/node@26.6.3)
 
-  packages/directive-dispatcher:
+  packages/html-directives:
     dependencies:
       escape-html:
         specifier: ^1.0.3
