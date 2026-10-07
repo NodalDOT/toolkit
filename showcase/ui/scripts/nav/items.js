@@ -8,13 +8,8 @@ const getItemPath = (item) => item.dataset.path;
 
 const getItemUrl = (item) => `./snippets/${getItemPath(item)}/index.html`;
 
-const findItemByPath = (itemPath) => {
-  if (!itemPath) {
-    return null;
-  }
-
-  return items.find((item) => getItemPath(item) === itemPath) || null;
-};
+const findItemByPath = (itemPath) =>
+  items.find((item) => getItemPath(item) === itemPath);
 
 const getItemFromUrl = () => {
   const url = new URL(window.location.href);
@@ -32,7 +27,6 @@ const updateUrl = (item) => {
 
 const setActiveItem = (activeItem) => {
   for (const item of items) {
-    item.classList.toggle("_active", item === activeItem);
     item.disabled = item === activeItem;
   }
 };
@@ -54,7 +48,7 @@ export const openItem = (item, { updateHistory = true } = {}) => {
 };
 
 export const revealActiveItem = () => {
-  const activeItem = items.find((item) => item.classList.contains("_active"));
+  const activeItem = items.find((item) => item.disabled);
 
   if (activeItem) {
     revealItem(activeItem);
@@ -68,13 +62,5 @@ export const initNavItems = () => {
     });
   }
 
-  const itemFromUrl = getItemFromUrl();
-
-  openItem(itemFromUrl || items[0] || null, {
-    updateHistory: Boolean(itemFromUrl),
-  });
-
-  window.addEventListener("popstate", () => {
-    openItem(getItemFromUrl() || items[0] || null, { updateHistory: false });
-  });
+  openItem(getItemFromUrl() || items[0], { updateHistory: false });
 };

@@ -15,21 +15,21 @@
           <strong class="sidebar-title">Toolkit</strong>
           <div class="sidebar-actions">
             <button
-              class="sidebar-action nav-fold-toggle"
+              class="icon-button nav-fold-toggle"
               type="button"
               aria-label="Collapse all groups"
             >
-              <span class="nav-fold-icon" aria-hidden="true">
+              <span class="icon nav-fold-icon" aria-hidden="true">
                 <template data-html-icon="fold"></template>
               </span>
             </button>
             <button
-              class="sidebar-toggle sidebar-toggle-aside"
+              class="icon-button sidebar-toggle sidebar-toggle-aside"
               type="button"
               aria-label="Hide sidebar"
               title="Hide sidebar"
             >
-              <span class="sidebar-toggle-icon" aria-hidden="true">
+              <span class="icon" aria-hidden="true">
                 <template data-html-icon="sidebar"></template>
               </span>
             </button>
@@ -43,7 +43,7 @@
             aria-label="Filter items"
             autocomplete="off"
           />
-          <nav class="nav-tree">
+          <nav>
             <template data-html-each="catalog">
               <details class="nav-group nav-section" data-key="{{ path }}" open>
                 <summary class="nav-group-summary">
@@ -87,12 +87,12 @@
         <header>
           <div class="header-start">
             <button
-              class="sidebar-toggle sidebar-toggle-header"
+              class="icon-button sidebar-toggle sidebar-toggle-header"
               type="button"
               aria-label="Show sidebar"
               title="Show sidebar"
             >
-              <span class="sidebar-toggle-icon" aria-hidden="true">
+              <span class="icon" aria-hidden="true">
                 <template data-html-icon="sidebar"></template>
               </span>
             </button>
@@ -105,18 +105,20 @@
             rel="noreferrer"
             >%GITHUB_NAME%</a
           >
-          <button class="theme-toggle" type="button" aria-label="Toggle theme">
-            <span class="theme-icon theme-icon-sun" aria-hidden="true">
+          <button
+            class="icon-button theme-toggle"
+            type="button"
+            aria-label="Toggle theme"
+          >
+            <span class="icon theme-icon-sun" aria-hidden="true">
               <template data-html-icon="sun"></template>
             </span>
-            <span class="theme-icon theme-icon-moon" aria-hidden="true">
+            <span class="icon theme-icon-moon" aria-hidden="true">
               <template data-html-icon="moon"></template>
             </span>
           </button>
         </header>
-        <section>
-          <iframe id="preview"></iframe>
-        </section>
+        <iframe id="preview" title="Snippet preview"></iframe>
       </div>
     </main>
     <script type="module" src="/showcase/ui/scripts/main.js"></script>

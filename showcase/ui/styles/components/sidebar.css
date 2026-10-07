@@ -41,7 +41,6 @@ aside {
     inset: 0;
     z-index: 20;
     border: 0;
-    backdrop-filter: blur(12px);
   }
 
   .sidebar-toolbar,
