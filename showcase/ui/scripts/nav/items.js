@@ -31,7 +31,7 @@ const setActiveItem = (activeItem) => {
   }
 };
 
-export const openItem = (item, { updateHistory = true } = {}) => {
+export const openItem = (item, { isInitial = false } = {}) => {
   if (!item || item.disabled) {
     return;
   }
@@ -40,11 +40,10 @@ export const openItem = (item, { updateHistory = true } = {}) => {
   revealItem(item);
   iframe.src = getItemUrl(item);
 
-  if (updateHistory) {
+  if (!isInitial) {
     updateUrl(item);
+    collapseSidebarOnMobile();
   }
-
-  collapseSidebarOnMobile();
 };
 
 export const revealActiveItem = () => {
@@ -62,5 +61,5 @@ export const initNavItems = () => {
     });
   }
 
-  openItem(getItemFromUrl() || items[0], { updateHistory: false });
+  openItem(getItemFromUrl() || items[0], { isInitial: true });
 };

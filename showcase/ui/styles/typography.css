@@ -9,6 +9,7 @@
 
 body {
   font-family: var(--font-mono);
+  line-height: 1.32;
 }
 
 .header-title,

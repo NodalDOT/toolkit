@@ -90,6 +90,5 @@ export const initNavGroups = () => {
     }
   });
 
-  restoreGroupStates();
   syncFoldToggle();
 };

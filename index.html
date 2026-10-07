@@ -3,6 +3,20 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="preload"
+      href="/showcase/ui/fonts/JetBrainsMono-Regular.woff2"
+      as="font"
+      type="font/woff2"
+      crossorigin
+    />
+    <link
+      rel="preload"
+      href="/showcase/ui/fonts/JetBrainsMono-Bold.woff2"
+      as="font"
+      type="font/woff2"
+      crossorigin
+    />
     <link rel="stylesheet" href="/showcase/ui/styles/index.css" />
 
     <title>Toolkit</title>
@@ -81,6 +95,7 @@
             </template>
             <p class="nav-empty" hidden>Nothing found</p>
           </nav>
+          <template data-html-script="restore-groups"></template>
         </div>
       </aside>
       <div class="workspace">
