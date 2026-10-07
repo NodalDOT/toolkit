@@ -27,7 +27,10 @@ describe("TemplateRenderer", () => {
   });
 
   test("fills placeholders in text parts", async () => {
-    assert.equal(await renderer.render(["<p>{{ a }}</p>"], { a: "x" }), "<p>x</p>");
+    assert.equal(
+      await renderer.render(["<p>{{ a }}</p>"], { a: "x" }),
+      "<p>x</p>",
+    );
   });
 
   test("replaces nodes with handler result", async () => {
@@ -41,7 +44,10 @@ describe("TemplateRenderer", () => {
   });
 
   test("does not fill placeholders in handler result", async () => {
-    const raw: Handlers = { ...handlers, icon: { render: async () => "{{ a }}" } };
+    const raw: Handlers = {
+      ...handlers,
+      icon: { render: async () => "{{ a }}" },
+    };
     const parts: Part[] = [{ directive: "icon", expression: "x", content: [] }];
 
     assert.equal(await new TemplateRenderer(raw).render(parts, {}), "{{ a }}");

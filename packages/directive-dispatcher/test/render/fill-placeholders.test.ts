@@ -22,6 +22,9 @@ describe("fillPlaceholders", () => {
   });
 
   test("throws on unknown key", () => {
-    assert.throws(() => fillPlaceholders("{{ missing }}", {}), /Unknown key "missing"/);
+    assert.throws(
+      () => fillPlaceholders("{{ missing }}", {}),
+      /Unknown key "missing"/,
+    );
   });
 });

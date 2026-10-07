@@ -1,1 +1,1 @@
-export { renderTemplate } from "./render-template.ts"
+export { renderTemplate } from "./render-template.ts";

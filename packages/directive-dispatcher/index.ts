@@ -1,2 +1,18 @@
-export { buildDirectiveTree } from "./directive-tree/index.ts";
-export type { TemplateDirective, TemplateNode } from "./directive-tree/index.ts";
+export { buildTree } from "./tree/index.ts";
+export {
+  ContentHandler,
+  EachHandler,
+  IconHandler,
+  ScriptHandler,
+} from "./registry/index.ts";
+export { renderTemplate } from "./render/index.ts";
+export type {
+  Handler,
+  HandlerContext,
+  HandlerDirs,
+  Handlers,
+  Part,
+  RenderOptions,
+  Scope,
+  TemplateNode,
+} from "./types/index.ts";

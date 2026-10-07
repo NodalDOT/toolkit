@@ -1,23 +1,24 @@
-import type { Handlers, Part, Scope, TemplateNode } from "../types/index.ts"
-import { fillPlaceholders } from "./fill-placeholders.ts"
+import type { Handlers, Part, Scope, TemplateNode } from "../types/index.ts";
+import { fillPlaceholders } from "./fill-placeholders.ts";
 
 export class TemplateRenderer {
-  private readonly handlers: Handlers
+  private readonly handlers: Handlers;
 
   constructor(handlers: Handlers) {
-    this.handlers = handlers
+    this.handlers = handlers;
   }
 
   async render(parts: Part[], scope: Scope): Promise<string> {
-    let result = ""
+    let result = "";
 
     for (const part of parts) {
-      result += typeof part === "string"
-        ? fillPlaceholders(part, scope)
-        : await this.renderNode(part, scope)
+      result +=
+        typeof part === "string"
+          ? fillPlaceholders(part, scope)
+          : await this.renderNode(part, scope);
     }
 
-    return result
+    return result;
   }
 
   private renderNode(node: TemplateNode, scope: Scope): Promise<string> {
@@ -25,6 +26,6 @@ export class TemplateRenderer {
       node,
       data: scope,
       renderContent: (innerScope) => this.render(node.content, innerScope),
-    })
+    });
   }
 }

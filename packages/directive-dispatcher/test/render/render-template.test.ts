@@ -22,7 +22,9 @@ describe("renderTemplate", () => {
 
   test("replaces icon directive with svg file", async () => {
     assert.equal(
-      await render("<p>a</p><template data-html-icon='star'></template><p>b</p>"),
+      await render(
+        "<p>a</p><template data-html-icon='star'></template><p>b</p>",
+      ),
       '<p>a</p><svg id="star"></svg><p>b</p>',
     );
   });
@@ -50,7 +52,9 @@ describe("renderTemplate", () => {
 
   test("escapes quotes inside attributes", async () => {
     assert.equal(
-      await render(`<button data-path='{{ path }}'></button>`, { path: `a'b"c` }),
+      await render(`<button data-path='{{ path }}'></button>`, {
+        path: `a'b"c`,
+      }),
       `<button data-path='a&#39;b&quot;c'></button>`,
     );
   });
