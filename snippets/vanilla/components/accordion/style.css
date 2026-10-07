@@ -1,0 +1,141 @@
+* {
+  box-sizing: border-box;
+}
+
+:root {
+  interpolate-size: allow-keywords;
+
+  --shadow-strength: 1%;
+  --shadow-color: 220 40% 2%;
+}
+
+body {
+  display: grid;
+  align-content: start;
+  place-items: center;
+  padding-top: 2rem;
+  min-height: 100vh;
+}
+
+
+.controls {
+  position: fixed;
+  top: 1rem;
+  right: 1rem;
+  flex-direction: column;
+  display: flex;
+  align-items: center;
+
+
+
+  box-shadow: 0 1px white inset;
+  border-radius: 0.5rem;
+
+  background: hsl(0deg 0% 98%);
+  accent-color: red;
+  color: hsl(0deg 0% 10%);
+
+
+}
+.control {
+    padding: 0.6rem;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+.control:first-of-type {
+    border-bottom: 1px solid black;
+}
+/* Accordion */
+
+section {
+  width: 300px;
+}
+
+details {
+  width: 100%;
+}
+
+details.animate::details-content  {
+    block-size: 0;
+
+    overflow: hidden;
+
+    transition:
+      block-size 0.3s ease,
+      content-visibility 0.3s allow-discrete;
+}
+
+details.animate[open]::details-content {
+  block-size: auto;
+}
+
+
+details span {
+  display: block;
+
+  width: 300px;
+  padding: 1rem;
+
+  font-weight: 300;
+}
+
+
+summary {
+  position: relative;
+
+  width: 300px;
+  padding: 1rem;
+
+  border-bottom: 1px solid black;
+
+  font-weight: 600;
+  cursor: pointer;
+
+  list-style: none;
+}
+
+
+summary::-webkit-details-marker {
+  display: none;
+}
+
+summary::marker {
+  content: "";
+}
+
+
+summary::after {
+  position: absolute;
+  top: 50%;
+  right: 0;
+
+  width: 20px;
+
+  transform-origin: 50% 40%;
+  translate: 0 -35%;
+
+  transition: rotate 0.2s;
+
+  content: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke-width='1.5' stroke='currentColor'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' d='M19.5 8.25l-7.5 7.5-7.5-7.5' /%3E%3C/svg%3E");
+}
+
+details[open] summary::after {
+  rotate: -180deg;
+}
+
+@media (prefers-color-scheme: dark) {
+  body {
+    background: hsl(0deg 0% 10%);
+    color: hsl(0deg 0% 98%);
+  }
+
+  summary {
+    border-color: hsl(0deg 0% 98% / 0.5);
+  }
+
+  summary::after {
+    content: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke-width='1.5' stroke='hsl(0 0% 98%)'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' d='M19.5 8.25l-7.5 7.5-7.5-7.5' /%3E%3C/svg%3E");
+  }
+
+}
