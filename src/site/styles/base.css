@@ -1,0 +1,47 @@
+:root {
+  --sidebar-expanded-width: 320px;
+  --sidebar-width: var(--sidebar-expanded-width);
+  --header-height: 64px;
+  --scrollbar-size: 10px;
+  --radius-md: 10px;
+  --radius-pill: 999px;
+}
+
+body {
+  background: var(--bg);
+  color: var(--text);
+}
+
+body[data-sidebar="collapsed"] {
+  --sidebar-width: 0px;
+}
+
+body,
+.sidebar-content {
+  scrollbar-width: thin;
+  scrollbar-color: var(--scrollbar-thumb) var(--scrollbar-track);
+}
+
+body::-webkit-scrollbar,
+.sidebar-content::-webkit-scrollbar {
+  width: var(--scrollbar-size);
+  height: var(--scrollbar-size);
+}
+
+body::-webkit-scrollbar-track,
+.sidebar-content::-webkit-scrollbar-track {
+  background: var(--scrollbar-track);
+}
+
+body::-webkit-scrollbar-thumb,
+.sidebar-content::-webkit-scrollbar-thumb {
+  border: 2px solid transparent;
+  border-radius: var(--radius-pill);
+  background: var(--scrollbar-thumb);
+  background-clip: padding-box;
+}
+
+body::-webkit-scrollbar-thumb:hover,
+.sidebar-content::-webkit-scrollbar-thumb:hover {
+  background: var(--scrollbar-thumb-hover);
+}

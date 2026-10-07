@@ -1,0 +1,20 @@
+:root {
+  --font-mono: "JetBrains Mono", "Fira Code", monospace;
+  --font-size-xs: 11px;
+  --font-size-sm: 13px;
+  --font-size-md: 14px;
+  --font-size-lg: 15px;
+  --font-size-xl: 18px;
+}
+
+body {
+  font-family: var(--font-mono);
+}
+
+.header-title,
+.sidebar-title {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-size: var(--font-size-xl);
+}

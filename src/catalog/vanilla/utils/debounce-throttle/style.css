@@ -36,11 +36,11 @@ html {
 }
 
 body {
-  min-height: 100%;
   margin: 0;
-  font-family: Arial, Helvetica, sans-serif;
-  color: var(--text-color);
+  min-height: 100%;
   background-color: var(--background-color);
+  color: var(--text-color);
+  font-family: Arial, Helvetica, sans-serif;
 }
 
 .layout {
@@ -57,7 +57,6 @@ body {
   border-right: 1px solid var(--divider-color);
 }
 
-
 h1,
 h2,
 p {
@@ -66,8 +65,8 @@ p {
 
 h1 {
   margin-top: 8px;
-  font-size: 28px;
   line-height: 1.1;
+  font-size: 28px;
 }
 
 .description,
@@ -79,14 +78,14 @@ h1 {
 
 .hover-area {
   display: flex;
-  align-items: center;
   justify-content: center;
-  min-height: 220px;
+  align-items: center;
   padding: 24px;
+  min-height: 220px;
   border: 1px solid var(--divider-color);
   background-color: var(--background-color);
-  cursor: crosshair;
   transition: background-color 120ms ease;
+  cursor: crosshair;
 }
 
 .hover-area:hover {
@@ -101,16 +100,16 @@ h1 {
 .hover-area__content {
   display: flex;
   flex-direction: column;
-  gap: 8px;
   align-items: center;
+  gap: 8px;
   text-align: center;
 }
 
 .hover-area__label {
-  font-size: 16px;
-  font-weight: 700;
-  letter-spacing: 0.08em;
   text-transform: uppercase;
+  letter-spacing: 0.08em;
+  font-weight: 700;
+  font-size: 16px;
 }
 
 .hover-area__hint {
@@ -128,8 +127,8 @@ h1 {
 
 .legend li {
   display: flex;
-  gap: 10px;
   align-items: center;
+  gap: 10px;
   font-size: 14px;
 }
 
@@ -168,8 +167,8 @@ h1 {
 
 .canvas-shell {
   flex: 1;
-  min-height: 0;
   padding: 24px;
+  min-height: 0;
 }
 
 #paint {

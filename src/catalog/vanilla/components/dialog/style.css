@@ -4,7 +4,6 @@ html {
 }
 
 body {
-
   display: grid;
   place-content: center;
   margin: 0;

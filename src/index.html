@@ -1,113 +1,124 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/base/style.css">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/site/styles/index.css" />
 
     <title>Toolkit</title>
-</head>
-<body data-theme="dark" data-sidebar="expanded">
-    <script>
-        // Apply saved state before first paint so the sidebar doesn't animate on load.
-        (() => {
-            const { dataset } = document.body;
-            const isMobile = matchMedia("(max-width: 768px)").matches;
-
-            dataset.theme = localStorage.getItem("theme") || dataset.theme;
-            dataset.sidebar = localStorage.getItem("sidebar") || (isMobile ? "collapsed" : dataset.sidebar);
-        })();
-    </script>
+  </head>
+  <body data-theme="dark" data-sidebar="expanded">
+    <template data-html-script="restore-state"></template>
     <main>
-        <aside>
-            <div class="sidebar-toolbar">
-                <strong class="sidebar-title">Toolkit</strong>
-                <div class="sidebar-actions">
-                    <button class="sidebar-action nav-fold-toggle" type="button" aria-label="Collapse all groups">
-                        <svg class="nav-fold-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                            <path d="m7 15 5 5 5-5"></path>
-                            <path d="m7 9 5-5 5 5"></path>
-                        </svg>
-                    </button>
-                    <button class="sidebar-toggle sidebar-toggle-aside" type="button" aria-label="Hide sidebar" title="Hide sidebar">
-                        <svg class="sidebar-toggle-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                            <rect x="3" y="4" width="18" height="16" rx="2"></rect>
-                            <path d="M9 4v16"></path>
-                        </svg>
-                    </button>
-                </div>
-            </div>
-            <div class="sidebar-content">
-                <input class="nav-filter" type="search" placeholder="Filter…" aria-label="Filter items" autocomplete="off">
-                <nav class="nav-tree">
-                    <% for (const section of structure) { %>
-                    <details class="nav-group nav-section" data-key="<%= section.path %>" open>
-                        <summary class="nav-group-summary">
-                            <span class="nav-chevron" aria-hidden="true"></span>
-                            <span class="nav-group-title"><%= section.title %></span>
-                        </summary>
-                        <% for (const category of section.categories) { %>
-                        <details class="nav-group nav-category" data-key="<%= category.path %>" open>
-                            <summary class="nav-group-summary">
-                                <span class="nav-chevron" aria-hidden="true"></span>
-                                <span class="nav-group-title"><%= category.title %></span>
-                                <span class="nav-group-count"><%= category.items.length %></span>
-                            </summary>
-                            <ul>
-                                <% for (const item of category.items) { %>
-                                <li>
-                                    <button class="nav-item" type="button" data-path="<%= item.path %>" data-title="<%= item.title %>">
-                                        <span class="nav-item-label"><%= item.title %></span>
-                                    </button>
-                                </li>
-                                <% } %>
-                            </ul>
-                        </details>
-                        <% } %>
-                    </details>
-                    <% } %>
-                    <p class="nav-empty" hidden>Nothing found</p>
-                </nav>
-            </div>
-        </aside>
-        <div class="workspace">
-            <header>
-                <div class="header-start">
-                    <button class="sidebar-toggle sidebar-toggle-header" type="button" aria-label="Show sidebar" title="Show sidebar">
-                        <svg class="sidebar-toggle-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                            <rect x="3" y="4" width="18" height="16" rx="2"></rect>
-                            <path d="M9 4v16"></path>
-                        </svg>
-                    </button>
-                    <strong class="header-title">Toolkit</strong>
-                </div>
-                <a class="header-center" href="<%= githubUrl %>" target="_blank" rel="noreferrer"><%= githubName %></a>
-                <button class="theme-toggle" type="button" aria-label="Toggle theme">
-                    <span class="theme-icon theme-icon-sun" aria-hidden="true">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-                            <circle cx="12" cy="12" r="4"></circle>
-                            <path d="M12 2v2.5"></path>
-                            <path d="M12 19.5V22"></path>
-                            <path d="M2 12h2.5"></path>
-                            <path d="M19.5 12H22"></path>
-                            <path d="m4.9 4.9 1.8 1.8"></path>
-                            <path d="m17.3 17.3 1.8 1.8"></path>
-                            <path d="m17.3 6.7 1.8-1.8"></path>
-                            <path d="m4.9 19.1 1.8-1.8"></path>
-                        </svg>
-                    </span>
-                    <span class="theme-icon theme-icon-moon" aria-hidden="true">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-                            <path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8Z"></path>
-                        </svg>
-                    </span>
-                </button>
-            </header>
-            <section>
-                <iframe id="preview"></iframe>
-            </section>
+      <aside>
+        <div class="sidebar-toolbar">
+          <strong class="sidebar-title">Toolkit</strong>
+          <div class="sidebar-actions">
+            <button
+              class="sidebar-action nav-fold-toggle"
+              type="button"
+              aria-label="Collapse all groups"
+            >
+              <span class="nav-fold-icon" aria-hidden="true">
+                <template data-html-icon="fold"></template>
+              </span>
+            </button>
+            <button
+              class="sidebar-toggle sidebar-toggle-aside"
+              type="button"
+              aria-label="Hide sidebar"
+              title="Hide sidebar"
+            >
+              <span class="sidebar-toggle-icon" aria-hidden="true">
+                <template data-html-icon="sidebar"></template>
+              </span>
+            </button>
+          </div>
         </div>
+        <div class="sidebar-content">
+          <input
+            class="nav-filter"
+            type="search"
+            placeholder="Filter…"
+            aria-label="Filter items"
+            autocomplete="off"
+          />
+          <nav class="nav-tree">
+            <template data-html-each="catalog">
+              <details class="nav-group nav-section" data-key="{{ path }}" open>
+                <summary class="nav-group-summary">
+                  <span class="nav-chevron" aria-hidden="true"></span>
+                  <span class="nav-group-title">{{ title }}</span>
+                </summary>
+                <template data-html-each="categories">
+                  <details
+                    class="nav-group nav-category"
+                    data-key="{{ path }}"
+                    open
+                  >
+                    <summary class="nav-group-summary">
+                      <span class="nav-chevron" aria-hidden="true"></span>
+                      <span class="nav-group-title">{{ title }}</span>
+                      <span class="nav-group-count">{{ count }}</span>
+                    </summary>
+                    <ul>
+                      <template data-html-each="items">
+                        <li>
+                          <button
+                            class="nav-item"
+                            type="button"
+                            data-path="{{ path }}"
+                            data-title="{{ title }}"
+                          >
+                            <span class="nav-item-label">{{ title }}</span>
+                          </button>
+                        </li>
+                      </template>
+                    </ul>
+                  </details>
+                </template>
+              </details>
+            </template>
+            <p class="nav-empty" hidden>Nothing found</p>
+          </nav>
+        </div>
+      </aside>
+      <div class="workspace">
+        <header>
+          <div class="header-start">
+            <button
+              class="sidebar-toggle sidebar-toggle-header"
+              type="button"
+              aria-label="Show sidebar"
+              title="Show sidebar"
+            >
+              <span class="sidebar-toggle-icon" aria-hidden="true">
+                <template data-html-icon="sidebar"></template>
+              </span>
+            </button>
+            <strong class="header-title">Toolkit</strong>
+          </div>
+          <a
+            class="header-center"
+            href="%GITHUB_URL%"
+            target="_blank"
+            rel="noreferrer"
+            >%GITHUB_NAME%</a
+          >
+          <button class="theme-toggle" type="button" aria-label="Toggle theme">
+            <span class="theme-icon theme-icon-sun" aria-hidden="true">
+              <template data-html-icon="sun"></template>
+            </span>
+            <span class="theme-icon theme-icon-moon" aria-hidden="true">
+              <template data-html-icon="moon"></template>
+            </span>
+          </button>
+        </header>
+        <section>
+          <iframe id="preview"></iframe>
+        </section>
+      </div>
     </main>
-    <script type="module" src="/base/script.js"></script>
-</body>
+    <script type="module" src="/site/scripts/main.js"></script>
+  </body>
 </html>

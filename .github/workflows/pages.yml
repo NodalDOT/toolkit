@@ -44,6 +44,7 @@ jobs:
       - name: Build static site
         run: pnpm run build
         env:
+          PORT: 3000
           GITHUB_URL: ${{ github.server_url }}/${{ github.repository }}
           GITHUB_NAME: ${{ github.repository_owner }}
 

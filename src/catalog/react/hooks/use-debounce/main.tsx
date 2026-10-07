@@ -12,8 +12,6 @@ function Demo() {
 
   const [loggedQuery, setLoggedQuery] = useState(debouncedQuery);
 
-  // Adjust state during render instead of in an effect:
-  // https://react.dev/learn/you-might-not-need-an-effect#adjusting-some-state-when-a-prop-changes
   if (debouncedQuery !== loggedQuery) {
     setLoggedQuery(debouncedQuery);
 

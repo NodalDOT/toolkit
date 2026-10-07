@@ -8,8 +8,6 @@ document.addEventListener("DOMContentLoaded", () => {
   const asideToggle = document.querySelector(".sidebar-toggle-aside");
   const headerStart = document.querySelector(".header-start");
   const headerToggle = document.querySelector(".sidebar-toggle-header");
-  const savedTheme = localStorage.getItem("theme");
-  const savedSidebar = localStorage.getItem("sidebar");
   const mobileMedia = window.matchMedia("(max-width: 768px)");
   const navGroups = document.querySelectorAll(".nav-group");
   const navSections = document.querySelectorAll(".nav-section");
@@ -31,8 +29,6 @@ document.addEventListener("DOMContentLoaded", () => {
     body.dataset.sidebar = state;
   };
 
-  // The button that had focus is hidden together with its panel, so hand focus
-  // over to the opposite toggle to keep keyboard navigation going.
   const moveFocusFrom = (container, target) => {
     if (container.contains(document.activeElement)) {
       target.focus();
@@ -44,7 +40,6 @@ document.addEventListener("DOMContentLoaded", () => {
     localStorage.setItem("sidebar", state);
   };
 
-  // All motion lives in CSS; switching the state is enough to animate it.
   const toggleSidebar = () => {
     if (body.dataset.sidebar === "collapsed") {
       saveSidebarState("expanded");
@@ -56,16 +51,11 @@ document.addEventListener("DOMContentLoaded", () => {
     moveFocusFrom(aside, headerToggle);
   };
 
-  applyTheme(savedTheme || body.dataset.theme || "dark");
-  applySidebarState(
-    savedSidebar ||
-      (mobileMedia.matches ? "collapsed" : body.dataset.sidebar) ||
-      "expanded",
-  );
+  applyTheme(body.dataset.theme);
 
   const getItemPath = (button) => button.dataset.path;
 
-  const getItemUrl = (button) => `./content/${getItemPath(button)}/index.html`;
+  const getItemUrl = (button) => `./catalog/${getItemPath(button)}/index.html`;
 
   const findButtonByPath = (itemPath) => {
     if (!itemPath) {
