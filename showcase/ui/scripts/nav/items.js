@@ -33,11 +33,12 @@ const updateUrl = (item) => {
 const setActiveItem = (activeItem) => {
   for (const item of items) {
     item.classList.toggle("_active", item === activeItem);
+    item.disabled = item === activeItem;
   }
 };
 
 export const openItem = (item, { updateHistory = true } = {}) => {
-  if (!item) {
+  if (!item || item.disabled) {
     return;
   }
 

@@ -166,4 +166,5 @@
   background: var(--button);
   color: var(--accent);
   transform: none;
+  cursor: default;
 }
