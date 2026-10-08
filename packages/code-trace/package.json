@@ -1,0 +1,25 @@
+{
+  "name": "@toolkit/code-trace",
+  "version": "1.0.0",
+  "private": false,
+  "type": "module",
+  "exports": {
+    ".": "./index.ts",
+    "./runtime": "./runtime/index.ts"
+  },
+  "engines": {
+    "node": "^22.18.0 || >=24"
+  },
+  "scripts": {
+    "test": "node --test \"test/**/*.test.ts\"",
+    "typecheck": "tsc"
+  },
+  "peerDependencies": {
+    "vite": "^8.3.1"
+  },
+  "devDependencies": {
+    "@types/node": "^26.6.3",
+    "typescript": "~6.0.3",
+    "vite": "^8.3.1"
+  }
+}
