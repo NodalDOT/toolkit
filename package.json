@@ -27,6 +27,7 @@
   },
   "devDependencies": {
     "@eslint/js": "^10.0.1",
+    "@toolkit/code-trace": "workspace:*",
     "@toolkit/html-directives": "workspace:*",
     "@toolkit/route-indexer": "workspace:*",
     "@types/node": "^26.6.3",
