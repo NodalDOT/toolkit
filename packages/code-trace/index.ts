@@ -1,1 +1,1 @@
-// TODO Move all used functions to the outside
+export { instrument } from './instrument/index.ts'
