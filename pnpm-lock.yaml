@@ -294,18 +294,6 @@ importers:
         specifier: ^8.3.1
         version: 8.3.1(@types/node@26.6.3)
 
-  packages/code-trace-reference:
-    devDependencies:
-      '@types/node':
-        specifier: ^26.6.3
-        version: 26.6.3
-      typescript:
-        specifier: ~6.0.3
-        version: 6.0.3
-      vite:
-        specifier: ^8.3.1
-        version: 8.3.1(@types/node@26.6.3)
-
   packages/html-directives:
     dependencies:
       escape-html:
