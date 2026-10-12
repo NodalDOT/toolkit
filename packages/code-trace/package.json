@@ -1,21 +1,30 @@
 {
   "name": "@toolkit/code-trace",
   "version": "1.0.0",
-  "private": false,
+  "private": true,
   "type": "module",
   "exports": {
     ".": "./index.ts",
-    "./runtime": "./runtime/index.ts"
+    "./vite": "./plugin/index.ts",
+    "./runtime": "./runtime/index.ts",
+    "./view": "./view/index.ts",
+    "./view.css": "./view/code-trace.css"
   },
   "engines": {
     "node": "^22.18.0 || >=24"
   },
   "scripts": {
     "test": "node --test \"test/**/*.test.ts\"",
+    "playground": "vite playground",
     "typecheck": "tsc"
   },
   "peerDependencies": {
     "vite": "^8.3.1"
+  },
+  "peerDependenciesMeta": {
+    "vite": {
+      "optional": true
+    }
   },
   "devDependencies": {
     "@types/node": "^26.6.3",
