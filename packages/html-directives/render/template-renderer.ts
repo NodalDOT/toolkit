@@ -1,5 +1,5 @@
 import type { Handlers, Part, Scope, TemplateNode } from "../types/index.ts";
-import { fillPlaceholders } from "./fill-placeholders.ts";
+import { fillPlaceholders } from "../placeholders/fill-placeholders.ts";
 
 export class TemplateRenderer {
   private readonly handlers: Handlers;

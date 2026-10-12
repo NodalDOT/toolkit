@@ -1,6 +1,6 @@
 import { describe, test } from "node:test";
 import assert from "node:assert/strict";
-import { fillPlaceholders } from "../../render/fill-placeholders.ts";
+import { fillPlaceholders } from "../../placeholders/fill-placeholders.ts";
 
 describe("fillPlaceholders", () => {
   test("keeps text without placeholders", () => {
