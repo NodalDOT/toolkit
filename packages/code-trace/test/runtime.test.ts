@@ -1,5 +1,6 @@
 import { describe, test } from 'node:test'
 import assert from 'node:assert/strict'
+import { PROBE_FN } from '../instrument/wrap-probe.ts'
 
 let instance = 0
 
@@ -9,6 +10,12 @@ const freshRuntime = async () =>
 const endOfRun = () => Promise.resolve()
 
 describe('runtime', () => {
+  test('exports the function that instrumented code calls', async () => {
+    const runtime: Record<string, unknown> = await freshRuntime()
+
+    assert.equal(typeof runtime[PROBE_FN], 'function')
+  })
+
   test('returns the value unchanged', async () => {
     const { __trace$ } = await freshRuntime()
     const list = [1]
