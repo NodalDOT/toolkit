@@ -19,5 +19,6 @@ export const getConfig = (): AppConfig => {
     base: "./",
     githubUrl: env.GITHUB_URL,
     githubName: env.GITHUB_NAME,
+    defaultTheme: "dark",
   };
 };

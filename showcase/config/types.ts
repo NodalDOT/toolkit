@@ -5,4 +5,5 @@ export type AppConfig = {
   base: string;
   githubUrl: string;
   githubName: string;
+  defaultTheme: "dark" | "light";
 };
