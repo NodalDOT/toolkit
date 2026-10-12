@@ -12,9 +12,11 @@ describe('instrument', () => {
     assert.equal(instrument('export function f() {}', 'test.ts'), null)
   })
 
-  test('prepends the runtime import and wraps probes', () => {
+  test('imports the runtime and wraps probes', () => {
+    const source = 'export const f = (n: number) => {\n  return n * 2\n}'
+
     assert.equal(
-      instrument('export const f = (n: number) => {\n  return n * 2\n}', 'test.ts'),
+      instrument(source, 'test.ts'),
       "import { __trace$ } from '@toolkit/code-trace/runtime';" +
         'export const f = (n: number) => {\n  return __trace$(0, (n * 2))\n}',
     )
