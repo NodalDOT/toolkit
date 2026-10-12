@@ -1,5 +1,5 @@
 import { Visitor, type ESTree } from 'vite'
-import type { Probe } from './wrap-probe.ts'
+import type { Probe } from '../types.ts'
 
 const FUNCTIONS = new Set(['ArrowFunctionExpression', 'FunctionExpression', 'ClassExpression'])
 
