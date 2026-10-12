@@ -1,5 +1,6 @@
 import path from "node:path";
 import { htmlDirectives as createHtmlDirectives } from "@toolkit/html-directives/vite";
+import { META_FILE } from "@toolkit/route-indexer";
 import type { Plugin } from "vite";
 import {
   ENTRY_HTML,
@@ -9,8 +10,6 @@ import {
   SNIPPETS_DIR,
 } from "../../config/index.ts";
 import { readCatalog } from "../utils/catalog.ts";
-
-const META_FILE = "meta.json";
 
 const isInside = (dir: string, file: string): boolean =>
   file.startsWith(dir + path.sep);

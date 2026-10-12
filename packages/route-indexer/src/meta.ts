@@ -4,7 +4,7 @@ import { z } from "zod";
 import { RouteMetaSchema } from "./schema.ts";
 import type { RouteMeta } from "./types.ts";
 
-const META_FILE = "meta.json";
+export const META_FILE = "meta.json";
 
 const readMetaFile = async (
   metaPath: string,
