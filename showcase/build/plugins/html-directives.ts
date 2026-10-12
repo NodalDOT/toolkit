@@ -38,14 +38,19 @@ export const htmlDirectives = (): Plugin => ({
   transformIndexHtml: {
     order: "pre",
     async handler(html, ctx) {
-      if (path.resolve(ctx.filename) !== ENTRY_HTML) {
+      const filePath = path.resolve(ctx.filename);
+      const isEntry = filePath === ENTRY_HTML;
+
+      if (!isEntry && !isInside(SNIPPETS_DIR, filePath)) {
         return html;
       }
 
       try {
-        const catalog = await readCatalog(SNIPPETS_DIR);
+        const data = isEntry
+          ? { catalog: await readCatalog(SNIPPETS_DIR) }
+          : {};
 
-        return await renderTemplate(html, { dirs, data: { catalog } });
+        return await renderTemplate(html, { dirs, data });
       } catch (error) {
         throw new Error(`${ctx.filename}: ${toMessage(error)}`, {
           cause: error,
