@@ -1,0 +1,73 @@
+body {
+  padding: 32px;
+  font-size: var(--font-size-md);
+}
+
+.snippet {
+  display: grid;
+  gap: 24px;
+  margin-inline: auto;
+  max-width: 960px;
+}
+
+.snippet-title {
+  margin: 0;
+  font-size: var(--font-size-xl);
+}
+
+.snippet-controls {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.snippet button,
+.snippet input {
+  padding: 8px 12px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  background: var(--button);
+  color: var(--text);
+  font: inherit;
+  font-size: var(--font-size-sm);
+}
+
+.snippet button {
+  cursor: pointer;
+}
+
+.snippet button:hover {
+  background: var(--button-hover);
+}
+
+.snippet button[aria-pressed="true"] {
+  border-color: var(--accent-border);
+  color: var(--accent);
+}
+
+.snippet input {
+  flex: 1;
+  min-width: 200px;
+}
+
+.snippet input:focus-visible,
+.snippet button:focus-visible {
+  outline: 1px solid var(--accent-border);
+  outline-offset: 1px;
+}
+
+.snippet-result {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 24px;
+  padding: 16px 20px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  background: var(--surface);
+  color: var(--muted);
+}
+
+.snippet-result strong {
+  color: var(--accent);
+}
