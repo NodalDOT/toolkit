@@ -1,6 +1,7 @@
 import fs from 'node:fs'
 import path from 'node:path'
 import type { HtmlTagDescriptor, Plugin, ViteDevServer } from 'vite'
+import { PACKAGE_NAME, TAG_NAME } from '../constants.ts'
 import { findProbes, instrument } from '../instrument/index.ts'
 import { findTracedSources } from './html.ts'
 
@@ -14,12 +15,12 @@ const editorScript = (src: string): HtmlTagDescriptor => {
     attrs: { type: 'module' },
     injectTo: 'body',
     children: `
-      import '@toolkit/code-trace/view.css'
-      import '@toolkit/code-trace/view'
+      import '${PACKAGE_NAME}/view.css'
+      import '${PACKAGE_NAME}/view'
       import source from '${file}?raw'
       import probes from '${file}?${PROBES_QUERY}'
 
-      document.querySelector('code-trace[src="${src}"]').load(source, probes)
+      document.querySelector('${TAG_NAME}[src="${src}"]').load(source, probes)
     `,
   }
 }

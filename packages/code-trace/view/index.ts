@@ -1,13 +1,14 @@
+import { TAG_NAME } from '../constants.ts'
 import { CodeTrace } from './element.ts'
 
-if (!customElements.get('code-trace')) {
-  customElements.define('code-trace', CodeTrace)
+if (!customElements.get(TAG_NAME)) {
+  customElements.define(TAG_NAME, CodeTrace)
 }
 
 export { CodeTrace }
 
 declare global {
   interface HTMLElementTagNameMap {
-    'code-trace': CodeTrace
+    [TAG_NAME]: CodeTrace
   }
 }

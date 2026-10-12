@@ -26,7 +26,10 @@ const insertMarkers = (source: string, probes: Probe[]) => {
   return result + source.slice(cursor)
 }
 
-const stateOf = (ids: number[]) => (ids.some((id) => run.has(id)) ? 'hit' : ids.length && run.size ? 'miss' : '')
+const HIT = 'hit'
+const MISS = 'miss'
+
+const stateOf = (ids: number[]) => (ids.some((id) => run.has(id)) ? HIT : ids.length && run.size ? MISS : '')
 
 const countOf = (ids: number[]) => Math.max(0, ...ids.map((id) => hits.get(id) ?? 0))
 
@@ -111,7 +114,7 @@ export class CodeTrace extends HTMLElement {
 
       line.count = count
       line.hits.textContent = count ? `×${count}` : ''
-      if (state === 'hit') line.root.getAnimations().forEach((animation) => animation.play())
+      if (state === HIT) line.root.getAnimations().forEach((animation) => animation.play())
     }
 
     for (const [id, chip] of this.#chips) {

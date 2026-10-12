@@ -1,9 +1,10 @@
 import { parseSync } from 'vite'
+import { PACKAGE_NAME } from '../constants.ts'
 import type { Probe } from '../types.ts'
 import { collectProbes } from './collect-probes.ts'
 import { PROBE_FN, wrap } from './wrap-probe.ts'
 
-const RUNTIME_IMPORT = `import { ${PROBE_FN} } from '@toolkit/code-trace/runtime';`
+const RUNTIME_IMPORT = `import { ${PROBE_FN} } from '${PACKAGE_NAME}/runtime';`
 
 export const findProbes = (source: string, filename: string): Probe[] => {
   const { program, errors } = parseSync(filename, source, { preserveParens: false })
