@@ -1,7 +1,9 @@
 (() => {
   const readStates = () => {
     try {
-      return JSON.parse(localStorage.getItem("nav-groups")) || {};
+      return (
+        JSON.parse(localStorage.getItem("{{ navGroupsStorageKey }}")) || {}
+      );
     } catch {
       return {};
     }

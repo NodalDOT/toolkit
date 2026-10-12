@@ -15,7 +15,7 @@ export const initTheme = () => {
   themeToggle.addEventListener("click", () => {
     const nextTheme = body.dataset.theme === "dark" ? "light" : "dark";
 
-    localStorage.setItem("theme", nextTheme);
+    localStorage.setItem(import.meta.env.THEME_STORAGE_KEY, nextTheme);
     applyTheme(nextTheme);
   });
 };

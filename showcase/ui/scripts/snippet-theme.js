@@ -4,7 +4,7 @@
   const showcaseBody = window.frameElement?.ownerDocument.body;
 
   const getShowcaseTheme = () => showcaseBody?.dataset.theme;
-  const getSavedTheme = () => localStorage.getItem("theme");
+  const getSavedTheme = () => localStorage.getItem("{{ themeStorageKey }}");
 
   const syncTheme = () => {
     body.dataset.theme = getShowcaseTheme() || getSavedTheme() || defaultTheme;

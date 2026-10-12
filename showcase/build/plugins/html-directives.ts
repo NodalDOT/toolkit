@@ -8,6 +8,7 @@ import {
   PARTIALS_DIR,
   SCRIPTS_DIR,
   SNIPPETS_DIR,
+  getConfig,
 } from "../../config/index.ts";
 import { readCatalog } from "../utils/catalog.ts";
 
@@ -17,15 +18,25 @@ const isInside = (dir: string, file: string): boolean =>
 const isPage = (file: string): boolean =>
   file === ENTRY_HTML || isInside(SNIPPETS_DIR, file);
 
-const pageData = async (file: string) =>
-  file === ENTRY_HTML ? { catalog: await readCatalog(SNIPPETS_DIR) } : {};
-
 const isCatalogChange = (event: string, file: string): boolean =>
   isInside(SNIPPETS_DIR, file) &&
   (event !== "change" || path.basename(file) === META_FILE);
 
-export const htmlDirectives = (): Plugin =>
-  createHtmlDirectives({
+export const htmlDirectives = (): Plugin => {
+  const { storageKeys } = getConfig();
+
+  const sharedData = {
+    themeStorageKey: storageKeys.theme,
+    sidebarStorageKey: storageKeys.sidebar,
+    navGroupsStorageKey: storageKeys.navGroups,
+  };
+
+  const pageData = async (file: string) =>
+    file === ENTRY_HTML
+      ? { ...sharedData, catalog: await readCatalog(SNIPPETS_DIR) }
+      : sharedData;
+
+  return createHtmlDirectives({
     dirs: {
       iconsDir: ICONS_DIR,
       contentDir: PARTIALS_DIR,
@@ -35,3 +46,4 @@ export const htmlDirectives = (): Plugin =>
     data: pageData,
     reloadOn: isCatalogChange,
   });
+};

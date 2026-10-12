@@ -14,7 +14,7 @@ const moveFocusFrom = (container, target) => {
 
 const saveSidebarState = (state) => {
   body.dataset.sidebar = state;
-  localStorage.setItem("sidebar", state);
+  localStorage.setItem(import.meta.env.SIDEBAR_STORAGE_KEY, state);
 };
 
 const toggleSidebar = () => {

@@ -1,7 +1,7 @@
 const navGroups = document.querySelectorAll(".nav-group");
 const navSections = document.querySelectorAll(".nav-section");
 const foldToggle = document.querySelector(".nav-fold-toggle");
-const storageKey = "nav-groups";
+const storageKey = import.meta.env.NAV_GROUPS_STORAGE_KEY;
 let isFiltered = false;
 
 const readGroupStates = () => {
