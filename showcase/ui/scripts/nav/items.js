@@ -1,7 +1,7 @@
+import { loadPreview } from "../preview.js";
 import { collapseSidebarOnMobile } from "../sidebar.js";
 import { revealItem } from "./groups.js";
 
-const iframe = document.getElementById("preview");
 const items = Array.from(document.querySelectorAll(".nav-item"));
 
 const getItemPath = (item) => item.dataset.path;
@@ -38,7 +38,7 @@ export const openItem = (item, { isInitial = false } = {}) => {
 
   setActiveItem(item);
   revealItem(item);
-  iframe.src = getItemUrl(item);
+  loadPreview(getItemUrl(item));
 
   if (!isInitial) {
     updateUrl(item);
