@@ -110,11 +110,11 @@ The **reset** button in the header clears all values and hit counters.
 
 Settings are read from `.env`. Variables set in the environment take priority. Every key from `.env.example` is required.
 
-| Variable      | Description                                          |
-| ------------- | ---------------------------------------------------- |
-| `PORT`        | Port for `pnpm dev`, `pnpm preview` and `pnpm start` |
-| `GITHUB_URL`  | Link shown in the header                             |
-| `GITHUB_NAME` | Text of that link                                    |
+| Variable      | Description                            |
+| ------------- | -------------------------------------- |
+| `PORT`        | Port for `pnpm dev` and `pnpm preview` |
+| `GITHUB_URL`  | Link shown in the header               |
+| `GITHUB_NAME` | Text of that link                      |
 
 ## Local Development
 
@@ -131,10 +131,6 @@ Type-checks the project and builds the static site into `dist/`.
 ### `pnpm preview`
 
 Serves `dist/` with Vite.
-
-### `pnpm start`
-
-Serves `dist/` with Fastify.
 
 ### `pnpm test`
 
@@ -158,7 +154,6 @@ packages/
 showcase/
 ├── build/             Vite plugins, inputs and catalog
 ├── config/            env, paths and app settings
-├── server/            Fastify server for dist/
 └── ui/                styles, scripts, icons and partials of the showcase
 snippets/              the snippets themselves
 index.html             showcase entry page
@@ -169,7 +164,6 @@ index.html             showcase entry page
 - [Vite](https://vite.dev) and TypeScript
 - React for React snippets
 - [Zod](https://zod.dev) for `meta.json` validation
-- [Fastify](https://fastify.dev) for serving the build
 - ESLint, Stylelint and Prettier
 
 ## Deployment

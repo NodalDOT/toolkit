@@ -17,7 +17,6 @@
   "include": [
     "showcase/build/**/*.ts",
     "showcase/config/**/*.ts",
-    "showcase/server/**/*.ts",
     "vite.config.ts"
   ]
 }

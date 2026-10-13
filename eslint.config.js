@@ -24,7 +24,6 @@ export default defineConfig([
     files: [
       "showcase/build/**/*.ts",
       "showcase/config/**/*.ts",
-      "showcase/server/**/*.ts",
       "vite.config.ts",
     ],
     languageOptions: { globals: globals.node },
