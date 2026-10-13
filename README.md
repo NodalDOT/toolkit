@@ -8,7 +8,7 @@ A place to collect small HTML, CSS, JavaScript and React examples and browse the
 
 ## Preview
 
-[![Toolkit showing the debounce snippet with live values in the code trace](.github/screenshot.png)](https://nodaldot.github.io/toolkit/)
+[![Toolkit showing a spring physics snippet with live values in the code trace](.github/social-preview.png)](https://nodaldot.github.io/toolkit/)
 
 Try it live: [nodaldot.github.io/toolkit](https://nodaldot.github.io/toolkit/)
 
