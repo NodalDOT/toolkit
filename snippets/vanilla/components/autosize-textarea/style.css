@@ -1,0 +1,21 @@
+.autosize__field {
+  padding: 8px 12px;
+  min-height: 72px;
+  max-height: 240px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  background: var(--button);
+  color: var(--text);
+  font: inherit;
+  font-size: var(--font-size-sm);
+  resize: none;
+}
+
+.autosize__field:focus-visible {
+  outline: 1px solid var(--accent-border);
+  outline-offset: 1px;
+}
+
+.autosize__field[data-mode="css"] {
+  field-sizing: content;
+}

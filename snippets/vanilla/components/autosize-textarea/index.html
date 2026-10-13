@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <template data-html-content="snippet-head"></template>
+    <link rel="stylesheet" href="./style.css" />
+    <title>Autosize textarea</title>
+  </head>
+  <body data-theme="%DEFAULT_THEME%">
+    <template data-html-script="snippet-theme"></template>
+    <main class="snippet">
+      <h1 class="snippet-title">Autosize textarea</h1>
+
+      <div class="snippet-controls">
+        <button data-mode="none">fixed</button>
+        <button data-mode="css">field-sizing: content</button>
+        <button data-mode="script">autosize.ts</button>
+      </div>
+
+      <textarea
+        class="autosize__field"
+        aria-label="Message"
+        placeholder="Type a few lines…"
+      ></textarea>
+
+      <code-trace src="autosize.ts"></code-trace>
+    </main>
+
+    <script type="module" src="./script.ts"></script>
+  </body>
+</html>
