@@ -1,9 +1,14 @@
 {
   "name": "toolkit",
   "version": "1.0.0",
-  "description": "Simple web toolkit",
-  "license": "ISC",
-  "author": "Nodal-dot",
+  "description": "Static showcase for HTML, CSS, JS and React snippets — folder-based catalog, live preview and inline code tracing. Built with Vite.",
+  "license": "MIT",
+  "author": "NodalDOT",
+  "homepage": "https://nodaldot.github.io/toolkit/",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/NodalDOT/toolkit.git"
+  },
   "type": "module",
   "engines": {
     "node": "^22.18.0 || >=24"

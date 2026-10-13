@@ -1,6 +1,16 @@
 # Toolkit – a showcase for web snippets
 
+[![Demo](https://img.shields.io/badge/demo-GitHub_Pages-fcc438)](https://nodaldot.github.io/toolkit/)
+[![Deploy](https://github.com/NodalDOT/toolkit/actions/workflows/pages.yml/badge.svg)](https://github.com/NodalDOT/toolkit/actions/workflows/pages.yml)
+[![License: MIT](https://img.shields.io/badge/license-MIT-blue)](./LICENSE)
+
 A place to collect small HTML, CSS, JavaScript and React examples and browse them in one interface. Drop a folder into `snippets/` and it shows up in the sidebar.
+
+## Preview
+
+[![Toolkit showing the debounce snippet with live values in the code trace](.github/screenshot.png)](https://nodaldot.github.io/toolkit/)
+
+Try it live: [nodaldot.github.io/toolkit](https://nodaldot.github.io/toolkit/)
 
 ## Toolkit?
 
@@ -19,7 +29,7 @@ Everything is built with Vite into plain HTML, so the result can be hosted anywh
 Requires Node.js `^22.18.0 || >=24` and pnpm 12.
 
 ```sh
-git clone https://github.com/Nodal-dot/toolkit.git
+git clone https://github.com/NodalDOT/toolkit.git
 cd toolkit
 corepack enable
 pnpm install
@@ -182,4 +192,4 @@ Copy `.env.example` to `.env` and fill in every value, or set the variables in t
 
 ## License
 
-[ISC](./LICENSE) – use, copy and change the code however you like.
+[MIT](./LICENSE) – use, copy and change the code however you like.
