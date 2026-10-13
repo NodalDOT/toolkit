@@ -34,7 +34,6 @@ export const routeIndexer = async (rootDir: string): Promise<RouteIndex> => {
         name: routeEntry.name,
         title: routeMeta.title,
         path: routePath,
-        order: routeMeta.order,
       });
     }
 
@@ -42,7 +41,6 @@ export const routeIndexer = async (rootDir: string): Promise<RouteIndex> => {
       name: segmentEntry.name,
       title: segmentMeta.title,
       path: segmentPath,
-      order: segmentMeta.order,
       routes,
     });
   }

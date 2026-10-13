@@ -6,7 +6,7 @@ import { routeIndexer } from "../index.ts";
 import { sortIndex, withTree } from "./helpers.ts";
 import type { Tree } from "./helpers.ts";
 
-const validMeta = { title: "Title", order: 1 };
+const validMeta = { title: "Title" };
 
 const levels = [
   {
@@ -24,43 +24,28 @@ const levels = [
 const invalidMetaCases: { name: string; content: unknown; issues: string[] }[] =
   [
     {
-      name: "title is missing",
-      content: { order: 1 },
+      name: "meta is an empty object",
+      content: {},
       issues: ["invalid_type:title"],
     },
     {
-      name: "order is missing",
-      content: { title: "Blog" },
-      issues: ["invalid_type:order"],
-    },
-    {
-      name: "meta is an empty object",
-      content: {},
-      issues: ["invalid_type:title", "invalid_type:order"],
-    },
-    {
       name: "title is empty",
-      content: { title: "", order: 1 },
+      content: { title: "" },
       issues: ["too_small:title"],
     },
     {
       name: "title is only whitespace",
-      content: { title: "   ", order: 1 },
+      content: { title: "   " },
       issues: ["too_small:title"],
     },
     {
       name: "title is not a string",
-      content: { title: 1, order: 1 },
+      content: { title: 1 },
       issues: ["invalid_type:title"],
     },
     {
-      name: "order is a numeric string",
-      content: { title: "Blog", order: "1" },
-      issues: ["invalid_type:order"],
-    },
-    {
       name: "meta has an unknown key",
-      content: { title: "Blog", order: 1, extra: true },
+      content: { title: "Blog", extra: true },
       issues: ["unrecognized_keys:"],
     },
     { name: "meta is null", content: "null", issues: ["invalid_type:"] },
@@ -108,11 +93,11 @@ describe("routeIndexer", () => {
   test("builds segments with their routes from meta.json", () =>
     withTree(
       {
-        "blog/meta.json": { title: "Blog", order: 2 },
-        "blog/hello/meta.json": { title: "Hello", order: 1 },
-        "blog/world/meta.json": { title: "World", order: 2 },
-        "docs/meta.json": { title: "Docs", order: 1 },
-        "docs/intro/meta.json": { title: "Intro", order: 1 },
+        "blog/meta.json": { title: "Blog" },
+        "blog/hello/meta.json": { title: "Hello" },
+        "blog/world/meta.json": { title: "World" },
+        "docs/meta.json": { title: "Docs" },
+        "docs/intro/meta.json": { title: "Intro" },
       },
       async (root) => {
         assert.deepEqual(sortIndex(await routeIndexer(root)), [
@@ -120,19 +105,16 @@ describe("routeIndexer", () => {
             name: "blog",
             title: "Blog",
             path: path.join(root, "blog"),
-            order: 2,
             routes: [
               {
                 name: "hello",
                 title: "Hello",
                 path: path.join(root, "blog/hello"),
-                order: 1,
               },
               {
                 name: "world",
                 title: "World",
                 path: path.join(root, "blog/world"),
-                order: 2,
               },
             ],
           },
@@ -140,13 +122,11 @@ describe("routeIndexer", () => {
             name: "docs",
             title: "Docs",
             path: path.join(root, "docs"),
-            order: 1,
             routes: [
               {
                 name: "intro",
                 title: "Intro",
                 path: path.join(root, "docs/intro"),
-                order: 1,
               },
             ],
           },

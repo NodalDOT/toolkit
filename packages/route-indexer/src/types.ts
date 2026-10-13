@@ -7,7 +7,6 @@ export type RouteEntry = {
   name: string;
   title: string;
   path: string;
-  order: number;
 };
 
 export type Route = RouteEntry;

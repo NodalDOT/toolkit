@@ -6,8 +6,8 @@ import type { Catalog, CatalogCategory, Inputs } from "../types.ts";
 
 const PAGE_FILE = "index.html";
 
-const byOrderThenTitle = (a: RouteEntry, b: RouteEntry): number =>
-  a.order - b.order || a.title.localeCompare(b.title);
+const byTitle = (a: RouteEntry, b: RouteEntry): number =>
+  a.title.localeCompare(b.title);
 
 const toCatalogPath = (catalogDir: string, entryPath: string): string =>
   path.relative(catalogDir, entryPath).split(path.sep).join("/");
@@ -22,11 +22,11 @@ const readCategories = async (
   const categories = await routeIndexer(sectionPath);
 
   return categories
-    .sort(byOrderThenTitle)
+    .sort(byTitle)
     .map((category) => {
       const items = category.routes
         .filter(hasPage)
-        .sort(byOrderThenTitle)
+        .sort(byTitle)
         .map((item) => ({
           title: item.title,
           path: toCatalogPath(catalogDir, item.path),
@@ -46,7 +46,7 @@ export const readCatalog = async (catalogDir: string): Promise<Catalog> => {
   const sections = await routeIndexer(catalogDir);
 
   const catalog = await Promise.all(
-    sections.sort(byOrderThenTitle).map(async (section) => ({
+    sections.sort(byTitle).map(async (section) => ({
       title: section.title,
       path: toCatalogPath(catalogDir, section.path),
       categories: await readCategories(catalogDir, section.path),

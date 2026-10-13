@@ -6,18 +6,13 @@ import { withTree } from "./helpers.ts";
 
 describe("readMeta", () => {
   test("returns parsed meta", () =>
-    withTree({ "meta.json": { title: "Blog", order: 3 } }, async (root) => {
-      assert.deepEqual(await readMeta(root), { title: "Blog", order: 3 });
-    }));
-
-  test("accepts negative and fractional order", () =>
-    withTree({ "meta.json": { title: "Blog", order: -1.5 } }, async (root) => {
-      assert.deepEqual(await readMeta(root), { title: "Blog", order: -1.5 });
+    withTree({ "meta.json": { title: "Blog" } }, async (root) => {
+      assert.deepEqual(await readMeta(root), { title: "Blog" });
     }));
 
   test("trims the title", () =>
-    withTree({ "meta.json": { title: "  Blog  ", order: 1 } }, async (root) => {
-      assert.deepEqual(await readMeta(root), { title: "Blog", order: 1 });
+    withTree({ "meta.json": { title: "  Blog  " } }, async (root) => {
+      assert.deepEqual(await readMeta(root), { title: "Blog" });
     }));
 
   test("keeps the original error as the cause when meta.json is missing", () =>
