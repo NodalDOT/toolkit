@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <template data-html-content="snippet-head"></template>
+    <title>Debounce</title>
+  </head>
+  <body data-theme="%DEFAULT_THEME%">
+    <template data-html-script="snippet-theme"></template>
+    <main class="snippet">
+      <h1 class="snippet-title">Debounce</h1>
+
+      <div class="snippet-controls">
+        <input
+          class="debounce__input"
+          type="text"
+          placeholder="Type to search…"
+          aria-label="Search"
+        />
+        <button class="debounce__burst">log('a'); log('b'); log('c')</button>
+      </div>
+
+      <code-trace src="debounce.ts"></code-trace>
+
+      <div class="snippet-result">
+        <span>calls: <strong class="debounce__calls">0</strong></span>
+        <span>fired: <strong class="debounce__fired">0</strong></span>
+        <span>last: <strong class="debounce__last">—</strong></span>
+      </div>
+    </main>
+
+    <script type="module" src="./script.ts"></script>
+  </body>
+</html>
