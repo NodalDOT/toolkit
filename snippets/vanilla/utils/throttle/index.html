@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <template data-html-content="snippet-head"></template>
+    <title>Throttle</title>
+  </head>
+  <body data-theme="%DEFAULT_THEME%">
+    <template data-html-script="snippet-theme"></template>
+    <main class="snippet">
+      <h1 class="snippet-title">Throttle</h1>
+
+      <div class="snippet-controls">
+        <input
+          class="throttle__input"
+          type="text"
+          placeholder="Type fast…"
+          aria-label="Text"
+        />
+        <button class="throttle__burst">log('a'); log('b'); log('c')</button>
+      </div>
+
+      <code-trace src="throttle.ts"></code-trace>
+
+      <div class="snippet-result">
+        <span>calls: <strong class="throttle__calls">0</strong></span>
+        <span>fired: <strong class="throttle__fired">0</strong></span>
+        <span>last: <strong class="throttle__last">—</strong></span>
+      </div>
+    </main>
+
+    <script type="module" src="./script.ts"></script>
+  </body>
+</html>
