@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <template data-html-content="snippet-head"></template>
+    <title>Type detector</title>
+  </head>
+  <body data-theme="%DEFAULT_THEME%">
+    <template data-html-script="snippet-theme"></template>
+    <main class="snippet">
+      <h1 class="snippet-title">Type detector</h1>
+
+      <div class="snippet-controls">
+        <button data-value="null">null</button>
+        <button data-value="undefined">undefined</button>
+        <button data-value="number">42</button>
+        <button data-value="string">"hello"</button>
+        <button data-value="boolean">true</button>
+        <button data-value="array">[1, 2]</button>
+        <button data-value="object">{}</button>
+        <button data-value="bare">Object.create(null)</button>
+        <button data-value="date">new Date()</button>
+        <button data-value="map">new Map()</button>
+        <button data-value="set">new Set()</button>
+        <button data-value="regexp">/regex/</button>
+        <button data-value="function">() =&gt; {}</button>
+        <button data-value="class">new Cat()</button>
+      </div>
+
+      <code-trace src="detect-type.ts"></code-trace>
+
+      <div class="snippet-result">
+        <span>Detected type</span>
+        <strong class="type-detector__type">—</strong>
+      </div>
+    </main>
+
+    <script type="module" src="./script.ts"></script>
+  </body>
+</html>
