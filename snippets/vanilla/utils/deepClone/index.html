@@ -1,0 +1,34 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <template data-html-content="snippet-head"></template>
+    <title>Deep clone</title>
+  </head>
+  <body data-theme="%DEFAULT_THEME%">
+    <template data-html-script="snippet-theme"></template>
+    <main class="snippet">
+      <h1 class="snippet-title">Deep clone</h1>
+
+      <div class="snippet-controls">
+        <button data-example="primitive">42</button>
+        <button data-example="object">{ a: [1, { b: 2 }] }</button>
+        <button data-example="date">new Date(0)</button>
+        <button data-example="regexp">/a/g</button>
+        <button data-example="map">Map { k → { x: 1 } }</button>
+        <button data-example="set">Set { { y: 1 } }</button>
+        <button data-example="shared">{ x: obj, y: obj }</button>
+        <button data-example="cycle">a.self = a</button>
+        <button data-example="class">new Cat()</button>
+      </div>
+
+      <code-trace src="deepClone.ts"></code-trace>
+
+      <div class="snippet-result">
+        <span>copy === original: <strong class="deep-clone__same">—</strong></span>
+        <span><code class="deep-clone__check">—</code>: <strong class="deep-clone__check-result">—</strong></span>
+      </div>
+    </main>
+
+    <script type="module" src="./script.ts"></script>
+  </body>
+</html>
