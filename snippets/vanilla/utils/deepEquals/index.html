@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <template data-html-content="snippet-head"></template>
+    <title>Deep equals</title>
+  </head>
+  <body data-theme="%DEFAULT_THEME%">
+    <template data-html-script="snippet-theme"></template>
+    <main class="snippet">
+      <h1 class="snippet-title">Deep equals</h1>
+
+      <div class="snippet-controls">
+        <button data-pair="nan">NaN vs NaN</button>
+        <button data-pair="object">{ a: [1, { b: 2 }] } vs same</button>
+        <button data-pair="objectDiff">{ a: 1 } vs { a: 2 }</button>
+        <button data-pair="array">[1, 2] vs { 0: 1, 1: 2 }</button>
+        <button data-pair="date">new Date(0) vs new Date(1)</button>
+        <button data-pair="regexp">/a/g vs /a/i</button>
+        <button data-pair="map">Map { a → 1 } vs Map { a → 1 }</button>
+        <button data-pair="set">Set { {x: 1} } vs Set { {x: 1} }</button>
+        <button data-pair="setDiff">Set { 1 } vs Set { 2 }</button>
+        <button data-pair="cycle">a.self = a vs b.self = b</button>
+      </div>
+
+      <code-trace src="deepEquals.ts"></code-trace>
+
+      <div class="snippet-result">
+        <span>Equal</span>
+        <strong class="deep-equals__result">—</strong>
+      </div>
+    </main>
+
+    <script type="module" src="./script.ts"></script>
+  </body>
+</html>
