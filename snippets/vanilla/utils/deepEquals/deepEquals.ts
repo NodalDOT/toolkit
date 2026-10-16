@@ -3,7 +3,7 @@ type Seen = Map<object, Set<object>>;
 const cloneSeen = (seen: Seen): Seen =>
   new Map([...seen].map(([key, pairs]) => [key, new Set(pairs)]));
 
-export function deepEquals(a: any, b: any, seen: Seen = new Map()): boolean {
+export function deepEquals(a: unknown, b: unknown, seen: Seen = new Map()): boolean {
   if (a === b) return true;
   if (Number.isNaN(a) && Number.isNaN(b)) return true;
   if (typeof a !== "object" || typeof b !== "object" || a === null || b === null) return false;
@@ -13,10 +13,10 @@ export function deepEquals(a: any, b: any, seen: Seen = new Map()): boolean {
   if (pairs.has(b)) return true;
   seen.set(a, pairs.add(b));
 
-  if (a instanceof RegExp) return a.source === b.source && a.flags === b.flags;
-  if (a instanceof Date) return a.getTime() === b.getTime();
+  if (a instanceof RegExp && b instanceof RegExp) return a.source === b.source && a.flags === b.flags;
+  if (a instanceof Date && b instanceof Date) return a.getTime() === b.getTime();
 
-  if (a instanceof Map) {
+  if (a instanceof Map && b instanceof Map) {
     if (a.size !== b.size) return false;
     for (const [key, value] of a) {
       if (!b.has(key) || !deepEquals(value, b.get(key), seen)) return false;
@@ -24,7 +24,7 @@ export function deepEquals(a: any, b: any, seen: Seen = new Map()): boolean {
     return true;
   }
 
-  if (a instanceof Set) {
+  if (a instanceof Set && b instanceof Set) {
     if (a.size !== b.size) return false;
     const unmatched = [...b];
     for (const value of a) {
@@ -35,12 +35,14 @@ export function deepEquals(a: any, b: any, seen: Seen = new Map()): boolean {
     return true;
   }
 
-  const keysA = Object.keys(a);
-  const keysB = Object.keys(b);
+  const objA = a as Record<string, unknown>;
+  const objB = b as Record<string, unknown>;
+  const keysA = Object.keys(objA);
+  const keysB = Object.keys(objB);
   if (keysA.length !== keysB.length) return false;
 
   for (const key of keysA) {
-    if (!Object.hasOwn(b, key) || !deepEquals(a[key], b[key], seen)) return false;
+    if (!Object.hasOwn(objB, key) || !deepEquals(objA[key], objB[key], seen)) return false;
   }
 
   return true;
