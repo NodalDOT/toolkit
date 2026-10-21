@@ -16,24 +16,24 @@ body[data-sidebar="collapsed"] {
   --sidebar-width: 0px;
 }
 
-body,
+html,
 .sidebar-content {
   scrollbar-width: thin;
   scrollbar-color: var(--scrollbar-thumb) var(--scrollbar-track);
 }
 
-body::-webkit-scrollbar,
+html::-webkit-scrollbar,
 .sidebar-content::-webkit-scrollbar {
   width: var(--scrollbar-size);
   height: var(--scrollbar-size);
 }
 
-body::-webkit-scrollbar-track,
+html::-webkit-scrollbar-track,
 .sidebar-content::-webkit-scrollbar-track {
   background: var(--scrollbar-track);
 }
 
-body::-webkit-scrollbar-thumb,
+html::-webkit-scrollbar-thumb,
 .sidebar-content::-webkit-scrollbar-thumb {
   border: 2px solid transparent;
   border-radius: var(--radius-pill);
@@ -41,7 +41,7 @@ body::-webkit-scrollbar-thumb,
   background-clip: padding-box;
 }
 
-body::-webkit-scrollbar-thumb:hover,
+html::-webkit-scrollbar-thumb:hover,
 .sidebar-content::-webkit-scrollbar-thumb:hover {
   background: var(--scrollbar-thumb-hover);
 }
