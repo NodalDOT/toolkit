@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <template data-html-content="snippet-head"></template>
+    <title>Stringify</title>
+  </head>
+  <body data-theme="%DEFAULT_THEME%">
+    <template data-html-script="snippet-theme"></template>
+    <main class="snippet">
+      <h1 class="snippet-title">Stringify</h1>
+
+      <div class="snippet-controls">
+        <button data-value="undefined">undefined</button>
+        <button data-value="bigint">10n</button>
+        <button data-value="string">'say "hi"'</button>
+        <button data-value="function">function foo() {}</button>
+        <button data-value="date">new Date(0)</button>
+        <button data-value="error">new Error("boom")</button>
+        <button data-value="array">[1, [2, "3"]]</button>
+        <button data-value="empty">{}</button>
+        <button data-value="object">{ user: { name: "Ann" }, list: [1] }</button>
+        <button data-value="map">new Map([["k", { x: 1 }]])</button>
+        <button data-value="set">new Set([1, "2"])</button>
+        <button data-value="class">new Cat()</button>
+        <button data-value="cycle">a.self = a</button>
+      </div>
+
+      <code-trace src="stringify.ts"></code-trace>
+
+      <div class="snippet-result">
+        <span>Result</span>
+        <strong class="stringify__result">—</strong>
+      </div>
+    </main>
+
+    <script type="module" src="./script.ts"></script>
+  </body>
+</html>
