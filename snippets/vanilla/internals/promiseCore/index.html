@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <template data-html-content="snippet-head"></template>
+    <title>Promise core</title>
+  </head>
+  <body data-theme="%DEFAULT_THEME%">
+    <template data-html-script="snippet-theme"></template>
+    <main class="snippet">
+      <h1 class="snippet-title">Promise core</h1>
+
+      <div class="snippet-controls">
+        <button data-example="value">resolve(5).then(x => x * 2)</button>
+        <button data-example="delayed">setTimeout(resolve, 500)</button>
+        <button data-example="reject">reject(error)</button>
+        <button data-example="throw">throw in executor</button>
+        <button data-example="catch">reject(error).catch(…)</button>
+        <button data-example="passThrough">reject → then(x) → catch</button>
+        <button data-example="thenable">resolve({ then })</button>
+        <button data-example="nested">resolve(new PromiseCore)</button>
+        <button data-example="once">resolve(1); resolve(2)</button>
+        <button data-example="cycle">p.then(() => p)</button>
+      </div>
+
+      <code-trace src="promiseCore.ts"></code-trace>
+
+      <div class="snippet-result">
+        <span>status: <strong class="promise-core__status">—</strong></span>
+        <span>result: <strong class="promise-core__result">—</strong></span>
+      </div>
+    </main>
+
+    <script type="module" src="./script.ts"></script>
+  </body>
+</html>
