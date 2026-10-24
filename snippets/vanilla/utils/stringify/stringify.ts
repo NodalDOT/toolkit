@@ -4,7 +4,9 @@ export const getType = (value: unknown): string => {
   if (value === null) return "null";
   if (value === undefined) return "undefined";
   if (Object.getPrototypeOf(value) === null) return "object";
-  return Object.getPrototypeOf(value)?.constructor?.name?.toLowerCase() ?? "object";
+  return (
+    Object.getPrototypeOf(value)?.constructor?.name?.toLowerCase() ?? "object"
+  );
 };
 
 const stringifyEntries = (entries: string[], open = "{", close = "}") =>
@@ -18,13 +20,17 @@ const stringifyObject = (value: object, seen: Seen): string => {
   if (Array.isArray(value)) {
     result = `[${value.map((item) => stringify(item, seen)).join(", ")}]`;
   } else if (value instanceof Map) {
-    const entries = [...value].map(([key, item]) => `${stringify(key, seen)} => ${stringify(item, seen)}`);
+    const entries = [...value].map(
+      ([key, item]) => `${stringify(key, seen)} => ${stringify(item, seen)}`,
+    );
     result = `Map(${value.size}) ${stringifyEntries(entries)}`;
   } else if (value instanceof Set) {
     const entries = [...value].map((item) => stringify(item, seen));
     result = `Set(${value.size}) ${stringifyEntries(entries)}`;
   } else {
-    const entries = Object.entries(value).map(([key, item]) => `${key}: ${stringify(item, seen)}`);
+    const entries = Object.entries(value).map(
+      ([key, item]) => `${key}: ${stringify(item, seen)}`,
+    );
     const name = Object.getPrototypeOf(value)?.constructor?.name;
     const prefix = name && name !== "Object" ? `${name} ` : "";
     result = `${prefix}${stringifyEntries(entries)}`;
@@ -53,7 +59,8 @@ export function stringify(value: unknown, seen: Seen = new WeakSet()): string {
     case "regexp":
       return String(value);
     default:
-      if (typeof value === "function") return `[Function ${value.name || "(anonymous)"}]`;
+      if (typeof value === "function")
+        return `[Function ${value.name || "(anonymous)"}]`;
       if (value instanceof Error) return `${value.name}: ${value.message}`;
       return stringifyObject(value as object, seen);
   }

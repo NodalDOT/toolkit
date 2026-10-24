@@ -1,9 +1,9 @@
-import { startRun } from '@toolkit/code-trace/runtime'
-import { check } from './example.ts'
+import { startRun } from "@toolkit/code-trace/runtime";
+import { check } from "./example.ts";
 
-const input = document.querySelector('input')!
+const input = document.querySelector("input")!;
 
-input.addEventListener('input', () => {
-  startRun()
-  check(Number(input.value))
-})
+input.addEventListener("input", () => {
+  startRun();
+  check(Number(input.value));
+});

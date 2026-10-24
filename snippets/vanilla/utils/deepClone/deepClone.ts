@@ -21,7 +21,11 @@ export type TType =
   | string;
 
 type ContainerType = "array" | "map" | "set" | "object";
-type Container = unknown[] | Map<unknown, unknown> | Set<unknown> | Record<string, unknown>;
+type Container =
+  | unknown[]
+  | Map<unknown, unknown>
+  | Set<unknown>
+  | Record<string, unknown>;
 type EntryCallback = (value: unknown, key: unknown) => void;
 type Copies = WeakMap<object, unknown>;
 

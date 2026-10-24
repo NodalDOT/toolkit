@@ -1,1 +1,1 @@
-export type Probe = { start: number; end: number }
+export type Probe = { start: number; end: number };

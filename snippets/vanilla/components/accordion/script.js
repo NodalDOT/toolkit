@@ -3,7 +3,7 @@ const animatedCheck = document.querySelector("#animated");
 const details = document.querySelectorAll("details");
 
 const toggleNamedCheck = () => {
-  const isFirstDetailNamed = details[0].matches("[name]")
+  const isFirstDetailNamed = details[0].matches("[name]");
   if (isFirstDetailNamed) {
     details.forEach((d) => d.removeAttribute("name"));
   } else {
@@ -13,7 +13,7 @@ const toggleNamedCheck = () => {
 const toggleAnimatedCheck = () => {
   details.forEach((detail) => {
     detail.classList.toggle("animate");
-  })
+  });
 };
 namedCheck.addEventListener("change", toggleNamedCheck);
 animatedCheck.addEventListener("change", toggleAnimatedCheck);
