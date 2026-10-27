@@ -1,0 +1,86 @@
+:root {
+  font-family: system-ui, sans-serif;
+  color-scheme: light dark;
+}
+
+html:has(.dialog:modal) {
+  overflow: hidden;
+}
+
+button {
+  font: inherit;
+}
+
+.dialog {
+  padding: 1.5rem;
+  width: min(28rem, 100% - 2rem);
+  border: none;
+  border-radius: 0.5rem;
+  translate: 0 1rem;
+  scale: 0.96;
+  transition:
+    opacity 0.2s ease,
+    translate 0.2s ease,
+    scale 0.2s ease,
+    overlay 0.2s ease allow-discrete,
+    display 0.2s ease allow-discrete;
+  opacity: 0;
+}
+
+.dialog[open] {
+  translate: 0;
+  scale: 1;
+  opacity: 1;
+}
+
+@starting-style {
+  .dialog[open] {
+    translate: 0 1rem;
+    scale: 0.96;
+    opacity: 0;
+  }
+}
+
+.dialog::backdrop {
+  background-color: rgb(0 0 0 / 0%);
+  transition:
+    background-color 0.2s ease,
+    overlay 0.2s ease allow-discrete,
+    display 0.2s ease allow-discrete;
+}
+
+.dialog[open]::backdrop {
+  background-color: rgb(0 0 0 / 40%);
+}
+
+@starting-style {
+  .dialog[open]::backdrop {
+    background-color: rgb(0 0 0 / 0%);
+  }
+}
+
+.dialog-title {
+  margin: 0 0 0.5rem;
+  font-size: 1.25rem;
+}
+
+.dialog-actions {
+  display: flex;
+  justify-content: space-between;
+  gap: 0.5rem;
+  padding-top: 0.5rem;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .dialog {
+    translate: 0;
+    scale: 1;
+  }
+
+  @starting-style {
+    .dialog[open] {
+      translate: 0;
+      scale: 1;
+    }
+  }
+}
