@@ -3,10 +3,9 @@
 }
 
 :root {
-  interpolate-size: allow-keywords;
-
   --shadow-strength: 1%;
   --shadow-color: 220 40% 2%;
+  interpolate-size: allow-keywords;
 }
 
 body {
@@ -21,8 +20,8 @@ body {
   position: fixed;
   top: 1rem;
   right: 1rem;
-  flex-direction: column;
   display: flex;
+  flex-direction: column;
   align-items: center;
 
   box-shadow: 0 1px white inset;
@@ -32,12 +31,14 @@ body {
   accent-color: red;
   color: hsl(0deg 0% 10%);
 }
+
 .control {
-  padding: 0.6rem;
-  width: 100%;
   display: flex;
   justify-content: space-between;
+  padding: 0.6rem;
+  width: 100%;
 }
+
 .control:first-of-type {
   border-bottom: 1px solid black;
 }
@@ -67,25 +68,25 @@ details.animate[open]::details-content {
 
 details span {
   display: block;
+  padding: 1rem;
 
   width: 300px;
-  padding: 1rem;
 
   font-weight: 300;
 }
 
 summary {
   position: relative;
+  padding: 1rem;
 
   width: 300px;
-  padding: 1rem;
 
   border-bottom: 1px solid black;
 
+  list-style: none;
+
   font-weight: 600;
   cursor: pointer;
-
-  list-style: none;
 }
 
 summary::-webkit-details-marker {

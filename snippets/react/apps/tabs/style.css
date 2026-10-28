@@ -10,21 +10,21 @@ input {
 
 .tabs {
   display: flex;
-  gap: 1rem;
   flex-wrap: wrap;
-  list-style: none;
-  padding: 0;
+  gap: 1rem;
   margin: 0;
+  padding: 0;
+  list-style: none;
 }
 
 .tab {
-  border-radius: 0.4rem;
-  border: none;
   padding: 0.4rem 0.6rem;
-  cursor: pointer;
+  border: none;
+  border-radius: 0.4rem;
   transition:
     filter 0.2s ease,
     box-shadow 0.2s ease;
+  cursor: pointer;
 }
 
 .tab[aria-selected="false"]:hover {
