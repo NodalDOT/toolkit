@@ -1,3 +1,5 @@
 dist
 coverage
 packages/*/test/fixtures
+**/*.min.js
+**/*.min.css

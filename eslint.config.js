@@ -5,7 +5,7 @@ import reactHooks from "eslint-plugin-react-hooks";
 import { defineConfig } from "eslint/config";
 
 export default defineConfig([
-  { ignores: ["dist/**"] },
+  { ignores: ["dist/**", "**/*.min.js"] },
   {
     files: ["**/*.{js,mjs,cjs}"],
     plugins: { js },

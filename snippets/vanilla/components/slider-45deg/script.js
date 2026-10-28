@@ -1,3 +1,7 @@
+import Swiper from "./swiper-bundle.min.js";
+import "./swiper-bundle.min.css";
+import "./style.css";
+
 document.addEventListener("DOMContentLoaded", () => {
   const slides = document.querySelectorAll(".swiper-slide");
   slides.forEach((slide, index) => {
@@ -12,7 +16,6 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   };
 
-  // eslint-disable-next-line no-undef
   new Swiper(".swiper", {
     slidesPerView: "auto",
     spaceBetween: 20,
