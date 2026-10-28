@@ -1,6 +1,5 @@
 :root {
   --transition-fade: 160ms ease;
-  --transition-layout: 180ms ease;
   --transition-interactive: 120ms ease;
   --ease-emphasized: cubic-bezier(0.2, 0, 0, 1);
   --sidebar-duration: 320ms;

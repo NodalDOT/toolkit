@@ -3,8 +3,8 @@ header {
   grid-template-columns: 1fr auto 1fr;
   flex: none;
   align-items: center;
-  gap: 16px;
-  padding: 0 20px;
+  gap: var(--indent);
+  padding: 0 var(--pad-sm);
   height: var(--header-height);
   border-bottom: 1px solid var(--border);
   background: var(--surface);
@@ -13,7 +13,7 @@ header {
 .header-start {
   display: flex;
   align-items: center;
-  gap: 12px;
+  gap: var(--indent);
   min-width: 0;
 }
 

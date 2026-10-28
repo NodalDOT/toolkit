@@ -36,6 +36,9 @@
               <span class="icon nav-fold-icon" aria-hidden="true">
                 <template data-html-icon="fold"></template>
               </span>
+              <span class="icon nav-unfold-icon" aria-hidden="true">
+                <template data-html-icon="unfold"></template>
+              </span>
             </button>
             <button
               class="icon-button sidebar-toggle sidebar-toggle-aside"
@@ -61,7 +64,14 @@
             <template data-html-each="catalog">
               <details class="nav-group nav-section" data-key="{{ path }}" open>
                 <summary class="nav-group-summary">
-                  <span class="nav-chevron" aria-hidden="true"></span>
+                  <span class="icon nav-icon" aria-hidden="true">
+                    <span class="nav-icon-closed">
+                      <template data-html-icon="folder"></template>
+                    </span>
+                    <span class="nav-icon-open">
+                      <template data-html-icon="folder-open"></template>
+                    </span>
+                  </span>
                   <span class="nav-group-title">{{ title }}</span>
                 </summary>
                 <template data-html-each="categories">
@@ -71,7 +81,14 @@
                     open
                   >
                     <summary class="nav-group-summary">
-                      <span class="nav-chevron" aria-hidden="true"></span>
+                      <span class="icon nav-icon" aria-hidden="true">
+                        <span class="nav-icon-closed">
+                          <template data-html-icon="folder"></template>
+                        </span>
+                        <span class="nav-icon-open">
+                          <template data-html-icon="folder-open"></template>
+                        </span>
+                      </span>
                       <span class="nav-group-title">{{ title }}</span>
                       <span class="nav-group-count">{{ count }}</span>
                     </summary>
@@ -84,6 +101,9 @@
                             data-path="{{ path }}"
                             data-title="{{ title }}"
                           >
+                            <span class="icon nav-icon" aria-hidden="true">
+                              <template data-html-icon="file"></template>
+                            </span>
                             <span class="nav-item-label">{{ title }}</span>
                           </button>
                         </li>

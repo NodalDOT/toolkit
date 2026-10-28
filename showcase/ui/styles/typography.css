@@ -17,5 +17,5 @@ body {
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
-  font-size: var(--font-size-xl);
+  font-size: var(--font-size-md);
 }

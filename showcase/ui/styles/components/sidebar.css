@@ -17,22 +17,30 @@ aside {
   flex: none;
   justify-content: space-between;
   align-items: center;
-  gap: 12px;
-  padding: 0 20px;
+  gap: var(--indent);
+  padding: 0 var(--pad-sm);
   height: var(--header-height);
   border-bottom: 1px solid var(--border);
+  user-select: none;
+}
+
+.sidebar-title {
+  padding-left: var(--pad-sm);
 }
 
 .sidebar-content {
   flex: 1;
-  padding: 20px;
+  padding: var(--pad-sm) 0;
   overflow-x: hidden;
   overflow-y: auto;
+  line-height: var(--row-height);
+  font-size: var(--font-size-md);
+  user-select: none;
 }
 
 .sidebar-actions {
   display: flex;
-  gap: 8px;
+  gap: var(--pad-sm);
 }
 
 @media (max-width: 768px) {

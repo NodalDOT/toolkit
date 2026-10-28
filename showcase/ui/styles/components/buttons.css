@@ -3,23 +3,37 @@
   justify-content: center;
   align-items: center;
   padding: 0;
-  width: 34px;
-  height: 34px;
-  border: 1px solid var(--border);
-  border-radius: var(--radius-md);
-  background: var(--button);
-  color: var(--text);
+  width: var(--control-size);
+  height: var(--control-size);
+  border: 0;
+  border-radius: 0;
+  background: var(--color-surface1);
+  color: var(--color-subtext2);
   cursor: pointer;
 }
 
-.icon-button:hover {
-  background: var(--button-hover);
+@media (hover: hover) {
+  .icon-button:hover {
+    background: var(--color-surface2);
+    color: var(--color-text);
+    transform: translateY(-1px);
+  }
+}
+
+.icon-button:active {
+  transform: none;
+}
+
+.icon-button:focus-visible {
+  outline: 1px solid var(--color-green);
+  outline-offset: -1px;
+  background: var(--color-surface2);
 }
 
 .icon {
   display: inline-flex;
-  width: 18px;
-  height: 18px;
+  width: 16px;
+  height: 16px;
 }
 
 .icon svg {
@@ -29,9 +43,6 @@
 
 .theme-toggle {
   justify-self: end;
-  width: 42px;
-  height: 42px;
-  border-radius: var(--radius-pill);
 }
 
 body[data-theme="dark"] .theme-icon-sun,
