@@ -20,6 +20,19 @@
   color: var(--color-subtext0);
 }
 
+.nav-filter::-webkit-search-cancel-button {
+  width: 16px;
+  height: 16px;
+  appearance: none;
+  background: var(--color-subtext0);
+  mask: url("../../icons/close.svg") center / contain no-repeat;
+  cursor: pointer;
+}
+
+.nav-filter::-webkit-search-cancel-button:hover {
+  background: var(--color-text);
+}
+
 .nav-filter:focus-visible,
 .nav-group-summary:focus-visible,
 .nav-item:focus-visible {
