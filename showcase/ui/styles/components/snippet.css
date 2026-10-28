@@ -41,13 +41,18 @@ body {
 }
 
 .snippet button[aria-pressed="true"] {
-  border-color: var(--accent-border);
-  color: var(--accent);
+  border-color: var(--accent);
+  background: var(--accent);
+  color: var(--bg);
 }
 
 .snippet input {
   flex: 1;
   min-width: 200px;
+}
+
+.snippet input::placeholder {
+  color: var(--muted);
 }
 
 .snippet input:focus-visible,

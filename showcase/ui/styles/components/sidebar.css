@@ -34,7 +34,7 @@ aside {
   overflow-x: hidden;
   overflow-y: auto;
   line-height: var(--row-height);
-  font-size: var(--font-size-md);
+  font-size: var(--font-size-lg);
   user-select: none;
 }
 

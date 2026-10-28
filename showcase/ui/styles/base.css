@@ -2,7 +2,7 @@
   --sidebar-expanded-width: 320px;
   --sidebar-width: var(--sidebar-expanded-width);
   --header-height: 40px;
-  --row-height: 19px;
+  --row-height: 24px;
   --pad-sm: 5px;
   --indent: 2ch;
   --control-size: calc(var(--row-height) + 2 * var(--pad-sm));

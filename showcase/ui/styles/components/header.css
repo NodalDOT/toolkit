@@ -20,12 +20,11 @@ header {
 .header-center {
   color: var(--muted);
   text-decoration: none;
-  transition: opacity var(--transition-fade);
-  opacity: 0.7;
+  transition: color var(--transition-fade);
 }
 
 .header-center:hover {
-  opacity: 1;
+  color: var(--text);
 }
 
 @media (max-width: 768px) {

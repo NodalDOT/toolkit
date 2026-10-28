@@ -64,7 +64,7 @@ body[data-theme="light"] {
 
 body {
   --text: var(--color-text);
-  --muted: var(--color-subtext0);
+  --muted: var(--color-subtext1);
   --accent: var(--color-green);
   --accent-border: color-mix(in srgb, var(--color-green) 40%, transparent);
   --border: var(--color-surface2);
