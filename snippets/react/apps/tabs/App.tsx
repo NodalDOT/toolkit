@@ -122,6 +122,7 @@ const TabButton = ({
 export function App() {
   return (
     <main>
+      <h1 className="visually-hidden">Tabs</h1>
       <Tabs
         label="Demo sections"
         tabs={[

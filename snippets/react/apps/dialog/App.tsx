@@ -56,6 +56,7 @@ export function App() {
 
   return (
     <main>
+      <h1 className="visually-hidden">Dialog</h1>
       <button type="button" onClick={() => setOpen(true)}>
         Delete file
       </button>
