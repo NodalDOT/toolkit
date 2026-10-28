@@ -3,52 +3,54 @@ import { deepClone } from "./deepClone";
 
 class Cat {}
 
-type Example = {
-  create: () => any;
+type Example<T> = {
+  create: () => T;
   check: string;
-  verify: (original: any, copy: any) => boolean;
+  verify(original: T, copy: T): boolean;
 };
 
-const EXAMPLES: Record<string, Example> = {
-  primitive: {
+const example = <T>(value: Example<T>) => value;
+
+const EXAMPLES: Record<string, Example<unknown>> = {
+  primitive: example({
     create: () => 42,
     check: "copy === 42",
     verify: (_, copy) => copy === 42,
-  },
-  object: {
+  }),
+  object: example({
     create: () => ({ a: [1, { b: 2 }] }),
     check: "copy.a[1] !== original.a[1]",
     verify: (original, copy) => copy.a[1] !== original.a[1],
-  },
-  date: {
+  }),
+  date: example({
     create: () => new Date(0),
     check: "copy.getTime() === 0",
     verify: (_, copy) => copy.getTime() === 0,
-  },
-  regexp: {
+  }),
+  regexp: example({
     create: () => /a/g,
     check: 'copy.flags === "g"',
     verify: (_, copy) => copy.flags === "g",
-  },
-  map: {
+  }),
+  map: example({
     create: () => new Map([["k", { x: 1 }]]),
     check: 'copy.get("k") !== original.get("k")',
     verify: (original, copy) => copy.get("k") !== original.get("k"),
-  },
-  set: {
+  }),
+  set: example({
     create: () => new Set([{ y: 1 }]),
     check: "[...copy][0] !== [...original][0]",
     verify: (original, copy) => [...copy][0] !== [...original][0],
-  },
-  shared: {
+  }),
+  shared: example({
     create: () => {
       const obj = { z: 1 };
       return { x: obj, y: obj };
     },
     check: "copy.x === copy.y",
     verify: (_, copy) => copy.x === copy.y,
-  },
-  cycle: {
+  }),
+  cycle: example({
     create: () => {
       const node: Record<string, unknown> = {};
       node.self = node;
@@ -56,12 +58,12 @@ const EXAMPLES: Record<string, Example> = {
     },
     check: "copy.self === copy",
     verify: (_, copy) => copy.self === copy,
-  },
-  class: {
+  }),
+  class: example({
     create: () => new Cat(),
     check: "copy instanceof Cat",
     verify: (_, copy) => copy instanceof Cat,
-  },
+  }),
 };
 
 const buttons = document.querySelectorAll<HTMLButtonElement>("[data-example]");
