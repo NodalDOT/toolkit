@@ -44,7 +44,7 @@ body {
 }
 /* Accordion */
 
-section {
+.accordion {
   width: 300px;
 }
 
