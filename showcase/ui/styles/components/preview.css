@@ -5,6 +5,10 @@
   min-height: 0;
 }
 
+.preview[data-loading] iframe {
+  visibility: hidden;
+}
+
 .preview-loader {
   position: absolute;
   inset: 0;
