@@ -1,58 +1,55 @@
 <!doctype html>
 <html lang="en">
   <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link
-      rel="icon"
-      href="/showcase/ui/icons/favicon.svg"
-      type="image/svg+xml"
-    />
-    <title>Accordion — Base</title>
-    <link rel="stylesheet" href="style.css" />
+    <template data-html-content="snippet-head"></template>
+    <link rel="stylesheet" href="./style.css" />
+    <title>Accordion</title>
   </head>
-  <body>
-    <div class="controls">
-      <div class="control">
-        <label for="named">Named?</label>
-        <input checked id="named" type="checkbox" />
-      </div>
-      <div class="control">
-        <label for="animated">Animated?</label>
-        <input id="animated" type="checkbox" />
-      </div>
-    </div>
+  <body data-theme="%DEFAULT_THEME%">
+    <template data-html-script="snippet-theme"></template>
+    <main class="snippet">
+      <h1 class="snippet-title">Accordion</h1>
 
-    <div class="accordion" role="group" aria-label="Accordion">
-      <details name="accordion">
-        <summary>Exclusive</summary>
-        <span>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Repudiandae
-          et sed consectetur aperiam repellendus, accusantium, facere id earum
-          omnis autem aspernatur perferendis labore ad obcaecati eveniet quasi
-          fuga nemo qui.
-        </span>
-      </details>
-      <details name="accordion">
-        <summary>Accordion</summary>
-        <span>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Repudiandae
-          et sed consectetur aperiam repellendus, accusantium, facere id earum
-          omnis autem aspernatur perferendis labore ad obcaecati eveniet quasi
-          fuga nemo qui.
-        </span>
-      </details>
-      <details name="accordion">
-        <summary>Pattern</summary>
-        <span>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Repudiandae
-          et sed consectetur aperiam repellendus, accusantium, facere id earum
-          omnis autem aspernatur perferendis labore ad obcaecati eveniet quasi
-          fuga nemo qui.
-        </span>
-      </details>
-    </div>
+      <div class="snippet-controls">
+        <button data-mode="none">none</button>
+        <button data-mode="named">name</button>
+        <button data-mode="css">css</button>
+        <button data-mode="script">js</button>
+      </div>
 
-    <script type="module" src="./script.js"></script>
+      <div class="accordion" role="group" aria-label="Accordion">
+        <details>
+          <summary>Exclusive</summary>
+          <p class="accordion__content">
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Repudiandae
+            et sed consectetur aperiam repellendus, accusantium, facere id earum
+            omnis autem aspernatur perferendis labore ad obcaecati eveniet quasi
+            fuga nemo qui.
+          </p>
+        </details>
+        <details>
+          <summary>Accordion</summary>
+          <p class="accordion__content">
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Repudiandae
+            et sed consectetur aperiam repellendus, accusantium, facere id earum
+            omnis autem aspernatur perferendis labore ad obcaecati eveniet quasi
+            fuga nemo qui.
+          </p>
+        </details>
+        <details>
+          <summary>Pattern</summary>
+          <p class="accordion__content">
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Repudiandae
+            et sed consectetur aperiam repellendus, accusantium, facere id earum
+            omnis autem aspernatur perferendis labore ad obcaecati eveniet quasi
+            fuga nemo qui.
+          </p>
+        </details>
+      </div>
+
+      <code-trace src="accordion.ts"></code-trace>
+    </main>
+
+    <script type="module" src="./script.ts"></script>
   </body>
 </html>
