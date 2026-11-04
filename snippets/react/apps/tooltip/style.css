@@ -1,0 +1,40 @@
+:root {
+  font-family: system-ui, sans-serif;
+  color-scheme: light dark;
+}
+
+p {
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scrollbar-gutter: stable;
+}
+
+html:has(.dialog:modal) {
+  overflow: hidden;
+}
+
+button {
+  font: inherit;
+}
+
+.tooltip {
+  position: relative;
+  width: fit-content;
+  height: fit-content;
+}
+
+.tooltip__content {
+  position: fixed;
+  top: calc(var(--y, 0) * 1px);
+  left: calc(var(--x, 0) * 1px);
+  padding: 0.4rem 0.6rem;
+
+  max-width: calc(100vw - 8px);
+  max-height: calc(100dvh - 8px);
+
+  width: max-content;
+  background-color: red;
+}
