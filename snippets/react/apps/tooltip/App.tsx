@@ -6,20 +6,22 @@ import {
   useLayoutEffect,
   type CSSProperties,
 } from "react";
-import type { TooltipProps, Placement, Coords } from "./types.ts";
+import type { TooltipProps, Placement, Coords, Direction } from "./types.ts";
 import { extractCoords } from "./utils.ts";
-
-// TODO:
-// 1. Refactor return value handling.
-// 2. Support custom boundary containers instead of relying solely on window.
-// 3. Add customizable styling.
 
 const GAP = 8;
 const PADDING = 8;
 
 const Tooltip = (props: TooltipProps) => {
-  const { children, content } = props;
-  const [visible, setVisible] = useState(true);
+  const {
+    children,
+    content,
+    boundaryRef,
+    placement: preferred = "top",
+    className = "",
+    style,
+  } = props;
+  const [visible, setVisible] = useState(false);
   const [dismissed, setDismissed] = useState(false);
   const [coords, setCoords] = useState<Coords | null>(null);
 
@@ -35,7 +37,6 @@ const Tooltip = (props: TooltipProps) => {
   const hide = () => {
     setVisible(false);
     setCoords(null);
-
   };
   useEffect(() => {
     if (!isOpen) return;
@@ -47,138 +48,153 @@ const Tooltip = (props: TooltipProps) => {
       }
     };
 
-    window.addEventListener("keydown", listener);
+    document.addEventListener("keydown", listener);
     return () => {
-      window.removeEventListener("keydown", listener);
+      document.removeEventListener("keydown", listener);
     };
   }, [isOpen]);
 
   useLayoutEffect(() => {
-
     const updatePosition = () => {
       if (!isOpen || !targetRef.current || !contentRef.current) return;
 
-      const windowContainer = {
-        width: window.innerWidth,
-        height: window.innerHeight,
+      const boundary = boundaryRef.current;
+      if (!boundary) return;
+      const rect = boundary.getBoundingClientRect();
+      const container = {
+        left: rect.left + boundary.clientLeft,
+        top: rect.top + boundary.clientTop,
+        width: boundary.clientWidth,
+        height: boundary.clientHeight,
       };
-
-      const target = extractCoords(targetRef.current?.getBoundingClientRect());
-      const content = extractCoords(contentRef.current?.getBoundingClientRect());
+      contentRef.current.style.maxWidth = `${Math.max(0, container.width - PADDING * 2)}px`;
+      contentRef.current.style.maxHeight = `${Math.max(0, container.height - PADDING * 2)}px`;
+      const target = extractCoords(targetRef.current.getBoundingClientRect());
+      const content = extractCoords(contentRef.current.getBoundingClientRect());
 
       const placements: Placement = {
         top: {
-          fits: target.top >= content.height + GAP+ PADDING,
+          fits: target.top - container.top >= content.height + GAP + PADDING,
           x: target.left + (target.width - content.width) / 2,
           y: target.top - content.height - GAP,
         },
         left: {
-          fits: target.left >= content.width + GAP + PADDING,
+          fits: target.left - container.left >= content.width + GAP + PADDING,
           x: target.left - content.width - GAP,
           y: target.top + (target.height - content.height) / 2,
         },
         bottom: {
           fits:
-            windowContainer.height - (target.top + target.height) >=
+            container.top + container.height - (target.top + target.height) >=
             content.height + GAP + PADDING,
           x: target.left + (target.width - content.width) / 2,
           y: target.top + target.height + GAP,
         },
         right: {
           fits:
-            windowContainer.width - (target.left + target.width) >=
-            content.width + GAP+ PADDING,
+            container.left + container.width - (target.left + target.width) >=
+            content.width + GAP + PADDING,
           x: target.left + target.width + GAP,
           y: target.top + (target.height - content.height) / 2,
         },
       };
-      const placement = Object.entries(placements).find(([, placement]) => {
-        return placement.fits;
-      });
-      if (!placement) {
-          return
-      }
-      const [side, { x, y }] = placement;
-
+      const sides: Direction[] = [
+        preferred,
+        ...(["top", "bottom", "left", "right"] as Direction[]).filter(
+          (side) => side !== preferred,
+        ),
+      ];
+      const side = sides.find((side) => placements[side].fits) ?? preferred;
+      const { x, y } = placements[side];
       const clamp = (value: number, min: number, max: number) =>
-        Math.min(Math.max(value, min), max);
-
-        let nextX = x;
-        let nextY = y;
-
-      if (side === "top" || side === "bottom") {
-        nextX = clamp(
-          x,
-          PADDING,
-          window.innerWidth - content.width - PADDING
-        );
-      }
-
-      if (side === "left" || side === "right") {
-        nextY = clamp(
-          y,
-          PADDING,
-          window.innerHeight - content.height - PADDING
-        );
-      }
+        Math.max(min, Math.min(value, Math.max(min, max)));
+      const nextX = clamp(
+        x,
+        container.left + PADDING,
+        container.left + container.width - content.width - PADDING,
+      );
+      const nextY = clamp(
+        y,
+        container.top + PADDING,
+        container.top + container.height - content.height - PADDING,
+      );
 
       setCoords({
         x: nextX,
         y: nextY,
       });
-
-    }
-    updatePosition()
-    window.addEventListener("scroll", updatePosition, true);
-      window.addEventListener("resize", updatePosition);
-
-      return () => {
-        window.removeEventListener("scroll", updatePosition, true);
-        window.removeEventListener("resize", updatePosition);
-      };
-  }, [isOpen]);
+    };
+    updatePosition();
+    document.addEventListener("scroll", updatePosition, true);
+    const observer = new ResizeObserver(updatePosition);
+    if (boundaryRef.current) observer.observe(boundaryRef.current);
+    if (contentRef.current) observer.observe(contentRef.current);
+    return () => {
+      document.removeEventListener("scroll", updatePosition, true);
+      observer.disconnect();
+    };
+  }, [isOpen, boundaryRef, preferred, content]);
 
   return (
-    <>
-      <div
-        ref={targetRef}
-        onMouseEnter={show}
-        onFocus={show}
-        onMouseLeave={hide}
-        onBlur={hide}
-        aria-describedby={isOpen ? id : undefined}
-        className="tooltip"
-      >
-        {children}
+    <div
+      ref={targetRef}
+      onMouseEnter={show}
+      onFocus={show}
+      onMouseLeave={hide}
+      onBlur={hide}
+      aria-describedby={isOpen ? id : undefined}
+      className="tooltip"
+    >
+      {children}
 
-        {isOpen && (
-          <div
-            className="tooltip__content"
-            ref={contentRef}
-            role="tooltip"
-            style={
-              {
-                "--x": coords?.x,
-                "--y": coords?.y,
-                visibility: coords ? "visible" : "hidden",
-              } as CSSProperties
-            }
-            id={id}
-          >
-            {content}
-          </div>
-        )}
-      </div>
-    </>
+      {isOpen && (
+        <div
+          className={`tooltip__content ${className}`}
+          ref={contentRef}
+          role="tooltip"
+          style={
+            {
+              ...style,
+              "--x": coords?.x,
+              "--y": coords?.y,
+              visibility: coords ? "visible" : "hidden",
+            } as CSSProperties
+          }
+          id={id}
+        >
+          {content}
+        </div>
+      )}
+    </div>
   );
 };
 
 export function App() {
+  const overflowRef = useRef<HTMLDivElement>(null);
+  const rightRef = useRef<HTMLDivElement>(null);
+  const leftRef = useRef<HTMLDivElement>(null);
+
   return (
-    <>
-      <Tooltip content={<p>Test!!!!!!!!!!!!!!!!!!</p>}>
-        <button>Test</button>
-      </Tooltip>
-    </>
+    <main className="demo">
+      <div className="boundary boundary--tight boundary--start" ref={rightRef}>
+        <Tooltip boundaryRef={rightRef} placement="top" content="Right">
+          <button>Hover</button>
+        </Tooltip>
+      </div>
+      <div className="boundary boundary--tight" ref={leftRef}>
+        <Tooltip boundaryRef={leftRef} placement="top" content="Left">
+          <button>Hover</button>
+        </Tooltip>
+      </div>
+      <div className="boundary" ref={overflowRef}>
+        <Tooltip
+          boundaryRef={overflowRef}
+          placement="right"
+          content="Long tooltip content wraps inside the container."
+        >
+          <button>Overflow</button>
+        </Tooltip>
+      </div>
+    </main>
   );
 }
