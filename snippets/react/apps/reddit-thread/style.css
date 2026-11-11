@@ -1,0 +1,73 @@
+:root {
+  font-family: system-ui, sans-serif;
+  color-scheme: light dark;
+}
+
+.demo {
+  margin-inline: auto;
+  padding: 1rem;
+  max-width: 48rem;
+}
+
+.demo h1 {
+  margin: 0 0 1.5rem;
+  font-size: 1.25rem;
+}
+
+.reddit-thread {
+  display: grid;
+  gap: 1.5rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.comment {
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+
+.comment-header {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0.25rem 0.75rem;
+  font-size: 0.875rem;
+}
+
+.comment-date {
+  color: light-dark(#666, #aaa);
+}
+
+.comment-text {
+  margin: 0.5rem 0;
+  line-height: 1.5;
+}
+
+.comment-replies > summary {
+  width: fit-content;
+  border-radius: 0.25rem;
+  font-size: 0.875rem;
+  cursor: pointer;
+}
+
+.comment-replies > summary:hover {
+  text-decoration: underline;
+}
+
+.comment-replies > summary:focus-visible {
+  outline: 2px solid currentColor;
+  outline-offset: 2px;
+}
+
+.comment-replies > .reddit-thread {
+  margin-top: 1rem;
+  padding-left: 0.75rem;
+  border-left: 1px solid light-dark(#ddd, #444);
+}
+
+@media (min-width: 48rem) {
+  .comment-replies > .reddit-thread {
+    padding-left: 1.5rem;
+  }
+}
