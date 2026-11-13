@@ -6,6 +6,7 @@ export default defineConfig(async ({ command, mode }) => {
   const { base, port } = getConfig();
 
   return {
+    appType: "mpa" as const,
     root: ROOT_DIR,
     envDir: ROOT_DIR,
     base,
