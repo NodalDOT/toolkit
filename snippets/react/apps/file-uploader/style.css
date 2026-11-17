@@ -1,0 +1,82 @@
+:root {
+  font-family: system-ui, sans-serif;
+  color-scheme: light dark;
+}
+
+.demo {
+  display: block;
+  margin-inline: auto;
+  padding: 1rem;
+  max-width: 32rem;
+}
+
+.file-uploader,
+.file-uploader__field,
+.file-uploader__progress {
+  display: grid;
+  gap: 1rem;
+}
+
+.file-uploader h1,
+.file-uploader p,
+.file-uploader dl,
+.file-uploader dd {
+  margin: 0;
+}
+
+.file-uploader__field {
+  gap: 0.5rem;
+}
+
+.file-uploader input {
+  min-width: 0;
+  max-width: 100%;
+  font: inherit;
+}
+
+.file-uploader__metrics {
+  display: grid;
+  gap: 0.5rem;
+  font-variant-numeric: tabular-nums;
+}
+
+.file-uploader__metrics > div {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 0.5rem;
+}
+
+.file-uploader__metrics dt {
+  font-weight: 600;
+}
+
+.file-uploader__controls {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.file-uploader button {
+  padding: 0.4rem 0.75rem;
+  border: 1px solid light-dark(#ddd, #444);
+  border-radius: 0.4rem;
+  background: light-dark(#f5f5f5, #252525);
+  color: inherit;
+  font: inherit;
+  cursor: pointer;
+}
+
+.file-uploader button:enabled:hover {
+  filter: brightness(0.9);
+}
+
+.file-uploader button:disabled {
+  opacity: 0.5;
+  cursor: default;
+}
+
+.file-uploader :focus-visible {
+  outline: 2px solid currentColor;
+  outline-offset: 4px;
+}
