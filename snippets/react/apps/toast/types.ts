@@ -1,7 +1,7 @@
 export type ToastItem = {
-  text: string
-  id: number
-}
+  text: string;
+  id: number;
+};
 export type ToastMethod = {
-  toast: ( item: ToastItem )=> void
-}
+  toast: (item: ToastItem) => void;
+};
