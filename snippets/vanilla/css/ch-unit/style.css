@@ -1,0 +1,26 @@
+.reading-demo {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.reading-toggle {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.reading-toggle input {
+  accent-color: var(--accent);
+}
+
+.reading-text {
+  margin: 0;
+  line-height: 1.65;
+  font-size: 1rem;
+  font-family: system-ui, sans-serif;
+}
+
+.reading-demo:has(input:checked) .reading-text {
+  max-width: 65ch;
+}
