@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <template data-html-content="snippet-head"></template>
+    <link rel="stylesheet" href="./style.css" />
+    <title>Focus states</title>
+  </head>
+  <body data-theme="%DEFAULT_THEME%">
+    <template data-html-script="snippet-theme"></template>
+    <main class="snippet">
+      <h1 class="snippet-title">Focus states</h1>
+
+      <form class="focus-demo" aria-labelledby="contact-details">
+        <h2 id="contact-details">Contact details</h2>
+        <p>Press Tab to move through the form. Then click Reset to compare.</p>
+
+        <div class="focus-demo__field">
+          <label for="contact-name">Name</label>
+          <input id="contact-name" type="text" autocomplete="name" />
+        </div>
+
+        <div class="focus-demo__field">
+          <label for="contact-email">Email</label>
+          <input id="contact-email" type="email" autocomplete="email" />
+        </div>
+
+        <button type="reset">Reset</button>
+      </form>
+    </main>
+  </body>
+</html>

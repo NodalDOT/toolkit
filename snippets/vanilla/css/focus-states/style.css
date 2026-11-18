@@ -1,0 +1,64 @@
+.focus-demo {
+  display: grid;
+  gap: 16px;
+  padding: 16px;
+  max-width: 420px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  background: var(--surface);
+  font-size: var(--font-size-sm);
+}
+
+.focus-demo h2,
+.focus-demo p {
+  margin: 0;
+}
+
+.focus-demo h2 {
+  font-size: var(--font-size-md);
+}
+
+.focus-demo p {
+  color: var(--muted);
+}
+
+.focus-demo__field {
+  display: grid;
+  gap: 8px;
+  padding: 12px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  background: var(--bg);
+}
+
+.focus-demo__field:focus-within {
+  border-color: var(--accent);
+}
+
+.snippet .focus-demo__field input {
+  min-width: 0;
+}
+
+.focus-demo__field input:focus {
+  border-color: var(--accent);
+}
+
+.focus-demo button {
+  justify-self: start;
+}
+
+.snippet .focus-demo :is(input, button):focus-visible {
+  box-shadow: 0 0 0 4px black;
+  outline: 2px solid white;
+  outline-offset: 0;
+}
+
+@media (forced-colors: active) {
+  .focus-demo__field:focus-within {
+    border-color: Highlight;
+  }
+
+  .snippet .focus-demo :is(input, button):focus-visible {
+    outline-color: Highlight;
+  }
+}
