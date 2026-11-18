@@ -1,0 +1,59 @@
+.subgrid-toggle {
+  display: none;
+}
+
+.card-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 15rem), 1fr));
+  gap: 1rem;
+}
+
+.card {
+  display: grid;
+  grid-template-rows: auto auto auto;
+  align-content: start;
+  align-items: start;
+  gap: 1rem;
+  padding: 1rem;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  background: var(--surface);
+}
+
+.card h2,
+.card p {
+  margin: 0;
+}
+
+.card h2 {
+  font-size: 1.125rem;
+}
+
+.card p {
+  color: var(--muted);
+}
+
+.card footer {
+  padding-block-start: 0.75rem;
+  border-block-start: 1px solid var(--border);
+  color: var(--accent);
+  font-weight: bold;
+}
+
+@supports (grid-template-rows: subgrid) {
+  .subgrid-toggle {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-block-end: 1rem;
+  }
+
+  .subgrid-toggle input {
+    accent-color: var(--accent);
+  }
+
+  .subgrid-demo:has(.subgrid-toggle input:checked) .card {
+    grid-row: span 3;
+    grid-template-rows: subgrid;
+  }
+}
