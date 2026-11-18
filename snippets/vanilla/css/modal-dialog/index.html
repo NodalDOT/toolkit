@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <template data-html-content="snippet-head"></template>
+    <link rel="stylesheet" href="./style.css" />
+    <title>Modal dialog</title>
+  </head>
+  <body data-theme="%DEFAULT_THEME%">
+    <template data-html-script="snippet-theme"></template>
+    <main class="snippet">
+      <h1 class="snippet-title">Modal dialog</h1>
+
+      <div class="snippet-controls">
+        <button type="button" id="open-dialog" disabled>Open modal</button>
+      </div>
+
+      <label class="background-field">
+        Background note
+        <input type="text" value="Try focusing this while the modal is open." />
+      </label>
+
+      <dialog class="overlay" id="modal" aria-labelledby="modal-title">
+        <h2 id="modal-title">Modal preview</h2>
+        <p>Press Tab to explore the modal, or Escape to close it.</p>
+        <form class="snippet-controls" method="dialog">
+          <button type="submit" autofocus>Done</button>
+          <button type="submit">Cancel</button>
+        </form>
+      </dialog>
+    </main>
+    <script type="module" src="./script.js"></script>
+  </body>
+</html>

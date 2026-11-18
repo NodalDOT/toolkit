@@ -1,0 +1,37 @@
+.background-field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  max-width: 30rem;
+}
+
+.background-field input {
+  padding: 0.75rem;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  background: var(--surface);
+  color: var(--text);
+  font: inherit;
+}
+
+.overlay {
+  padding: 1rem;
+  width: min(24rem, calc(100% - 2rem));
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  background: var(--surface);
+  color: var(--text);
+}
+
+.overlay h2 {
+  margin: 0 0 0.5rem;
+  font-size: 1rem;
+}
+
+.overlay p {
+  margin: 0 0 1rem;
+}
+
+.overlay::backdrop {
+  background: rgb(0 0 0 / 45%);
+}
