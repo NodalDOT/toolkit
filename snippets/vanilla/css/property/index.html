@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <template data-html-content="snippet-head"></template>
+    <link rel="stylesheet" href="./style.css" />
+    <title>Typed custom properties</title>
+  </head>
+  <body data-theme="%DEFAULT_THEME%">
+    <template data-html-script="snippet-theme"></template>
+    <main class="snippet">
+      <h1 class="snippet-title">@property</h1>
+
+      <div class="property-demo">
+        <label class="property-toggle">
+          <input type="checkbox" />
+          Change gradient color
+        </label>
+
+        <div class="property-comparison">
+          <section class="property-example">
+            <h2>Registered color</h2>
+            <div class="gradient typed animated" aria-hidden="true"></div>
+            <p>
+              <code>syntax: "&lt;color&gt;"</code> lets the color stop
+              transition.
+            </p>
+          </section>
+
+          <section class="property-example">
+            <h2>Unregistered color</h2>
+            <div class="gradient untyped" aria-hidden="true"></div>
+            <p>The same color stop changes instantly.</p>
+          </section>
+
+          <section class="property-example">
+            <h2>Invalid value</h2>
+            <div class="gradient typed invalid" aria-hidden="true"></div>
+            <p>
+              <code>20px</code> is invalid for a color, so the gradient uses
+              <code>initial-value</code>.
+            </p>
+          </section>
+
+          <section class="property-example">
+            <h2>Inheritance</h2>
+            <div class="gradient typed parent" aria-hidden="true">
+              <div class="gradient typed child"></div>
+            </div>
+            <p>
+              With <code>inherits: false</code>, the inner swatch uses the
+              initial color.
+            </p>
+          </section>
+        </div>
+      </div>
+    </main>
+  </body>
+</html>
