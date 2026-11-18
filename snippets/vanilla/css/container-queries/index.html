@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <template data-html-content="snippet-head"></template>
+    <link rel="stylesheet" href="./style.css" />
+    <title>Container queries</title>
+  </head>
+  <body data-theme="%DEFAULT_THEME%">
+    <template data-html-script="snippet-theme"></template>
+    <main class="snippet">
+      <h1 class="snippet-title">Container queries</h1>
+
+      <div class="width-control" hidden>
+        <label for="column-width">Main column width</label>
+        <output for="column-width">36 rem</output>
+        <input id="column-width" type="range" min="12" max="40" value="36" />
+      </div>
+
+      <div class="card-layout">
+        <section class="card-area primary">
+          <h2>Main column</h2>
+          <article class="article-card">
+            <img src="./landscape-1.jpg" alt="" width="1000" height="596" />
+            <div class="article-copy">
+              <h3>A weekend outdoors</h3>
+              <p>
+                Pick a trail, pack a lunch, and leave time for stops along the
+                way.
+              </p>
+            </div>
+          </article>
+        </section>
+
+        <section class="card-area sidebar">
+          <h2>Sidebar</h2>
+          <article class="article-card">
+            <img src="./landscape-1.jpg" alt="" width="1000" height="596" />
+            <div class="article-copy">
+              <h3>A weekend outdoors</h3>
+              <p>
+                Pick a trail, pack a lunch, and leave time for stops along the
+                way.
+              </p>
+            </div>
+          </article>
+        </section>
+      </div>
+    </main>
+    <script type="module" src="./script.js"></script>
+  </body>
+</html>
