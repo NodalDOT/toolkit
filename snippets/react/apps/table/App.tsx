@@ -9,7 +9,7 @@ const initialData = datasource.next(0, datasource.pageSize);
 
 export function App() {
   return (
-    <main>
+    <main className="snippet">
       <Suspense
         fallback={
           <div className="table-loader" role="status">

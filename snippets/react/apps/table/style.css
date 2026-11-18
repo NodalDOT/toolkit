@@ -1,8 +1,3 @@
-:root {
-  font-family: system-ui, sans-serif;
-  color-scheme: light dark;
-}
-
 button,
 input {
   font: inherit;
@@ -15,7 +10,6 @@ input {
 
   display: grid;
   gap: 1rem;
-  padding: 1rem;
 }
 
 .table-search {

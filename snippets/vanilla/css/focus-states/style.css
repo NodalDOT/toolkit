@@ -1,4 +1,12 @@
 .focus-demo {
+  --surface: #ede8dd;
+  --bg: #f5efe6;
+  --border: #ceccbd;
+  --text: #2b3034;
+  --muted: #455355;
+  --accent: #4a6e3a;
+  --button: #e6e1d3;
+  --button-hover: #ceccbd;
   display: grid;
   gap: 16px;
   padding: 16px;
@@ -6,7 +14,45 @@
   border: 1px solid var(--border);
   border-radius: var(--radius-md);
   background: var(--surface);
+  color: var(--text);
   font-size: var(--font-size-sm);
+
+  color-scheme: light;
+}
+
+.focus-demo:has(> .focus-demo__theme > :checked) {
+  --surface: #232a2e;
+  --bg: #1c2225;
+  --border: #374145;
+  --text: #f8f9e8;
+  --muted: #96b4aa;
+  --accent: #cbe3b3;
+  --button: #2b3337;
+  --button-hover: #374145;
+
+  color-scheme: dark;
+}
+
+.focus-demo__theme {
+  display: inline-flex;
+  align-items: center;
+  justify-self: start;
+  gap: 8px;
+  min-height: 24px;
+  cursor: pointer;
+}
+
+.snippet .focus-demo__theme input {
+  flex: none;
+  margin: 0;
+  min-width: auto;
+  accent-color: var(--accent);
+}
+
+.focus-demo__form {
+  display: grid;
+  gap: 16px;
+  margin: 0;
 }
 
 .focus-demo h2,
@@ -31,16 +77,8 @@
   background: var(--bg);
 }
 
-.focus-demo__field:focus-within {
-  border-color: var(--accent);
-}
-
 .snippet .focus-demo__field input {
   min-width: 0;
-}
-
-.focus-demo__field input:focus {
-  border-color: var(--accent);
 }
 
 .focus-demo button {
@@ -54,10 +92,6 @@
 }
 
 @media (forced-colors: active) {
-  .focus-demo__field:focus-within {
-    border-color: Highlight;
-  }
-
   .snippet .focus-demo :is(input, button):focus-visible {
     outline-color: Highlight;
   }

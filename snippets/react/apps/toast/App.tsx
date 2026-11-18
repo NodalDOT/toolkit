@@ -3,7 +3,7 @@ import { ToastButton } from "./ToastButton";
 
 export function App() {
   return (
-    <main>
+    <main className="snippet">
       <ToastProvider target="#target-id">
         <div>
           <ToastButton />

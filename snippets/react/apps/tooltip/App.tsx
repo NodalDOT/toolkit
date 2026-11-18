@@ -175,7 +175,7 @@ export function App() {
   const leftRef = useRef<HTMLDivElement>(null);
 
   return (
-    <main className="demo">
+    <main className="snippet">
       <div className="boundary boundary--tight boundary--start" ref={rightRef}>
         <Tooltip boundaryRef={rightRef} placement="top" content="Right">
           <button>Hover</button>

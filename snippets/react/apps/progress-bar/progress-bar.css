@@ -1,0 +1,39 @@
+.progress-bar {
+  position: relative;
+  width: 100%;
+  max-width: 320px;
+  height: 1.5rem;
+  overflow: hidden;
+  box-shadow: inset 0 0 2px rgb(0 0 0 / 20%);
+  border-radius: 2px;
+  background: lightgrey;
+}
+
+.progress-bar__fill {
+  width: 100%;
+  height: 100%;
+  background: #56a3f5;
+  transition: transform 0.3s linear;
+}
+
+.progress-bar__label {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  color: #444;
+  font-weight: 500;
+}
+
+.progress-bar__label--overlay {
+  z-index: 2;
+  color: white;
+  transition: clip-path 0.3s linear;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .progress-bar__fill,
+  .progress-bar__label--overlay {
+    transition: none;
+  }
+}

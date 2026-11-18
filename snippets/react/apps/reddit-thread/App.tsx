@@ -3,7 +3,7 @@ import { comments } from "./data";
 
 export function App() {
   return (
-    <main className="demo">
+    <main className="snippet">
       <h1>Reddit thread</h1>
       <RedditThread comments={comments} />
     </main>

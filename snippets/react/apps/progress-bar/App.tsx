@@ -22,7 +22,7 @@ export function App() {
   const handleReset = () => setProgress(0);
 
   return (
-    <main className="demo">
+    <main className="snippet">
       <ProgressBar label={`${progress}%`} value={progress} />
 
       <button type="button" onClick={handleReset}>

@@ -1,8 +1,3 @@
-:root {
-  font-family: system-ui, sans-serif;
-  color-scheme: light dark;
-}
-
 button {
   padding: 0.4rem 0.6rem;
   font: inherit;
@@ -14,7 +9,7 @@ button {
   outline-offset: 4px;
 }
 
-.demo {
+.snippet {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;

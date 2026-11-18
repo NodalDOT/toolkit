@@ -1,12 +1,4 @@
-:root {
-  font-family: system-ui, sans-serif;
-  color-scheme: light dark;
-}
-
-.demo {
-  display: block;
-  margin-inline: auto;
-  padding: 1rem;
+.snippet {
   max-width: 32rem;
 }
 

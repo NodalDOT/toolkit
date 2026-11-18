@@ -55,7 +55,7 @@ export function App() {
   };
 
   return (
-    <main>
+    <main className="snippet">
       <h1 className="visually-hidden">Dialog</h1>
       <button type="button" onClick={() => setOpen(true)}>
         Delete file

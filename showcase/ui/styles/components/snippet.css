@@ -1,13 +1,41 @@
-body {
-  padding: 32px;
-  font-size: var(--font-size-md);
+:where(html) {
+  color-scheme: light dark;
 }
 
-.snippet {
+:where(body) {
+  --radius-md: 10px;
+  --font-size-sm: 0.8125rem;
+  --font-size-md: 0.875rem;
+  --font-size-xl: 1.125rem;
+
+  margin: 0;
+  background: var(--bg, Canvas);
+  color: var(--text, CanvasText);
+  font-family: system-ui, sans-serif;
+}
+
+:where(.snippet) {
+  margin-inline: auto;
+  padding: 1rem;
+}
+
+body[data-theme] {
+  line-height: 1.32;
+  font-size: var(--font-size-md);
+  font-family: "JetBrains Mono", monospace;
+}
+
+:where(body[data-theme], body[data-theme] *),
+:where(body[data-theme], body[data-theme] *)::before,
+:where(body[data-theme], body[data-theme] *)::after {
+  box-sizing: border-box;
+}
+
+:where(body[data-theme] .snippet) {
   display: grid;
   gap: 24px;
-  margin-inline: auto;
-  max-width: 960px;
+  padding: 32px;
+  max-width: calc(960px + 64px);
 }
 
 .snippet-title {
@@ -21,43 +49,43 @@ body {
   gap: 8px;
 }
 
-.snippet button,
-.snippet input {
+:where(.snippet-controls) button,
+:where(.snippet-controls) input {
   padding: 8px 12px;
-  border: 1px solid var(--border);
+  border: 1px solid var(--border, ButtonBorder);
   border-radius: var(--radius-md);
-  background: var(--button);
-  color: var(--text);
+  background: var(--button, ButtonFace);
+  color: var(--text, ButtonText);
   font: inherit;
   font-size: var(--font-size-sm);
 }
 
-.snippet button {
+:where(.snippet-controls) button {
   cursor: pointer;
 }
 
-.snippet button:hover {
-  background: var(--button-hover);
+:where(.snippet-controls) button:hover {
+  background: var(--button-hover, light-dark(#eee, #333));
 }
 
-.snippet button[aria-pressed="true"] {
-  border-color: var(--accent);
-  background: var(--accent);
-  color: var(--bg);
+:where(.snippet-controls) button[aria-pressed="true"] {
+  border-color: var(--accent, Highlight);
+  background: var(--accent, Highlight);
+  color: var(--bg, HighlightText);
 }
 
-.snippet input {
+:where(.snippet-controls) input {
   flex: 1;
   min-width: 200px;
 }
 
-.snippet input::placeholder {
-  color: var(--muted);
+:where(.snippet-controls) input::placeholder {
+  color: var(--muted, GrayText);
 }
 
-.snippet input:focus-visible,
-.snippet button:focus-visible {
-  outline: 1px solid var(--accent-border);
+:where(.snippet-controls) input:focus-visible,
+:where(.snippet-controls) button:focus-visible {
+  outline: 1px solid var(--accent-border, Highlight);
   outline-offset: 1px;
 }
 
@@ -67,12 +95,12 @@ body {
   align-items: baseline;
   gap: 24px;
   padding: 16px 20px;
-  border: 1px solid var(--border);
+  border: 1px solid var(--border, ButtonBorder);
   border-radius: var(--radius-md);
-  background: var(--surface);
-  color: var(--muted);
+  background: var(--surface, Canvas);
+  color: var(--muted, GrayText);
 }
 
 .snippet-result strong {
-  color: var(--accent);
+  color: var(--accent, Highlight);
 }

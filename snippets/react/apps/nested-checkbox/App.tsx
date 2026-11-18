@@ -134,7 +134,7 @@ const Checkbox = (props: CheckboxItem) => {
 
 export function App() {
   return (
-    <main className="demo">
+    <main className="snippet">
       <CheckboxTree items={MOCK_DATA} />
     </main>
   );

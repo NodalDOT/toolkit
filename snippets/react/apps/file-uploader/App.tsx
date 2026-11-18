@@ -1,6 +1,6 @@
 import { useState, type ChangeEventHandler } from "react";
 import { ProgressBar } from "../progress-bar/ProgressBar";
-import "../progress-bar/style.css";
+import "../progress-bar/progress-bar.css";
 import { useFileUpload } from "./useFileUpload";
 
 const FileUploader = () => {
@@ -91,7 +91,7 @@ const FileUploader = () => {
 
 export function App() {
   return (
-    <main className="demo">
+    <main className="snippet">
       <FileUploader />
     </main>
   );

@@ -1,15 +1,8 @@
-:root {
-  font-family: system-ui, sans-serif;
-  color-scheme: light dark;
-}
-
-.demo {
-  margin-inline: auto;
-  padding: 1rem;
+.snippet {
   max-width: 48rem;
 }
 
-.demo h1 {
+.snippet h1 {
   margin: 0 0 1.5rem;
   font-size: 1.25rem;
 }

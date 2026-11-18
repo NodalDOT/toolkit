@@ -10,22 +10,33 @@
     <main class="snippet">
       <h1 class="snippet-title">Focus states</h1>
 
-      <form class="focus-demo" aria-labelledby="contact-details">
-        <h2 id="contact-details">Contact details</h2>
-        <p>Press Tab to move through the form. Then click Reset to compare.</p>
+      <section class="focus-demo" aria-label="Double focus ring">
+        <p>
+          Switch themes and press Tab. The ring has a white outline and a black
+          outer shadow.
+        </p>
 
-        <div class="focus-demo__field">
-          <label for="contact-name">Name</label>
-          <input id="contact-name" type="text" autocomplete="name" />
-        </div>
+        <label class="focus-demo__theme" for="focus-dark-theme">
+          <input id="focus-dark-theme" type="checkbox" />
+          Dark preview
+        </label>
 
-        <div class="focus-demo__field">
-          <label for="contact-email">Email</label>
-          <input id="contact-email" type="email" autocomplete="email" />
-        </div>
+        <form class="focus-demo__form" aria-labelledby="contact-details">
+          <h2 id="contact-details">Contact details</h2>
 
-        <button type="reset">Reset</button>
-      </form>
+          <div class="focus-demo__field">
+            <label for="contact-name">Name</label>
+            <input id="contact-name" type="text" autocomplete="name" />
+          </div>
+
+          <div class="focus-demo__field">
+            <label for="contact-email">Email</label>
+            <input id="contact-email" type="email" autocomplete="email" />
+          </div>
+
+          <button type="reset">Reset</button>
+        </form>
+      </section>
     </main>
   </body>
 </html>
