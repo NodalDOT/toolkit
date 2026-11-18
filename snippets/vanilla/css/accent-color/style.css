@@ -1,0 +1,78 @@
+.accent-demo {
+  --control-accent: var(--accent);
+
+  display: grid;
+  gap: 16px;
+  padding: 16px;
+  max-width: 420px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  background: var(--surface);
+  font-size: var(--font-size-sm);
+}
+
+.accent-demo h2 {
+  margin: 0;
+  font-size: var(--font-size-md);
+}
+
+.accent-demo:has(option[value="system"]:checked) {
+  --control-accent: auto;
+}
+
+.accent-demo:has(option[value="blue"]:checked) {
+  --control-accent: var(--color-blue);
+}
+
+.accent-demo__controls {
+  display: grid;
+  gap: 16px;
+  accent-color: var(--control-accent);
+}
+
+.accent-demo__picker,
+.accent-demo__choice {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+  min-height: 24px;
+}
+
+.accent-demo__row {
+  display: grid;
+  gap: 8px;
+}
+
+.accent-demo__picker select {
+  padding: 6px 8px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  background: var(--button);
+  color: var(--text);
+  font: inherit;
+}
+
+.accent-demo__controls fieldset {
+  margin: 0;
+  padding: 0;
+  min-width: 0;
+  border: 0;
+}
+
+.accent-demo__controls legend {
+  padding: 0;
+}
+
+.accent-demo__controls input {
+  margin: 0;
+}
+
+.accent-demo__row progress {
+  width: 100%;
+}
+
+.accent-demo :is(input, select):focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}

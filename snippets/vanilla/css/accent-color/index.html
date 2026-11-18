@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <template data-html-content="snippet-head"></template>
+    <link rel="stylesheet" href="./style.css" />
+    <title>Native accent color</title>
+  </head>
+  <body data-theme="%DEFAULT_THEME%">
+    <template data-html-script="snippet-theme"></template>
+    <main class="snippet">
+      <h1 class="snippet-title">Native accent color</h1>
+
+      <section class="accent-demo" aria-labelledby="download-settings">
+        <h2 id="download-settings">Download settings</h2>
+
+        <label class="accent-demo__picker" for="download-accent">
+          Accent
+          <select id="download-accent">
+            <option value="system">System default</option>
+            <option value="green" selected>Green</option>
+            <option value="blue">Blue</option>
+          </select>
+        </label>
+
+        <div class="accent-demo__controls">
+          <label class="accent-demo__choice" for="download-notifications">
+            <input id="download-notifications" type="checkbox" checked />
+            Notify when complete
+          </label>
+
+          <fieldset>
+            <legend>Quality</legend>
+            <label class="accent-demo__choice" for="download-standard">
+              <input
+                id="download-standard"
+                type="radio"
+                name="quality"
+                value="standard"
+                checked
+              />
+              Standard
+            </label>
+            <label class="accent-demo__choice" for="download-high">
+              <input
+                id="download-high"
+                type="radio"
+                name="quality"
+                value="high"
+              />
+              High
+            </label>
+          </fieldset>
+
+          <label class="accent-demo__row" for="download-limit">
+            Bandwidth limit
+            <input
+              id="download-limit"
+              type="range"
+              min="0"
+              max="100"
+              value="60"
+            />
+          </label>
+
+          <label class="accent-demo__row" for="download-progress">
+            Download progress · 72%
+            <progress id="download-progress" max="100" value="72">72%</progress>
+          </label>
+        </div>
+      </section>
+    </main>
+  </body>
+</html>
