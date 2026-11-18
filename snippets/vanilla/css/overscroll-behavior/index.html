@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <template data-html-content="snippet-head"></template>
+    <link rel="stylesheet" href="./style.css" />
+    <title>Overscroll behavior</title>
+  </head>
+  <body data-theme="%DEFAULT_THEME%">
+    <template data-html-script="snippet-theme"></template>
+    <main class="snippet">
+      <h1 class="snippet-title">Overscroll behavior</h1>
+
+      <div class="scroll-demo">
+        <label class="scroll-toggle">
+          <input type="checkbox" />
+          Contain overscroll
+        </label>
+
+        <p>Scroll the list to the bottom, then keep scrolling over it.</p>
+
+        <section class="outer-scroll" tabindex="0" aria-labelledby="page-title">
+          <h2 id="page-title">Trip planner</h2>
+
+          <section
+            class="inner-scroll"
+            tabindex="0"
+            aria-labelledby="list-title"
+          >
+            <h3 id="list-title">Packing list</h3>
+            <ul>
+              <li>Water bottle</li>
+              <li>Trail map</li>
+              <li>Rain jacket</li>
+              <li>Lunch</li>
+              <li>Spare socks</li>
+              <li>Flashlight</li>
+              <li>First-aid kit</li>
+              <li>Portable charger</li>
+            </ul>
+          </section>
+
+          <h3>Before you leave</h3>
+          <p>Check the forecast and download an offline map of the trail.</p>
+          <h3>On the trail</h3>
+          <p>Take breaks at marked viewpoints and keep an eye on daylight.</p>
+          <h3>On the way home</h3>
+          <p>Leave time to refill your water bottle and pack up your gear.</p>
+        </section>
+      </div>
+    </main>
+  </body>
+</html>
