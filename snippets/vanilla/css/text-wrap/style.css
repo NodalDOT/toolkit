@@ -1,0 +1,48 @@
+.wrap-demo {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.wrap-toggle {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.wrap-toggle input {
+  accent-color: var(--accent);
+}
+
+.wrap-example {
+  padding: 1rem;
+  max-width: 28rem;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  background: var(--surface);
+}
+
+.wrap-example h2 {
+  margin: 0 0 0.75rem;
+  color: var(--muted);
+  font-size: var(--font-size-sm);
+}
+
+.wrap-example h3 {
+  margin: 0;
+  max-width: 22ch;
+  font-size: 1.5rem;
+}
+
+.wrap-example p {
+  margin: 0;
+  max-width: 33ch;
+}
+
+.wrap-demo:has(input:checked) h3 {
+  text-wrap: balance;
+}
+
+.wrap-demo:has(input:checked) p {
+  text-wrap: pretty;
+}
