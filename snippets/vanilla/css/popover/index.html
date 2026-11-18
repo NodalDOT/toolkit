@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <template data-html-content="snippet-head"></template>
+    <link rel="stylesheet" href="./style.css" />
+    <title>Native popover</title>
+  </head>
+  <body data-theme="%DEFAULT_THEME%">
+    <template data-html-script="snippet-theme"></template>
+    <main class="snippet">
+      <h1 class="snippet-title">Native popover</h1>
+
+      <div class="snippet-controls">
+        <button class="popover-control" type="button" popovertarget="help">
+          Show shortcuts
+        </button>
+      </div>
+
+      <section
+        class="help-popover"
+        id="help"
+        popover="auto"
+        aria-labelledby="help-title"
+      >
+        <h2 id="help-title">Preview shortcuts</h2>
+        <p>Press <kbd>Esc</kbd> or click outside to close this panel.</p>
+
+        <div class="snippet-controls">
+          <button
+            class="popover-control"
+            type="button"
+            popovertarget="help"
+            popovertargetaction="hide"
+          >
+            Close
+          </button>
+        </div>
+      </section>
+    </main>
+  </body>
+</html>

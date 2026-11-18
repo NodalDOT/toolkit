@@ -1,0 +1,32 @@
+.help-popover {
+  padding: 1rem;
+  width: min(24rem, calc(100% - 2rem));
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  background: var(--surface);
+  color: var(--text);
+}
+
+.help-popover h2 {
+  margin: 0 0 0.5rem;
+  font-size: 1rem;
+}
+
+.help-popover p {
+  margin: 0 0 1rem;
+}
+
+.help-popover::backdrop {
+  background: rgb(0 0 0 / 45%);
+  pointer-events: none;
+}
+
+@supports not selector(:popover-open) {
+  .snippet .popover-control {
+    display: none;
+  }
+
+  .help-popover {
+    width: min(24rem, 100%);
+  }
+}
