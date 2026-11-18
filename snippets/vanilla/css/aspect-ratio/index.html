@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <template data-html-content="snippet-head"></template>
+    <link rel="stylesheet" href="./style.css" />
+    <title>Aspect ratio</title>
+  </head>
+  <body data-theme="%DEFAULT_THEME%">
+    <template data-html-script="snippet-theme"></template>
+    <main class="snippet">
+      <h1 class="snippet-title">Aspect ratio</h1>
+
+      <div class="snippet-controls">
+        <button type="button" id="load-image" disabled>Load image</button>
+      </div>
+
+      <div class="comparison">
+        <section class="sample">
+          <h2>Without reserved space</h2>
+          <div class="media"></div>
+          <p>Watch where this text starts when the image appears.</p>
+        </section>
+
+        <section class="sample">
+          <h2>With <code>aspect-ratio: 16 / 9</code></h2>
+          <div class="media reserved"></div>
+          <p>Watch where this text starts when the image appears.</p>
+        </section>
+      </div>
+
+      <p id="load-status" role="status"></p>
+    </main>
+    <script type="module" src="./script.js"></script>
+  </body>
+</html>

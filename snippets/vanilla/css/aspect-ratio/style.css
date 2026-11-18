@@ -1,0 +1,44 @@
+.comparison {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: start;
+  gap: 1rem;
+}
+
+.sample {
+  display: flex;
+  flex: 1 1 18rem;
+  flex-direction: column;
+  gap: 0.75rem;
+  padding: 1rem;
+  min-width: 0;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  background: var(--surface);
+}
+
+.sample h2,
+.sample p,
+#load-status {
+  margin: 0;
+}
+
+.sample h2 {
+  font-size: 1rem;
+}
+
+.sample p {
+  color: var(--muted);
+}
+
+.reserved {
+  aspect-ratio: 16 / 9;
+  background: var(--button);
+}
+
+.media img {
+  display: block;
+  object-fit: cover;
+  aspect-ratio: 16 / 9;
+  width: 100%;
+}
