@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <template data-html-content="snippet-head"></template>
+    <link rel="stylesheet" href="./style.css" />
+    <title>Scrollbar gutter</title>
+  </head>
+  <body data-theme="%DEFAULT_THEME%">
+    <template data-html-script="snippet-theme"></template>
+    <main class="snippet">
+      <h1 class="snippet-title">Scrollbar gutter</h1>
+
+      <div class="gutter-demo">
+        <label class="gutter-toggle">
+          <input type="checkbox" />
+          Lock scrolling
+        </label>
+
+        <div class="gutter-comparison">
+          <section class="gutter-example">
+            <h2 id="default-title">Default gutter</h2>
+            <div
+              class="gutter-scroll"
+              tabindex="0"
+              role="region"
+              aria-labelledby="default-title"
+            >
+              <ul>
+                <li>Inbox</li>
+                <li>Drafts</li>
+                <li>Sent</li>
+                <li>Scheduled</li>
+                <li>Archive</li>
+                <li>Trash</li>
+              </ul>
+            </div>
+          </section>
+
+          <section class="gutter-example">
+            <h2 id="stable-title">Stable gutter</h2>
+            <div
+              class="gutter-scroll stable"
+              tabindex="0"
+              role="region"
+              aria-labelledby="stable-title"
+            >
+              <ul>
+                <li>Inbox</li>
+                <li>Drafts</li>
+                <li>Sent</li>
+                <li>Scheduled</li>
+                <li>Archive</li>
+                <li>Trash</li>
+              </ul>
+            </div>
+          </section>
+        </div>
+      </div>
+    </main>
+  </body>
+</html>
