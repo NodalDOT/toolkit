@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <template data-html-content="snippet-head"></template>
+    <link rel="stylesheet" href="./style.css" />
+    <title>Fluid typography</title>
+  </head>
+  <body data-theme="%DEFAULT_THEME%">
+    <template data-html-script="snippet-theme"></template>
+    <main class="snippet">
+      <h1 class="snippet-title">Fluid typography</h1>
+
+      <div class="width-control" hidden>
+        <label for="width">Container width</label>
+        <input
+          id="width"
+          type="range"
+          min="192"
+          max="672"
+          value="400"
+          step="1"
+        />
+        <output for="width"></output>
+      </div>
+
+      <div class="type-container">
+        <h2>Type that grows with its container</h2>
+      </div>
+    </main>
+    <script type="module" src="./script.js"></script>
+  </body>
+</html>
