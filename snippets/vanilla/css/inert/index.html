@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <template data-html-content="snippet-head"></template>
+    <link rel="stylesheet" href="./style.css" />
+    <title>Inert</title>
+  </head>
+  <body data-theme="%DEFAULT_THEME%">
+    <template data-html-script="snippet-theme"></template>
+    <main class="snippet">
+      <h1 class="snippet-title">Inert</h1>
+
+      <label class="inert-toggle" hidden>
+        <input type="checkbox" />
+        Freeze note editor
+      </label>
+
+      <div class="note-editor">
+        <label for="note">Note</label>
+        <textarea id="note" rows="3">Pick up a book on the way home.</textarea>
+        <div class="snippet-controls">
+          <button type="button" id="preview-note" disabled>Preview note</button>
+        </div>
+      </div>
+
+      <p class="note-status" role="status"></p>
+    </main>
+    <script type="module" src="./script.js"></script>
+  </body>
+</html>
