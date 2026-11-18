@@ -1,0 +1,24 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <template data-html-content="snippet-head"></template>
+    <link rel="stylesheet" href="./style.css" />
+    <title>Fit content</title>
+  </head>
+  <body data-theme="%DEFAULT_THEME%">
+    <template data-html-script="snippet-theme"></template>
+    <main class="snippet">
+      <h1 class="snippet-title">Fit content</h1>
+
+      <div class="message-editor" hidden>
+        <label for="message">Notification text</label>
+        <textarea id="message" rows="2">File deleted.</textarea>
+      </div>
+
+      <div class="preview-area">
+        <p class="notification">File deleted.</p>
+      </div>
+    </main>
+    <script type="module" src="./script.js"></script>
+  </body>
+</html>
