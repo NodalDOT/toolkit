@@ -1,0 +1,75 @@
+.files {
+  --file-columns: 1fr;
+  --file-direction: row;
+  --file-alignment: center;
+
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 16px;
+  padding: 16px;
+  max-width: 640px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  background: var(--surface);
+  font-size: var(--font-size-sm);
+}
+
+.files:has(> .files__view > :checked) {
+  --file-columns: repeat(auto-fit, minmax(min(100%, 144px), 1fr));
+  --file-direction: column;
+  --file-alignment: start;
+}
+
+.files__item {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  gap: 8px 16px;
+}
+
+.files__title {
+  margin: 0;
+  font-size: var(--font-size-md);
+}
+
+.files__view {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  min-height: 24px;
+  cursor: pointer;
+}
+
+.files__view input[type="checkbox"] {
+  flex: none;
+  margin: 0;
+  min-width: auto;
+  accent-color: var(--accent);
+}
+
+.files__list {
+  display: grid;
+  grid-template-columns: var(--file-columns);
+  grid-column: 1 / -1;
+  gap: 8px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.files__item {
+  flex-direction: var(--file-direction);
+  align-items: var(--file-alignment);
+  padding: 8px 12px;
+  min-width: 0;
+  overflow-wrap: anywhere;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  background: var(--button);
+}
+
+.files__item span {
+  color: var(--muted);
+}

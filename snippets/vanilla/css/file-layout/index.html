@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <template data-html-content="snippet-head"></template>
+    <link rel="stylesheet" href="./style.css" />
+    <title>File layout with :has()</title>
+  </head>
+  <body data-theme="%DEFAULT_THEME%">
+    <template data-html-script="snippet-theme"></template>
+    <main class="snippet">
+      <h1 class="snippet-title">File layout with :has()</h1>
+
+      <section class="files" aria-labelledby="files-title">
+        <h2 class="files__title" id="files-title">Project files</h2>
+        <label class="files__view">
+          <input type="checkbox" />
+          Grid view
+        </label>
+
+        <ul class="files__list" role="list">
+          <li class="files__item">
+            <strong>Brief.pdf</strong>
+            <span>PDF · 248 KB</span>
+          </li>
+          <li class="files__item">
+            <strong>Wireframes.fig</strong>
+            <span>Figma · 1.8 MB</span>
+          </li>
+          <li class="files__item">
+            <strong>Notes.md</strong>
+            <span>Markdown · 6 KB</span>
+          </li>
+          <li class="files__item">
+            <strong>Assets.zip</strong>
+            <span>ZIP · 3.2 MB</span>
+          </li>
+        </ul>
+      </section>
+    </main>
+  </body>
+</html>
