@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <template data-html-content="snippet-head"></template>
+    <link rel="stylesheet" href="./style.css" />
+    <title>Native form validation</title>
+  </head>
+  <body data-theme="%DEFAULT_THEME%">
+    <template data-html-script="snippet-theme"></template>
+    <main class="snippet">
+      <h1 class="snippet-title">Native form validation</h1>
+
+      <form class="validation-form" action="#submitted">
+        <div class="validation-field">
+          <label for="email">Email address</label>
+          <input
+            id="email"
+            type="email"
+            autocomplete="email"
+            aria-describedby="email-hint"
+            required
+          />
+          <p id="email-hint">Use a format like name@example.com.</p>
+          <p class="field-error">Enter a valid email address.</p>
+        </div>
+
+        <div class="validation-field">
+          <label for="name">Name</label>
+          <input id="name" type="text" autocomplete="name" required />
+          <p class="field-error">Enter your name.</p>
+        </div>
+
+        <div class="snippet-controls">
+          <button type="submit">Validate form</button>
+        </div>
+
+        <p class="validation-result" id="submitted">Both fields are valid.</p>
+      </form>
+    </main>
+  </body>
+</html>
