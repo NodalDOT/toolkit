@@ -62,7 +62,22 @@ export const getCatalogInputs = async (catalogDir: string): Promise<Inputs> => {
   for (const section of await readCatalog(catalogDir)) {
     for (const category of section.categories) {
       for (const item of category.items) {
-        inputs[item.path] = path.join(catalogDir, item.path, PAGE_FILE);
+        const itemDir = path.join(catalogDir, item.path);
+        inputs[item.path] = path.join(itemDir, PAGE_FILE);
+
+        const files = await fs.promises.readdir(itemDir, {
+          withFileTypes: true,
+        });
+
+        for (const file of files) {
+          if (
+            file.isFile() &&
+            file.name !== PAGE_FILE &&
+            file.name.endsWith(".html")
+          ) {
+            inputs[`${item.path}/${file.name}`] = path.join(itemDir, file.name);
+          }
+        }
       }
     }
   }
