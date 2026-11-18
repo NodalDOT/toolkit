@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <template data-html-content="snippet-head"></template>
+    <link rel="stylesheet" href="./style.css" />
+    <title>Light and dark colors</title>
+  </head>
+  <body data-theme="%DEFAULT_THEME%">
+    <template data-html-script="snippet-theme"></template>
+    <main class="snippet">
+      <h1 class="snippet-title">light-dark()</h1>
+
+      <div class="scheme-demo">
+        <label class="scheme-toggle">
+          <input type="checkbox" />
+          Dark preview
+        </label>
+
+        <div class="scheme-preview">
+          <div class="gradient" aria-hidden="true"></div>
+          <div class="color-sample">
+            <h2>Morning and night</h2>
+            <p>The same card, with colors and a gradient for each scheme.</p>
+          </div>
+        </div>
+      </div>
+    </main>
+  </body>
+</html>
