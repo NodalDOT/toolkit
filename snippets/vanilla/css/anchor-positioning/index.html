@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <template data-html-content="snippet-head"></template>
+    <link rel="stylesheet" href="./style.css" />
+    <title>Anchor positioning</title>
+  </head>
+  <body data-theme="%DEFAULT_THEME%">
+    <template data-html-script="snippet-theme"></template>
+    <main class="snippet">
+      <h1 class="snippet-title">Anchor positioning</h1>
+
+      <div class="anchor-demo">
+        <label class="edge-toggle">
+          <input type="checkbox" />
+          Move trigger to bottom edge
+        </label>
+
+        <div class="snippet-controls">
+          <button
+            id="anchor-trigger"
+            type="button"
+            popovertarget="anchor-preview"
+          >
+            Show details
+          </button>
+        </div>
+
+        <section
+          class="overlay"
+          id="anchor-preview"
+          popover="auto"
+          aria-labelledby="anchor-title"
+        >
+          <h2 id="anchor-title">Placement preview</h2>
+          <p>
+            The panel opens below the button and flips above it when space runs
+            out.
+          </p>
+        </section>
+      </div>
+    </main>
+  </body>
+</html>
