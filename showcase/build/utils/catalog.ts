@@ -1,6 +1,6 @@
 import fs from "node:fs";
 import path from "node:path";
-import { readRoutes, routeIndexer } from "@toolkit/route-indexer";
+import { routeIndexer } from "@toolkit/route-indexer";
 import type { RouteEntry } from "@toolkit/route-indexer";
 import type { Catalog, CatalogCategory, Inputs } from "../types.ts";
 
@@ -15,29 +15,17 @@ const toCatalogPath = (catalogDir: string, entryPath: string): string =>
 const hasPage = (entry: RouteEntry): boolean =>
   fs.existsSync(path.join(entry.path, PAGE_FILE));
 
-const collectPages = async (entries: RouteEntry[]): Promise<RouteEntry[]> => {
-  const pages: RouteEntry[] = [];
-
-  for (const entry of entries) {
-    if (hasPage(entry)) {
-      pages.push(entry);
-    } else {
-      pages.push(...(await collectPages(await readRoutes(entry.path))));
-    }
-  }
-
-  return pages;
-};
-
 const readCategories = async (
   catalogDir: string,
   sectionPath: string,
 ): Promise<CatalogCategory[]> => {
   const categories = await routeIndexer(sectionPath);
 
-  const catalog = await Promise.all(
-    categories.sort(byTitle).map(async (category) => {
-      const items = (await collectPages(category.routes))
+  return categories
+    .sort(byTitle)
+    .map((category) => {
+      const items = category.routes
+        .filter(hasPage)
         .sort(byTitle)
         .map((item) => ({
           title: item.title,
@@ -50,10 +38,8 @@ const readCategories = async (
         count: items.length,
         items,
       };
-    }),
-  );
-
-  return catalog.filter((category) => category.items.length);
+    })
+    .filter((category) => category.items.length);
 };
 
 export const readCatalog = async (catalogDir: string): Promise<Catalog> => {

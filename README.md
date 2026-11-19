@@ -41,8 +41,8 @@ pnpm dev
 
 ### Adding a snippet
 
-Snippets live under a section and category. A category can also contain topic
-folders, as in `snippets/vanilla/css/layout/aspect-ratio/`.
+Snippets live in three levels: section, category, snippet. For example,
+`snippets/css/layout/aspect-ratio/` appears under CSS → Layout.
 
 ```
 snippets/
