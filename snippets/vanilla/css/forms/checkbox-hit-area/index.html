@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <template data-html-content="snippet-head"></template>
+    <link rel="stylesheet" href="./style.css" />
+    <title>Checkbox hit areas</title>
+  </head>
+  <body data-theme="%DEFAULT_THEME%">
+    <template data-html-script="snippet-theme"></template>
+    <main class="snippet">
+      <h1 class="snippet-title">Checkbox hit areas</h1>
+
+      <div class="checkbox-comparison">
+        <section class="checkbox-example">
+          <h2>Checkbox only</h2>
+          <div class="checkbox-row">
+            <input type="checkbox" aria-labelledby="checkbox-caption" />
+            <span id="checkbox-caption">Email updates</span>
+          </div>
+        </section>
+
+        <section class="checkbox-example">
+          <h2>Checkbox and label</h2>
+          <label class="checkbox-row checkbox-label">
+            <input type="checkbox" />
+            <span>Email updates</span>
+          </label>
+        </section>
+
+        <section class="checkbox-example">
+          <h2>Entire card</h2>
+          <label class="checkbox-row checkbox-card">
+            <input
+              type="checkbox"
+              aria-labelledby="card-caption"
+              aria-describedby="card-description"
+            />
+            <span class="checkbox-copy">
+              <strong id="card-caption">Email updates</strong>
+              <span id="card-description"
+                >Get a summary of new activity once a week.</span
+              >
+            </span>
+          </label>
+        </section>
+      </div>
+    </main>
+  </body>
+</html>

@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <template data-html-content="snippet-head"></template>
+    <link rel="stylesheet" href="./style.css" />
+    <title>Terms and agreement</title>
+  </head>
+  <body data-theme="%DEFAULT_THEME%">
+    <template data-html-script="snippet-theme"></template>
+    <main class="snippet">
+      <h1 class="snippet-title">Terms and agreement</h1>
+
+      <form class="agreement-form" action="#agreement-result">
+        <details class="agreement-terms">
+          <summary>Demo terms</summary>
+          <p>
+            Use sample data only. This demo does not send your information or
+            create an account.
+          </p>
+        </details>
+
+        <label class="agreement-choice">
+          <input type="checkbox" required />
+          I agree to the demo terms
+        </label>
+
+        <div class="snippet-controls">
+          <button type="submit">Continue</button>
+        </div>
+
+        <p id="agreement-result" class="agreement-result" role="status"></p>
+      </form>
+    </main>
+    <script type="module" src="./script.js"></script>
+  </body>
+</html>

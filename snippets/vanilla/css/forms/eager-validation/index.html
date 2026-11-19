@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <template data-html-content="snippet-head"></template>
+    <link rel="stylesheet" href="./style.css" />
+    <title>Eager form validation</title>
+  </head>
+  <body data-theme="%DEFAULT_THEME%">
+    <template data-html-script="snippet-theme"></template>
+    <main class="snippet">
+      <h1 class="snippet-title">Eager validation</h1>
+
+      <form class="validation-form" id="eager-form" action="#eager-form">
+        <div class="validation-field">
+          <label for="email">Email address</label>
+          <input
+            id="email"
+            type="email"
+            autocomplete="email"
+            aria-invalid="false"
+            data-missing="Enter your email address."
+            data-format="Use a format like name@example.com."
+            data-success="Email format looks good."
+            required
+          />
+          <p class="field-feedback" id="email-feedback"></p>
+        </div>
+
+        <div class="validation-field">
+          <label for="name">Name</label>
+          <p class="field-hint" id="name-hint">Try a short name like Li.</p>
+          <input
+            id="name"
+            type="text"
+            autocomplete="name"
+            aria-describedby="name-hint"
+            aria-invalid="false"
+            data-missing="Enter your name."
+            data-success="Name entered."
+            required
+          />
+          <p class="field-feedback" id="name-feedback"></p>
+        </div>
+
+        <div class="snippet-controls">
+          <button type="submit">Validate form</button>
+        </div>
+
+        <p class="validation-result" role="status"></p>
+        <p class="validation-announcement" role="status"></p>
+      </form>
+    </main>
+    <script type="module" src="./script.js"></script>
+  </body>
+</html>

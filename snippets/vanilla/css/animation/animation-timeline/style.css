@@ -1,0 +1,122 @@
+.scroll-demo {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 18rem), 1fr));
+  gap: 1.25rem;
+  max-width: 52rem;
+}
+
+.timeline-example {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  min-width: 0;
+}
+
+.timeline-example p {
+  margin: 0;
+  color: var(--muted);
+}
+
+.timeline-example h2 {
+  margin: 0;
+  font-size: 1rem;
+}
+
+.reader {
+  height: 18rem;
+  overflow-y: auto;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  background: var(--surface);
+}
+
+.reader:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+.reading-progress {
+  position: sticky;
+  top: 0;
+  z-index: 1;
+  display: none;
+  height: 0.5rem;
+  background: var(--border);
+}
+
+.reading-progress::before {
+  display: block;
+  height: 100%;
+  background: var(--accent);
+  transform-origin: left;
+  content: "";
+}
+
+.trail {
+  display: grid;
+  gap: 1rem;
+  padding: 1rem;
+}
+
+.trail h3,
+.trail h4 {
+  margin: 0 0 0.5rem;
+}
+
+.trail h3 {
+  font-size: 1.125rem;
+}
+
+.trail h4 {
+  font-size: 1rem;
+}
+
+.trail-stop {
+  padding: 1rem;
+  min-height: 8rem;
+  border: 1px solid var(--border);
+  border-inline-start: 3px solid var(--accent);
+  border-radius: var(--radius-md);
+  background: var(--bg);
+}
+
+@supports (animation-timeline: scroll()) {
+  .reading-progress {
+    display: block;
+  }
+
+  .reading-progress::before {
+    animation: reading-progress auto linear both;
+    animation-timeline: scroll(nearest block);
+  }
+}
+
+@supports (animation-timeline: view()) and (animation-range: entry) {
+  .trail-stop {
+    animation: reveal-stop auto linear both;
+    animation-range: entry 10% cover 30%;
+    animation-timeline: view();
+  }
+}
+
+@keyframes reading-progress {
+  from {
+    transform: scaleX(0);
+  }
+
+  to {
+    transform: scaleX(1);
+  }
+}
+
+@keyframes reveal-stop {
+  from {
+    transform: translateY(2rem);
+    opacity: 0.15;
+  }
+
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}

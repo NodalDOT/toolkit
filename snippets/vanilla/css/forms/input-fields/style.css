@@ -1,0 +1,127 @@
+.field-examples {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 19rem), 1fr));
+  gap: 1rem;
+  min-width: 0;
+}
+
+.field-example {
+  display: grid;
+  align-content: start;
+  gap: 0.5rem;
+  margin: 0;
+  padding: 1rem;
+  min-width: 0;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  background: var(--surface);
+}
+
+.field-example h2,
+.field-example legend {
+  margin: 0;
+  color: var(--text);
+  font-weight: 600;
+  font-size: 1rem;
+}
+
+.field-example legend {
+  padding: 0 0.25rem;
+}
+
+.field-hint,
+.password-rules {
+  margin: 0;
+  color: var(--muted);
+  font-size: var(--font-size-sm);
+}
+
+.fields-demo :where(input:not([type="radio"]), textarea, select, button) {
+  padding: 0.5rem 0.75rem;
+  min-width: 0;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  background: var(--bg);
+  color: var(--text);
+  font: inherit;
+}
+
+.fields-demo :is(input, textarea, select, button):focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+.field-example textarea {
+  resize: vertical;
+}
+
+.field-hint[data-state="near"],
+.password-rules [data-met] {
+  color: var(--accent);
+}
+
+.field-hint[data-state="error"] {
+  color: var(--color-red);
+}
+
+.fields-demo [aria-invalid="true"] {
+  border-color: var(--color-red);
+}
+
+.password-control {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.password-control input {
+  flex: 1 1 9rem;
+}
+
+.password-control button {
+  cursor: pointer;
+}
+
+.password-rules {
+  padding: 0;
+  list-style: none;
+}
+
+.birth-date {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr)) minmax(0, 1.3fr);
+  gap: 0.5rem;
+}
+
+.birth-date label,
+.phone-fields {
+  display: grid;
+  gap: 0.25rem;
+  min-width: 0;
+}
+
+.birth-date input {
+  padding-inline: 0.375rem;
+  width: 100%;
+}
+
+.choice {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  min-height: 2.75rem;
+  cursor: pointer;
+}
+
+.choice input {
+  margin: 0;
+  accent-color: var(--accent);
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+}

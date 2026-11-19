@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <template data-html-content="snippet-head"></template>
+    <link rel="stylesheet" href="./style.css" />
+    <title>Scroll-driven animations</title>
+  </head>
+  <body data-theme="%DEFAULT_THEME%">
+    <template data-html-script="snippet-theme"></template>
+    <main class="snippet">
+      <h1 class="snippet-title">animation-timeline</h1>
+
+      <div class="scroll-demo">
+        <section class="timeline-example">
+          <h2 id="scroll-title"><code>scroll()</code> · Reading progress</h2>
+          <p>Scroll to fill the bar at the top.</p>
+
+          <article class="reader" tabindex="0" aria-labelledby="scroll-title">
+            <div class="reading-progress" aria-hidden="true"></div>
+
+            <div class="trail">
+              <header>
+                <h3>A morning on the trail</h3>
+                <p>Follow the river from the trailhead to the ridge lookout.</p>
+              </header>
+
+              <section>
+                <h4>Trailhead</h4>
+                <p>
+                  The path starts by the old mill and follows the river into the
+                  woods. From here, the red markers lead to the footbridge.
+                </p>
+              </section>
+
+              <section>
+                <h4>River crossing</h4>
+                <p>
+                  Cross the footbridge and head uphill through the birches. The
+                  next turn opens onto a meadow with a view of the ridge.
+                </p>
+              </section>
+
+              <section>
+                <h4>Ridge lookout</h4>
+                <p>
+                  Follow the ridge to the stone bench. On a clear day, you can
+                  trace the river all the way back to the trailhead.
+                </p>
+              </section>
+            </div>
+          </article>
+        </section>
+
+        <section class="timeline-example">
+          <h2 id="view-title"><code>view()</code> · Card reveal</h2>
+          <p>Scroll slowly to reveal each card.</p>
+
+          <div
+            class="reader"
+            role="region"
+            tabindex="0"
+            aria-labelledby="view-title"
+          >
+            <div class="trail">
+              <section class="trail-stop">
+                <h3>River crossing</h3>
+                <p>
+                  A footbridge takes you across the river and into the shade.
+                </p>
+              </section>
+
+              <section class="trail-stop">
+                <h3>Meadow</h3>
+                <p>The trail opens into a meadow at the foot of the ridge.</p>
+              </section>
+
+              <section class="trail-stop">
+                <h3>Ridge lookout</h3>
+                <p>
+                  From the top, you can trace the river back to the trailhead.
+                </p>
+              </section>
+            </div>
+          </div>
+        </section>
+      </div>
+    </main>
+  </body>
+</html>

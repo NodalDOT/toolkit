@@ -1,0 +1,134 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <template data-html-content="snippet-head"></template>
+    <link rel="stylesheet" href="./style.css" />
+    <title>Form input patterns</title>
+  </head>
+  <body data-theme="%DEFAULT_THEME%">
+    <template data-html-script="snippet-theme"></template>
+    <main class="snippet fields-demo">
+      <h1 class="snippet-title">Form input patterns</h1>
+
+      <div class="field-examples">
+        <section class="field-example">
+          <h2>Textarea</h2>
+          <label for="note">Profile bio</label>
+          <textarea
+            id="note"
+            rows="4"
+            data-limit="120"
+            aria-describedby="note-count"
+          ></textarea>
+          <p class="field-hint" id="note-count">Up to 120 characters.</p>
+          <p class="visually-hidden" id="note-announcement" role="status"></p>
+        </section>
+
+        <section class="field-example">
+          <h2>Password</h2>
+          <label for="new-password">Sample password</label>
+          <div class="password-control">
+            <input
+              id="new-password"
+              type="password"
+              autocomplete="new-password"
+              aria-describedby="password-rules"
+              spellcheck="false"
+            />
+            <button type="button" aria-controls="new-password" hidden>
+              Show password
+            </button>
+          </div>
+          <ul class="password-rules" id="password-rules">
+            <li><span aria-hidden="true">○</span> At least 12 characters</li>
+            <li>
+              <span aria-hidden="true">○</span> At least one non-space character
+            </li>
+          </ul>
+          <p class="field-hint" id="password-progress" role="status"></p>
+        </section>
+
+        <fieldset class="field-example" aria-describedby="date-hint">
+          <legend>Date of birth</legend>
+          <p class="field-hint" id="date-hint">
+            Enter the day, month and four-digit year.
+          </p>
+          <div class="birth-date">
+            <label>
+              <span>Day</span>
+              <input
+                id="birth-day"
+                type="text"
+                inputmode="numeric"
+                autocomplete="bday-day"
+                placeholder="DD"
+                maxlength="2"
+              />
+            </label>
+            <label>
+              <span>Month</span>
+              <input
+                id="birth-month"
+                type="text"
+                inputmode="numeric"
+                autocomplete="bday-month"
+                placeholder="MM"
+                maxlength="2"
+              />
+            </label>
+            <label>
+              <span>Year</span>
+              <input
+                id="birth-year"
+                type="text"
+                inputmode="numeric"
+                autocomplete="bday-year"
+                placeholder="YYYY"
+                maxlength="4"
+              />
+            </label>
+          </div>
+          <p class="field-hint" id="date-result" role="status"></p>
+        </fieldset>
+
+        <section class="field-example">
+          <h2>Phone number</h2>
+          <div class="phone-fields">
+            <label for="country-code">Country code</label>
+            <select id="country-code" autocomplete="tel-country-code">
+              <option value="+1">US / Canada (+1)</option>
+              <option value="+33">France (+33)</option>
+            </select>
+            <label for="phone">Phone number</label>
+            <input
+              id="phone"
+              type="tel"
+              autocomplete="tel-national"
+              aria-describedby="phone-hint"
+            />
+          </div>
+          <p class="field-hint" id="phone-hint">
+            A callback number for updates about your request.
+          </p>
+        </section>
+
+        <fieldset class="field-example">
+          <legend>Contact preference</legend>
+          <label class="choice"
+            ><input type="radio" name="contact" value="email" checked />
+            Email</label
+          >
+          <label class="choice"
+            ><input type="radio" name="contact" value="phone" /> Phone
+            call</label
+          >
+          <label class="choice"
+            ><input type="radio" name="contact" value="none" /> No
+            updates</label
+          >
+        </fieldset>
+      </div>
+    </main>
+    <script type="module" src="./script.js"></script>
+  </body>
+</html>

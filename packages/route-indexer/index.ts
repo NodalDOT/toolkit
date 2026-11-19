@@ -1,5 +1,5 @@
 export { META_FILE } from "./src/meta.ts";
-export { routeIndexer } from "./src/route-indexer.ts";
+export { readRoutes, routeIndexer } from "./src/route-indexer.ts";
 export type {
   Route,
   RouteEntry,

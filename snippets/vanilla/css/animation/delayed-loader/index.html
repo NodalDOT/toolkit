@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <template data-html-content="snippet-head"></template>
+    <link rel="stylesheet" href="./style.css" />
+    <title>Delayed loader</title>
+  </head>
+  <body data-theme="%DEFAULT_THEME%">
+    <template data-html-script="snippet-theme"></template>
+    <main class="snippet">
+      <h1 class="snippet-title">Delayed loader</h1>
+
+      <div class="loader-demo">
+        <div class="snippet-controls">
+          <button type="button" data-duration="100" disabled>
+            Fast · 100 ms
+          </button>
+          <button type="button" data-duration="800" disabled>
+            Slow · 800 ms
+          </button>
+        </div>
+
+        <div class="loader-comparison">
+          <section class="loader-example">
+            <h2>Immediate</h2>
+            <div class="loader-preview">
+              <span class="loading-spinner" aria-hidden="true"></span>
+            </div>
+          </section>
+
+          <section class="loader-example">
+            <h2>Delayed · 150 ms</h2>
+            <div class="loader-preview">
+              <span class="loading-spinner delayed" aria-hidden="true"></span>
+            </div>
+          </section>
+        </div>
+
+        <p class="loader-status" role="status">Choose a simulated response.</p>
+      </div>
+    </main>
+    <script type="module" src="./script.js"></script>
+  </body>
+</html>

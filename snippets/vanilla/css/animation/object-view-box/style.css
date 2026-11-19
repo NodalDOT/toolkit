@@ -1,0 +1,75 @@
+.zoom-demo {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  max-width: 52rem;
+}
+
+.zoom-toggle {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  width: fit-content;
+}
+
+.zoom-toggle input {
+  accent-color: var(--accent);
+}
+
+.zoom-comparison {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 16rem), 1fr));
+  gap: 1rem;
+}
+
+.zoom-example h2 {
+  margin: 0 0 0.5rem;
+  font-size: 1rem;
+}
+
+.zoom-image {
+  display: block;
+  object-fit: cover;
+  aspect-ratio: 1000 / 596;
+  width: 100%;
+  height: auto;
+}
+
+.crop-image,
+.scale-frame {
+  border-radius: var(--radius-md);
+}
+
+.crop-image {
+  object-view-box: inset(0%);
+  transition: object-view-box 400ms ease;
+}
+
+.scale-frame {
+  overflow: clip;
+}
+
+.scale-image {
+  transition: transform 400ms ease;
+}
+
+.crop-image:hover,
+.zoom-demo:has(.zoom-toggle input:checked) .crop-image {
+  object-view-box: inset(15%);
+}
+
+.scale-frame:hover .scale-image,
+.zoom-demo:has(.zoom-toggle input:checked) .scale-image {
+  transform: scale(1.4286);
+}
+
+.crop-fallback {
+  margin: 0.5rem 0 0;
+  color: var(--muted);
+}
+
+@supports (object-view-box: inset(0%)) {
+  .crop-fallback {
+    display: none;
+  }
+}

@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <template data-html-content="snippet-head"></template>
+    <link rel="stylesheet" href="./style.css" />
+    <title>Image zoom comparison</title>
+  </head>
+  <body data-theme="%DEFAULT_THEME%">
+    <template data-html-script="snippet-theme"></template>
+    <main class="snippet">
+      <h1 class="snippet-title">Image zoom</h1>
+
+      <div class="zoom-demo">
+        <label class="zoom-toggle">
+          <input type="checkbox" />
+          Zoom both images
+        </label>
+
+        <div class="zoom-comparison">
+          <section class="zoom-example">
+            <h2><code>object-view-box</code></h2>
+            <img
+              class="zoom-image crop-image"
+              src="./landscape-1.jpg"
+              alt="Landscape"
+              width="1000"
+              height="596"
+            />
+            <p class="crop-fallback">
+              This browser doesn’t support object-view-box.
+            </p>
+          </section>
+
+          <section class="zoom-example">
+            <h2><code>transform: scale()</code></h2>
+            <div class="scale-frame">
+              <img
+                class="zoom-image scale-image"
+                src="./landscape-1.jpg"
+                alt="Same landscape"
+                width="1000"
+                height="596"
+              />
+            </div>
+          </section>
+        </div>
+      </div>
+    </main>
+  </body>
+</html>

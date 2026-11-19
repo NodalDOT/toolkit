@@ -3,46 +3,37 @@ import path from "node:path";
 import { readMeta } from "./meta.ts";
 import type { Route, RouteIndex, RouteSegment } from "./types.ts";
 
-export const routeIndexer = async (rootDir: string): Promise<RouteIndex> => {
-  const segmentEntries = await fs.readdir(rootDir, {
+export const readRoutes = async (rootDir: string): Promise<Route[]> => {
+  const entries = await fs.readdir(rootDir, {
     withFileTypes: true,
   });
 
-  const segments: RouteSegment[] = [];
+  const routes: Route[] = [];
 
-  for (const segmentEntry of segmentEntries) {
-    if (!segmentEntry.isDirectory()) {
+  for (const entry of entries) {
+    if (!entry.isDirectory()) {
       continue;
     }
-    const segmentPath = path.join(rootDir, segmentEntry.name);
-    const segmentMeta = await readMeta(segmentPath);
 
-    const routeEntries = await fs.readdir(segmentPath, {
-      withFileTypes: true,
-    });
-    const routes: Route[] = [];
+    const routePath = path.join(rootDir, entry.name);
+    const meta = await readMeta(routePath);
 
-    for (const routeEntry of routeEntries) {
-      if (!routeEntry.isDirectory()) {
-        continue;
-      }
-
-      const routePath = path.join(segmentPath, routeEntry.name);
-      const routeMeta = await readMeta(routePath);
-
-      routes.push({
-        name: routeEntry.name,
-        title: routeMeta.title,
-        path: routePath,
-      });
-    }
-
-    segments.push({
-      name: segmentEntry.name,
-      title: segmentMeta.title,
-      path: segmentPath,
-      routes,
+    routes.push({
+      name: entry.name,
+      title: meta.title,
+      path: routePath,
     });
   }
+
+  return routes;
+};
+
+export const routeIndexer = async (rootDir: string): Promise<RouteIndex> => {
+  const segments: RouteSegment[] = [];
+
+  for (const segment of await readRoutes(rootDir)) {
+    segments.push({ ...segment, routes: await readRoutes(segment.path) });
+  }
+
   return segments;
 };
